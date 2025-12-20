@@ -8,7 +8,6 @@ A personal blog covering topics in cryptography, automation, and web development
 - n8n
 - Web Dev
 
-## Author
-
-Akshita Sharma
+## Preview 
+https://akshita-xyz.github.io/BLOG/topics/cryptography/index.html
 
