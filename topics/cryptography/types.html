@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Types of Cryptography - KRUX</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        /* Types Overview Visual - Dark Interactive Cards */
+        .types-overview {
+            margin: 2rem 0;
+        }
+        
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .type-card {
+            background: linear-gradient(145deg, #151515, #1a1a1a);
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .type-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .type-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 20px var(--glow-color);
+        }
+        
+        .type-card:nth-child(1) { --accent-color: #e74c3c; --glow-color: rgba(231, 76, 60, 0.2); }
+        .type-card:nth-child(2) { --accent-color: #1abc9c; --glow-color: rgba(26, 188, 156, 0.2); }
+        .type-card:nth-child(3) { --accent-color: #f39c12; --glow-color: rgba(243, 156, 18, 0.2); }
+        
+        .type-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .type-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            line-height: 1;
+            text-shadow: 0 0 20px var(--glow-color);
+        }
+        
+        .type-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.3;
+        }
+        
+        .type-desc {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        
+        .type-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .type-tag {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #333;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: #aaa;
+        }
+        
+        .type-card:hover .type-tag {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        
+        .type-icon {
+            font-size: 1.5rem;
+            opacity: 0.5;
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .type-card:hover .type-icon {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+        
+        /* Section boxes */
+        .crypto-section {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .crypto-section h3 {
+            color: #fff;
+            margin-top: 0;
+        }
+        
+        /* Symmetric Flowchart - Dark Theme */
+        .symmetric-flow {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        .symmetric-flow-inner {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.3rem;
+        }
+        
+        .sym-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .sym-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
+            border-radius: 8px;
+        }
+        
+        .sym-icon.server {
+            background: #1a2a1a;
+            border: 2px solid #4caf50;
+        }
+        
+        .sym-icon.doc {
+            background: #1a2a1a;
+            border: 2px solid #4caf50;
+        }
+        
+        .sym-icon.lock {
+            font-size: 1.3rem;
+        }
+        
+        .sym-icon.lock.purple { color: #9c27b0; }
+        .sym-icon.lock.red { color: #f44336; background: #2a1a1a; border: 2px solid #f44336; border-radius: 8px; width: 50px; height: 50px; }
+        .sym-icon.lock.blue { color: #2196f3; }
+        
+        .sym-label {
+            font-size: 0.65rem;
+            color: #888;
+            max-width: 70px;
+        }
+        
+        .sym-arrow {
+            font-size: 1.2rem;
+            color: #4caf50;
+        }
+        
+        .sym-arrow.dashed {
+            color: #666;
+            letter-spacing: -2px;
+        }
+        
+        .key-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .key-icon-large {
+            font-size: 1.5rem;
+            color: #ff9800;
+        }
+        
+        .key-text {
+            font-size: 0.55rem;
+            color: #888;
+            text-align: center;
+            max-width: 60px;
+        }
+        
+        /* Hash Demo */
+        .hash-demo {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .hash-demo h4 {
+            color: #fff;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .hash-row {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+        
+        .hash-input {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: #e8e8e8;
+            padding: 0.5rem 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            width: 200px;
+        }
+        
+        .hash-input:focus {
+            outline: none;
+            border-color: #4a8a4a;
+        }
+        
+        .hash-output {
+            font-family: 'JetBrains Mono', monospace;
+            color: #6aba6a;
+            font-size: 0.8rem;
+            word-break: break-all;
+            flex: 1;
+        }
+        
+        .hash-label {
+            color: #888;
+            font-size: 0.85rem;
+            min-width: 80px;
+        }
+        
+        /* Hash Flow Visual - Dark Theme */
+        .hash-flow {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .hash-flow h4 {
+            color: #fff;
+            margin-top: 0;
+        }
+        
+        .hash-flow-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        
+        .hash-box {
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 90px;
+            transition: all 0.3s;
+        }
+        
+        .hash-box:hover {
+            transform: scale(1.05);
+        }
+        
+        .hash-box.input {
+            background: #1a2a3a;
+            border: 2px solid #2196f3;
+        }
+        
+        .hash-box.process {
+            background: #2a2a1a;
+            border: 2px solid #ff9800;
+        }
+        
+        .hash-box.output {
+            background: #2a1a2a;
+            border: 2px solid #9c27b0;
+        }
+        
+        .hash-box-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.4rem;
+        }
+        
+        .hash-box-label {
+            font-size: 0.75rem;
+            color: #ccc;
+            font-weight: 600;
+        }
+        
+        .hash-arrow {
+            font-size: 1.3rem;
+            color: #4a8a4a;
+        }
+        
+        /* Algorithm comparison table */
+        .algo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .algo-table th, .algo-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        
+        .algo-table th {
+            color: #6aba6a;
+            font-weight: 600;
+        }
+        
+        .algo-table td {
+            color: #e8e8e8;
+        }
+        
+        /* Example blocks */
+        .example-block {
+            background: #1a1a1a;
+            border-left: 3px solid #6aba6a;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .example-block .label {
+            color: #6aba6a;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        
+        .example-block code {
+            display: block;
+            color: #e8e8e8;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="../../index.html" class="logo">KRUX</a>
+            <ul class="nav-links">
+                <li><a href="../../index.html">home</a></li>
+                <li><a href="../../about.html">about</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="topic-bar">
+        <div class="topic-bar-inner">
+            <a href="index.html">Cryptography</a>
+            <a href="../n8n/index.html">n8n</a>
+            <a href="../web-dev/index.html">Web Dev</a>
+        </div>
+    </div>
+
+    <div class="topic-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Cryptography</div>
+                <ul class="sidebar-links">
+                    <li><a href="index.html">Overview</a></li>
+                    <li><a href="working.html">Working of Cryptography</a></li>
+                    <li><a href="types.html" class="active">Types of Cryptography</a></li>
+                    <li><a href="elliptic-curves.html">Elliptic Curves</a></li>
+                    <li><a href="homomorphic.html">Homomorphic Encryption</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Other Topics</div>
+                <ul class="sidebar-links">
+                    <li><a href="../n8n/index.html">n8n</a></li>
+                    <li><a href="../web-dev/index.html">Web Dev</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="topic-content">
+            <div class="breadcrumb">
+                <a href="../../index.html">home</a> / <a href="index.html">cryptography</a> / types
+            </div>
+            
+            <h1>Types of Cryptography</h1>
+            
+            <p>There are three main types of cryptography: <strong>Symmetric Key Cryptography</strong>, <strong>Asymmetric Key Cryptography</strong>, and <strong>Hash Functions</strong>. Each serves different purposes in securing data.</p>
+            
+            <!-- Interactive Cards Overview -->
+            <div class="types-overview">
+                <div class="types-grid">
+                    <div class="type-card" onclick="scrollToSection('symmetric')">
+                        <div class="type-header">
+                            <div class="type-number">1</div>
+                            <div class="type-title">Symmetric Key<br>Cryptography</div>
+                        </div>
+                        <div class="type-desc">One shared secret key for both encryption and decryption. Fast but requires secure key exchange.</div>
+                        <div class="type-features">
+                            <span class="type-tag">AES</span>
+                            <span class="type-tag">DES</span>
+                            <span class="type-tag">Fast</span>
+                        </div>
+                    </div>
+                    
+                    <div class="type-card" onclick="scrollToSection('asymmetric')">
+                        <div class="type-header">
+                            <div class="type-number">2</div>
+                            <div class="type-title">Asymmetric Key<br>Cryptography</div>
+                        </div>
+                        <div class="type-desc">Public key to encrypt, private key to decrypt. Solves the challenge of securely sharing secret encryption keys between two parties.</div>
+                        <div class="type-features">
+                            <span class="type-tag">RSA</span>
+                            <span class="type-tag">ECC</span>
+                            <span class="type-tag">Secure</span>
+                        </div>
+                    </div>
+                    
+                    <div class="type-card" onclick="scrollToSection('hash')">
+                        <div class="type-header">
+                            <div class="type-number">3</div>
+                            <div class="type-title">Hash<br>Functions</div>
+                        </div>
+                        <div class="type-desc">One-way transformation to fixed-length output. Cannot be reversed. Used for integrity.</div>
+                        <div class="type-features">
+                            <span class="type-tag">SHA-256</span>
+                            <span class="type-tag">MD5</span>
+                            <span class="type-tag">One-way</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SYMMETRIC KEY CRYPTOGRAPHY -->
+            <h2 id="symmetric">1. Symmetric Key Cryptography</h2>
+            
+            <p>Symmetric Key Cryptography uses <strong>a single shared key</strong> for both encryption and decryption. The sender and receiver must both have the same secret key.</p>
+            
+            <ul>
+                <li><strong>Fast and efficient</strong> — great for encrypting large amounts of data</li>
+                <li><strong>Key exchange problem</strong> — how do you securely share the key?</li>
+                <li><strong>Examples:</strong> DES, AES, 3DES, Blowfish</li>
+            </ul>
+            
+            <!-- Symmetric Flow Diagram -->
+            <div class="symmetric-flow">
+                <div class="symmetric-flow-inner">
+                    <div class="sym-box">
+                        <div class="sym-icon server">💻</div>
+                        <div class="sym-label">Sender</div>
+                    </div>
+                    
+                    <span class="sym-arrow">→</span>
+                    
+                    <div class="sym-box">
+                        <div class="sym-icon doc">📄</div>
+                        <div class="sym-label">Plaintext<br>data</div>
+                    </div>
+                    
+                    <div class="key-group">
+                        <div class="sym-icon lock purple">🔒</div>
+                        <div class="key-icon-large">🔑</div>
+                        <div class="key-text">Shared Secret Key<br>Encrypts</div>
+                    </div>
+                    
+                    <span class="sym-arrow">→</span>
+                    
+                    <div class="sym-box">
+                        <div class="sym-icon lock red">🔐</div>
+                        <div class="sym-label">Ciphered<br>Data</div>
+                    </div>
+                    
+                    <span class="sym-arrow dashed">- - →</span>
+                    
+                    <div class="key-group">
+                        <div class="sym-icon lock blue">🔓</div>
+                        <div class="key-icon-large">🔑</div>
+                        <div class="key-text">Shared Secret Key<br>Decrypts</div>
+                    </div>
+                    
+                    <span class="sym-arrow">→</span>
+                    
+                    <div class="sym-box">
+                        <div class="sym-icon doc">📄</div>
+                        <div class="sym-label">Decrypted<br>Plaintext</div>
+                    </div>
+                    
+                    <span class="sym-arrow">→</span>
+                    
+                    <div class="sym-box">
+                        <div class="sym-icon server">💻</div>
+                        <div class="sym-label">Recipient</div>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; color: #666; font-size: 0.8rem; margin-top: 0.5rem;"><em>Symmetric Key Cryptography — Same key encrypts and decrypts</em></p>
+  
+            
+            <!-- ASYMMETRIC KEY CRYPTOGRAPHY -->
+            <h2 id="asymmetric">2. Asymmetric Key Cryptography</h2>
+            
+            <p>Asymmetric cryptography uses <strong>two different keys</strong>: a <strong>public key</strong> (shared with everyone) and a <strong>private key</strong> (kept secret). A sender's public key is used for encryption and a receiver's private key is used for decryption. Public keys and Private keys are different. Even if the public key is known by everyone the intended receiver can only decode it because he holds his private key.</p>
+            
+            <ul>
+                <li><strong>Solves key exchange</strong> — public key can be shared openly</li>
+                <li><strong>Slower</strong> than symmetric encryption</li>
+                <li><strong>Examples:</strong> RSA, ECC, Diffie-Hellman</li>
+            </ul>
+            
+            <div class="crypto-section">
+                <h3>How it works:</h3>
+                <ol>
+                    <li>🔑 <strong>Generate</strong> a public/private key pair</li>
+                    <li>📤 <strong>Share</strong> your public key with anyone</li>
+                    <li>🔒 <strong>Encrypt</strong> using the recipient's public key</li>
+                    <li>🔓 <strong>Decrypt</strong> using your private key (only you have it)</li>
+                </ol>
+            </div>
+            
+            <p><strong>Real-world use:</strong> When you visit an HTTPS website, asymmetric encryption is used first to securely exchange a symmetric key, then symmetric encryption is used for speed.</p>
+            
+            <!-- HASH FUNCTIONS -->
+            <h2 id="hash">3. Hash Functions</h2>
+            
+            <p>Hash functions are <strong>one-way</strong> functions. They convert any input into a fixed-length output (hash), but you <strong>cannot reverse</strong> the process to get the original input.</p>
+            
+            <ul>
+                <li><strong>No key required</strong> — just the algorithm</li>
+                <li><strong>Fixed output size</strong> — regardless of input size</li>
+                <li><strong>One-way</strong> — cannot derive input from output</li>
+                <li><strong>Uses:</strong> Password storage, data integrity, digital signatures</li>
+            </ul>
+            
+            <!-- Hash Flow Visual -->
+            <div class="hash-flow">
+                <h4>SHA-256 Hashing</h4>
+                <div class="hash-flow-inner">
+                    <div class="hash-box input">
+                        <div class="hash-box-icon">📄</div>
+                        <div class="hash-box-label">Plaintext</div>
+                    </div>
+                    <span class="hash-arrow">→</span>
+                    <div class="hash-box process">
+                        <div class="hash-box-icon">⚙️</div>
+                        <div class="hash-box-label">Hash Function</div>
+                    </div>
+                    <span class="hash-arrow">→</span>
+                    <div class="hash-box output">
+                        <div class="hash-box-icon">🔢</div>
+                        <div class="hash-box-label">Hash Value<br>(Fixed Length)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>SHA-1 (Secure Hash Algorithm 1)</h3>
+            <ul>
+                <li>Produces a <strong>160-bit (20-byte)</strong> hash value</li>
+                <li>Developed by NSA, published in 1995</li>
+                <li>Now considered <strong>broken</strong> — don't use for security</li>
+            </ul>
+            
+            <h3>SHA-256</h3>
+            <ul>
+                <li>Part of the SHA-2 family</li>
+                <li>Produces a <strong>256-bit (32-byte)</strong> hash value</li>
+                <li><strong>Widely used</strong> — Bitcoin, SSL certificates, password hashing</li>
+            </ul>
+            
+            <div class="example-block">
+                <div class="label">Example</div>
+                <code>Input: "geeksforgeeks"</code>
+                <code>SHA-256: f8d59362da74ffe833332dc20508f12de6da6a9298c98b3b42873e7298fced78</code>
+            </div>
+            
+            <h3>MD5 (Message Digest 5)</h3>
+            <ul>
+                <li>Produces a <strong>128-bit (16-byte)</strong> hash value</li>
+                <li>Very fast, but <strong>not secure</strong> — collisions found</li>
+                <li>Still used for checksums and non-security purposes</li>
+            </ul>
+            
+            <div class="example-block">
+                <div class="label">Example</div>
+                <code>Input: "geeksforgeeks"</code>
+                <code>MD5: a6eb56f80be8a120436d6f1c9b8d87ca</code>
+            </div>
+            
+            <!-- Hash Comparison Table -->
+            <h3>Hash Algorithm Comparison</h3>
+            <table class="algo-table">
+                <tr>
+                    <th>Algorithm</th>
+                    <th>Output Size</th>
+                    <th>Security</th>
+                    <th>Speed</th>
+                </tr>
+                <tr>
+                    <td>MD5</td>
+                    <td>128 bits</td>
+                    <td>❌ Broken</td>
+                    <td>Very Fast</td>
+                </tr>
+                <tr>
+                    <td>SHA-1</td>
+                    <td>160 bits</td>
+                    <td>❌ Broken</td>
+                    <td>Fast</td>
+                </tr>
+                <tr>
+                    <td>SHA-256</td>
+                    <td>256 bits</td>
+                    <td>✅ Secure</td>
+                    <td>Medium</td>
+                </tr>
+                <tr>
+                    <td>SHA-512</td>
+                    <td>512 bits</td>
+                    <td>✅ Secure</td>
+                    <td>Slower</td>
+                </tr>
+            </table>
+            
+            <!-- Interactive Hash Demo -->
+            <h3>Try It: Hash Generator</h3>
+            <p>Type any text and see its hash values:</p>
+            
+            <div class="hash-demo">
+                <h4>Live Hash Demo</h4>
+                <div class="hash-row">
+                    <span class="hash-label">Input:</span>
+                    <input type="text" class="hash-input" id="hash-input" value="hello" oninput="updateHashes()">
+                </div>
+                <div class="hash-row">
+                    <span class="hash-label">MD5:</span>
+                    <span class="hash-output" id="md5-output"></span>
+                </div>
+                <div class="hash-row">
+                    <span class="hash-label">SHA-256:</span>
+                    <span class="hash-output" id="sha256-output"></span>
+                </div>
+            </div>
+            
+            <h2>Summary</h2>
+            <table class="algo-table">
+                <tr>
+                    <th>Type</th>
+                    <th>Keys</th>
+                    <th>Speed</th>
+                    <th>Use Case</th>
+                </tr>
+                <tr>
+                    <td>Symmetric</td>
+                    <td>1 shared key</td>
+                    <td>Fast</td>
+                    <td>Encrypting data</td>
+                </tr>
+                <tr>
+                    <td>Asymmetric</td>
+                    <td>Public + Private</td>
+                    <td>Slow</td>
+                    <td>Key exchange, signatures</td>
+                </tr>
+                <tr>
+                    <td>Hash</td>
+                    <td>No key</td>
+                    <td>Very Fast</td>
+                    <td>Integrity, passwords</td>
+                </tr>
+            </table>
+        </main>
+    </div>
+
+    <footer style="padding: 1rem; margin-top: 2rem;">
+        <p style="margin: 0; font-size: 0.85rem;">Happy Reading :) — I'd love feedback!</p>
+        <div style="margin-top: 0.4rem; display: flex; justify-content: center; gap: 0.5rem;">
+            <a href="https://www.linkedin.com/in/akshita-sharma1234" target="_blank" title="LinkedIn" style="color: #888; text-decoration: none;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://x.com/akshita_shh" target="_blank" title="X" style="color: #888; text-decoration: none;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://github.com/akshita-xyz" target="_blank" title="GitHub" style="color: #888; text-decoration: none;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script>
+        // Scroll to section
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Simple hash functions for demo (not cryptographically secure!)
+        // MD5 implementation
+        function md5(string) {
+            function rotateLeft(x, n) { return (x << n) | (x >>> (32 - n)); }
+            function addUnsigned(x, y) {
+                var lsw = (x & 0xFFFF) + (y & 0xFFFF);
+                var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+                return (msw << 16) | (lsw & 0xFFFF);
+            }
+            function f(x, y, z) { return (x & y) | ((~x) & z); }
+            function g(x, y, z) { return (x & z) | (y & (~z)); }
+            function h(x, y, z) { return x ^ y ^ z; }
+            function i(x, y, z) { return y ^ (x | (~z)); }
+            function ff(a, b, c, d, x, s, ac) { a = addUnsigned(a, addUnsigned(addUnsigned(f(b, c, d), x), ac)); return addUnsigned(rotateLeft(a, s), b); }
+            function gg(a, b, c, d, x, s, ac) { a = addUnsigned(a, addUnsigned(addUnsigned(g(b, c, d), x), ac)); return addUnsigned(rotateLeft(a, s), b); }
+            function hh(a, b, c, d, x, s, ac) { a = addUnsigned(a, addUnsigned(addUnsigned(h(b, c, d), x), ac)); return addUnsigned(rotateLeft(a, s), b); }
+            function ii(a, b, c, d, x, s, ac) { a = addUnsigned(a, addUnsigned(addUnsigned(i(b, c, d), x), ac)); return addUnsigned(rotateLeft(a, s), b); }
+            function convertToWordArray(str) {
+                var wordCount, messageLength = str.length, temp1 = messageLength + 8, temp2 = (temp1 - (temp1 % 64)) / 64, numberOfWords = (temp2 + 1) * 16, wordArray = Array(numberOfWords - 1), bytePosition = 0, byteCount = 0;
+                while (byteCount < messageLength) { wordCount = (byteCount - (byteCount % 4)) / 4; bytePosition = (byteCount % 4) * 8; wordArray[wordCount] = (wordArray[wordCount] || 0) | (str.charCodeAt(byteCount) << bytePosition); byteCount++; }
+                wordCount = (byteCount - (byteCount % 4)) / 4; bytePosition = (byteCount % 4) * 8; wordArray[wordCount] = wordArray[wordCount] | (0x80 << bytePosition); wordArray[numberOfWords - 2] = messageLength << 3; wordArray[numberOfWords - 1] = messageLength >>> 29;
+                return wordArray;
+            }
+            function wordToHex(value) { var hex = "", temp, byte; for (byte = 0; byte <= 3; byte++) { temp = (value >>> (byte * 8)) & 255; hex = hex + ("0" + temp.toString(16)).slice(-2); } return hex; }
+            var x = convertToWordArray(string), a = 0x67452301, b = 0xEFCDAB89, c = 0x98BADCFE, d = 0x10325476, S11 = 7, S12 = 12, S13 = 17, S14 = 22, S21 = 5, S22 = 9, S23 = 14, S24 = 20, S31 = 4, S32 = 11, S33 = 16, S34 = 23, S41 = 6, S42 = 10, S43 = 15, S44 = 21;
+            for (var k = 0; k < x.length; k += 16) {
+                var AA = a, BB = b, CC = c, DD = d;
+                a = ff(a, b, c, d, x[k], S11, 0xD76AA478); d = ff(d, a, b, c, x[k + 1], S12, 0xE8C7B756); c = ff(c, d, a, b, x[k + 2], S13, 0x242070DB); b = ff(b, c, d, a, x[k + 3], S14, 0xC1BDCEEE);
+                a = ff(a, b, c, d, x[k + 4], S11, 0xF57C0FAF); d = ff(d, a, b, c, x[k + 5], S12, 0x4787C62A); c = ff(c, d, a, b, x[k + 6], S13, 0xA8304613); b = ff(b, c, d, a, x[k + 7], S14, 0xFD469501);
+                a = ff(a, b, c, d, x[k + 8], S11, 0x698098D8); d = ff(d, a, b, c, x[k + 9], S12, 0x8B44F7AF); c = ff(c, d, a, b, x[k + 10], S13, 0xFFFF5BB1); b = ff(b, c, d, a, x[k + 11], S14, 0x895CD7BE);
+                a = ff(a, b, c, d, x[k + 12], S11, 0x6B901122); d = ff(d, a, b, c, x[k + 13], S12, 0xFD987193); c = ff(c, d, a, b, x[k + 14], S13, 0xA679438E); b = ff(b, c, d, a, x[k + 15], S14, 0x49B40821);
+                a = gg(a, b, c, d, x[k + 1], S21, 0xF61E2562); d = gg(d, a, b, c, x[k + 6], S22, 0xC040B340); c = gg(c, d, a, b, x[k + 11], S23, 0x265E5A51); b = gg(b, c, d, a, x[k], S24, 0xE9B6C7AA);
+                a = gg(a, b, c, d, x[k + 5], S21, 0xD62F105D); d = gg(d, a, b, c, x[k + 10], S22, 0x2441453); c = gg(c, d, a, b, x[k + 15], S23, 0xD8A1E681); b = gg(b, c, d, a, x[k + 4], S24, 0xE7D3FBC8);
+                a = gg(a, b, c, d, x[k + 9], S21, 0x21E1CDE6); d = gg(d, a, b, c, x[k + 14], S22, 0xC33707D6); c = gg(c, d, a, b, x[k + 3], S23, 0xF4D50D87); b = gg(b, c, d, a, x[k + 8], S24, 0x455A14ED);
+                a = gg(a, b, c, d, x[k + 13], S21, 0xA9E3E905); d = gg(d, a, b, c, x[k + 2], S22, 0xFCEFA3F8); c = gg(c, d, a, b, x[k + 7], S23, 0x676F02D9); b = gg(b, c, d, a, x[k + 12], S24, 0x8D2A4C8A);
+                a = hh(a, b, c, d, x[k + 5], S31, 0xFFFA3942); d = hh(d, a, b, c, x[k + 8], S32, 0x8771F681); c = hh(c, d, a, b, x[k + 11], S33, 0x6D9D6122); b = hh(b, c, d, a, x[k + 14], S34, 0xFDE5380C);
+                a = hh(a, b, c, d, x[k + 1], S31, 0xA4BEEA44); d = hh(d, a, b, c, x[k + 4], S32, 0x4BDECFA9); c = hh(c, d, a, b, x[k + 7], S33, 0xF6BB4B60); b = hh(b, c, d, a, x[k + 10], S34, 0xBEBFBC70);
+                a = hh(a, b, c, d, x[k + 13], S31, 0x289B7EC6); d = hh(d, a, b, c, x[k], S32, 0xEAA127FA); c = hh(c, d, a, b, x[k + 3], S33, 0xD4EF3085); b = hh(b, c, d, a, x[k + 6], S34, 0x4881D05);
+                a = hh(a, b, c, d, x[k + 9], S31, 0xD9D4D039); d = hh(d, a, b, c, x[k + 12], S32, 0xE6DB99E5); c = hh(c, d, a, b, x[k + 15], S33, 0x1FA27CF8); b = hh(b, c, d, a, x[k + 2], S34, 0xC4AC5665);
+                a = ii(a, b, c, d, x[k], S41, 0xF4292244); d = ii(d, a, b, c, x[k + 7], S42, 0x432AFF97); c = ii(c, d, a, b, x[k + 14], S43, 0xAB9423A7); b = ii(b, c, d, a, x[k + 5], S44, 0xFC93A039);
+                a = ii(a, b, c, d, x[k + 12], S41, 0x655B59C3); d = ii(d, a, b, c, x[k + 3], S42, 0x8F0CCC92); c = ii(c, d, a, b, x[k + 10], S43, 0xFFEFF47D); b = ii(b, c, d, a, x[k + 1], S44, 0x85845DD1);
+                a = ii(a, b, c, d, x[k + 8], S41, 0x6FA87E4F); d = ii(d, a, b, c, x[k + 15], S42, 0xFE2CE6E0); c = ii(c, d, a, b, x[k + 6], S43, 0xA3014314); b = ii(b, c, d, a, x[k + 13], S44, 0x4E0811A1);
+                a = ii(a, b, c, d, x[k + 4], S41, 0xF7537E82); d = ii(d, a, b, c, x[k + 11], S42, 0xBD3AF235); c = ii(c, d, a, b, x[k + 2], S43, 0x2AD7D2BB); b = ii(b, c, d, a, x[k + 9], S44, 0xEB86D391);
+                a = addUnsigned(a, AA); b = addUnsigned(b, BB); c = addUnsigned(c, CC); d = addUnsigned(d, DD);
+            }
+            return (wordToHex(a) + wordToHex(b) + wordToHex(c) + wordToHex(d)).toLowerCase();
+        }
+        
+        // Simple SHA-256 for demo
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+        
+        async function updateHashes() {
+            const input = document.getElementById('hash-input').value;
+            document.getElementById('md5-output').textContent = md5(input);
+            document.getElementById('sha256-output').textContent = await sha256(input);
+        }
+        
+        // Initialize
+        updateHashes();
+    </script>
+</body>
+</html>
+

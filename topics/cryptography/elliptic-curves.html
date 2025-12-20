@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elliptic Curve Cryptography - KRUX</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        /* Curve Visualization */
+        .curve-container {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .curve-container h4 {
+            color: #fff;
+            margin-top: 0;
+            text-align: center;
+        }
+        
+        .curve-svg {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+        
+        .curve-caption {
+            text-align: center;
+            color: #666;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+        
+        /* Point Addition Visual */
+        .point-demo {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .point-demo h4 {
+            color: #fff;
+            margin-top: 0;
+        }
+        
+        .demo-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .demo-btn {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #e8e8e8;
+            padding: 0.5rem 1rem;
+            font-family: inherit;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        
+        .demo-btn:hover {
+            background: #2a2a2a;
+            border-color: #4a8a4a;
+        }
+        
+        .demo-btn.active {
+            background: #2d5a2d;
+            border-color: #4a8a4a;
+        }
+        
+        /* Equation box */
+        .equation-box {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .equation-box .equation {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            color: #4a8a4a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .equation-box .equation-desc {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* Step explanation */
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .step-card {
+            background: #151515;
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .step-card:hover {
+            border-color: #4a8a4a;
+            transform: translateY(-3px);
+        }
+        
+        .step-num {
+            width: 30px;
+            height: 30px;
+            background: #4a8a4a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .step-title {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-desc {
+            color: #888;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+        
+        /* Key comparison */
+        .key-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .key-box {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .key-box h5 {
+            color: #fff;
+            margin-top: 0;
+        }
+        
+        .key-size {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .key-box:first-child .key-size { color: #f39c12; }
+        .key-box:last-child .key-size { color: #4a8a4a; }
+        
+        .key-label {
+            color: #888;
+            font-size: 0.8rem;
+        }
+        
+        @media (max-width: 500px) {
+            .key-compare {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="../../index.html" class="logo">KRUX</a>
+            <ul class="nav-links">
+                <li><a href="../../index.html">home</a></li>
+                <li><a href="../../about.html">about</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="topic-bar">
+        <div class="topic-bar-inner">
+            <a href="index.html">Cryptography</a>
+            <a href="../n8n/index.html">n8n</a>
+            <a href="../web-dev/index.html">Web Dev</a>
+        </div>
+    </div>
+
+    <div class="topic-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Cryptography</div>
+                <ul class="sidebar-links">
+                    <li><a href="index.html">Overview</a></li>
+                    <li><a href="working.html">Working of Cryptography</a></li>
+                    <li><a href="types.html">Types of Cryptography</a></li>
+                    <li><a href="elliptic-curves.html" class="active">Elliptic Curves</a></li>
+                    <li><a href="homomorphic.html">Homomorphic Encryption</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Other Topics</div>
+                <ul class="sidebar-links">
+                    <li><a href="../n8n/index.html">n8n</a></li>
+                    <li><a href="../web-dev/index.html">Web Dev</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="topic-content">
+            <div class="breadcrumb">
+                <a href="../../index.html">home</a> / <a href="index.html">cryptography</a> / elliptic curves
+            </div>
+            
+            <h1>Elliptic Curve Cryptography</h1>
+            
+            <p>Elliptic Curve Cryptography (ECC) is a type of asymmetric encryption that provides <strong>strong security with smaller keys</strong> than RSA. It's used everywhere — from HTTPS to Bitcoin to your phone's secure enclave.</p>
+            
+            <h2>What's an Elliptic Curve?</h2>
+            
+            <p>An elliptic curve is a mathematical curve defined by this equation:</p>
+            
+            <div class="equation-box">
+                <div class="equation">y² = x³ + ax + b</div>
+                <div class="equation-desc">The general form of an elliptic curve equation</div>
+            </div>
+            
+            <p>When plotted, it creates a smooth, symmetric curve. The most famous curve used in cryptography is <strong>secp256k1</strong> (used by Bitcoin), where a=0 and b=7:</p>
+            
+            <div class="equation-box">
+                <div class="equation">y² = x³ + 7</div>
+                <div class="equation-desc">The secp256k1 curve used in Bitcoin</div>
+            </div>
+            
+            <!-- Interactive Curve Visualization -->
+            <div class="curve-container">
+                <h4>The Elliptic Curve: y² = x³ + 7</h4>
+                <svg class="curve-svg" viewBox="-3 -7 9 14" width="400" height="450">
+                    <!-- Background -->
+                    <rect x="-3" y="-7" width="9" height="14" fill="#0a0a0a"/>
+                    
+                    <!-- Grid lines -->
+                    <g stroke="#1a1a1a" stroke-width="0.02">
+                        <line x1="-3" y1="-6" x2="6" y2="-6"/>
+                        <line x1="-3" y1="-5" x2="6" y2="-5"/>
+                        <line x1="-3" y1="-4" x2="6" y2="-4"/>
+                        <line x1="-3" y1="-3" x2="6" y2="-3"/>
+                        <line x1="-3" y1="-2" x2="6" y2="-2"/>
+                        <line x1="-3" y1="-1" x2="6" y2="-1"/>
+                        <line x1="-3" y1="1" x2="6" y2="1"/>
+                        <line x1="-3" y1="2" x2="6" y2="2"/>
+                        <line x1="-3" y1="3" x2="6" y2="3"/>
+                        <line x1="-3" y1="4" x2="6" y2="4"/>
+                        <line x1="-3" y1="5" x2="6" y2="5"/>
+                        <line x1="-3" y1="6" x2="6" y2="6"/>
+                        <line x1="-2" y1="-7" x2="-2" y2="7"/>
+                        <line x1="-1" y1="-7" x2="-1" y2="7"/>
+                        <line x1="1" y1="-7" x2="1" y2="7"/>
+                        <line x1="2" y1="-7" x2="2" y2="7"/>
+                        <line x1="3" y1="-7" x2="3" y2="7"/>
+                        <line x1="4" y1="-7" x2="4" y2="7"/>
+                        <line x1="5" y1="-7" x2="5" y2="7"/>
+                    </g>
+                    
+                    <!-- Axes -->
+                    <line x1="-3" y1="0" x2="6" y2="0" stroke="#444" stroke-width="0.04"/>
+                    <line x1="0" y1="-7" x2="0" y2="7" stroke="#444" stroke-width="0.04"/>
+                    
+                    <!-- Axis arrows -->
+                    <polygon points="5.85,-0.12 6,0 5.85,0.12" fill="#444"/>
+                    <polygon points="-0.12,-6.85 0,-7 0.12,-6.85" fill="#444"/>
+                    
+                    <!-- Axis labels -->
+                    <text x="5.6" y="-0.25" fill="#555" font-size="0.35">x</text>
+                    <text x="0.15" y="-6.5" fill="#555" font-size="0.35">y</text>
+                    
+                    <!-- MATHEMATICALLY ACCURATE curve y² = x³ + 7 using polyline -->
+                    <!-- SVG has Y-axis inverted, so upper half (positive y) uses negative SVG y -->
+                    <!-- x=-1.913: y=0, x=-1.8: y=±1.08, x=-1.5: y=±1.90, x=-1: y=±2.45 -->
+                    <!-- x=0: y=±2.65, x=1: y=±2.83, x=2: y=±3.87, x=3: y=±5.83 -->
+                    
+                    <!-- Upper half (positive y in math = negative y in SVG) -->
+                    <polyline points="-1.913,0 -1.85,-0.65 -1.8,-1.08 -1.7,-1.52 -1.6,-1.82 -1.5,-1.90 -1.3,-2.16 -1,-2.45 -0.5,-2.62 0,-2.65 0.5,-2.67 1,-2.83 1.5,-3.22 2,-3.87 2.5,-4.76 3,-5.83 3.3,-6.5" 
+                          fill="none" stroke="#4ade80" stroke-width="0.08" stroke-linecap="round" stroke-linejoin="round"/>
+                    
+                    <!-- Lower half (negative y in math = positive y in SVG) -->
+                    <polyline points="-1.913,0 -1.85,0.65 -1.8,1.08 -1.7,1.52 -1.6,1.82 -1.5,1.90 -1.3,2.16 -1,2.45 -0.5,2.62 0,2.65 0.5,2.67 1,2.83 1.5,3.22 2,3.87 2.5,4.76 3,5.83 3.3,6.5" 
+                          fill="none" stroke="#4ade80" stroke-width="0.08" stroke-linecap="round" stroke-linejoin="round"/>
+                    
+                    <!-- Example points P (upper) and -P (lower) at x=1 -->
+                    <circle cx="1" cy="-2.83" r="0.12" fill="#f59e0b"/>
+                    <text x="1.2" y="-3.0" fill="#f59e0b" font-size="0.4" font-weight="bold">P</text>
+                    
+                    <circle cx="1" cy="2.83" r="0.12" fill="#f59e0b"/>
+                    <text x="1.2" y="2.65" fill="#f59e0b" font-size="0.4" font-weight="bold">-P</text>
+                    
+                    <!-- Symmetry line between P and -P -->
+                    <line x1="1" y1="-2.83" x2="1" y2="2.83" stroke="#f59e0b" stroke-width="0.025" stroke-dasharray="0.1,0.07" opacity="0.7"/>
+                </svg>
+                <div class="curve-caption">The curve is symmetric about the x-axis. For every point P, there's a mirror point -P</div>
+            </div>
+            
+            <h2>Key Properties of the Curve</h2>
+            
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <div class="step-title">Symmetry</div>
+                    <div class="step-desc">The curve mirrors across the x-axis. If (x, y) is on the curve, so is (x, -y)</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <div class="step-title">Infinity Point</div>
+                    <div class="step-desc">There's a special "point at infinity" (O) that acts like zero in addition</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <div class="step-title">Line Intersection</div>
+                    <div class="step-desc">Any line intersects the curve at exactly 3 points (counting infinity)</div>
+                </div>
+            </div>
+            
+            <h2>Point Addition: The Magic Operation</h2>
+            
+            <p>The key to ECC is <strong>point addition</strong>. To add points P and Q on the curve:</p>
+            
+            <div class="curve-container">
+                <h4>Point Addition: P + Q = R</h4>
+                <svg class="curve-svg" viewBox="-3 -5 8 10" width="380" height="420">
+                    <!-- Background -->
+                    <rect x="-3" y="-5" width="8" height="10" fill="#0a0a0a"/>
+                    
+                    <!-- Grid -->
+                    <g stroke="#1a1a1a" stroke-width="0.02">
+                        <line x1="-3" y1="-4" x2="5" y2="-4"/>
+                        <line x1="-3" y1="-3" x2="5" y2="-3"/>
+                        <line x1="-3" y1="-2" x2="5" y2="-2"/>
+                        <line x1="-3" y1="-1" x2="5" y2="-1"/>
+                        <line x1="-3" y1="1" x2="5" y2="1"/>
+                        <line x1="-3" y1="2" x2="5" y2="2"/>
+                        <line x1="-3" y1="3" x2="5" y2="3"/>
+                        <line x1="-3" y1="4" x2="5" y2="4"/>
+                        <line x1="-2" y1="-5" x2="-2" y2="5"/>
+                        <line x1="-1" y1="-5" x2="-1" y2="5"/>
+                        <line x1="1" y1="-5" x2="1" y2="5"/>
+                        <line x1="2" y1="-5" x2="2" y2="5"/>
+                        <line x1="3" y1="-5" x2="3" y2="5"/>
+                        <line x1="4" y1="-5" x2="4" y2="5"/>
+                    </g>
+                    
+                    <!-- Axes -->
+                    <line x1="-3" y1="0" x2="5" y2="0" stroke="#444" stroke-width="0.04"/>
+                    <line x1="0" y1="-5" x2="0" y2="5" stroke="#444" stroke-width="0.04"/>
+                    
+                    <!-- MATHEMATICALLY ACCURATE curve y² = x³ + 7 (Y inverted for SVG) -->
+                    <!-- Upper half (positive y in math = negative y in SVG) -->
+                    <polyline points="-1.913,0 -1.85,-0.65 -1.8,-1.08 -1.7,-1.52 -1.6,-1.82 -1.5,-1.90 -1.3,-2.16 -1,-2.45 -0.5,-2.62 0,-2.65 0.5,-2.67 1,-2.83 1.5,-3.22 2,-3.87 2.5,-4.76" 
+                          fill="none" stroke="#4ade80" stroke-width="0.07" stroke-linecap="round" stroke-linejoin="round"/>
+                    
+                    <!-- Lower half (negative y in math = positive y in SVG) -->
+                    <polyline points="-1.913,0 -1.85,0.65 -1.8,1.08 -1.7,1.52 -1.6,1.82 -1.5,1.90 -1.3,2.16 -1,2.45 -0.5,2.62 0,2.65 0.5,2.67 1,2.83 1.5,3.22 2,3.87 2.5,4.76" 
+                          fill="none" stroke="#4ade80" stroke-width="0.07" stroke-linecap="round" stroke-linejoin="round"/>
+                    
+                    <!-- Point P (x=-1.5, y=1.90) - ON the upper curve -->
+                    <circle cx="-1.5" cy="-1.90" r="0.12" fill="#3b82f6"/>
+                    <text x="-1.85" y="-1.55" fill="#3b82f6" font-size="0.4" font-weight="bold">P</text>
+                    
+                    <!-- Point Q (x=0, y=2.65) - ON the upper curve (top of curve) -->
+                    <circle cx="0" cy="-2.65" r="0.12" fill="#8b5cf6"/>
+                    <text x="0.2" y="-2.85" fill="#8b5cf6" font-size="0.4" font-weight="bold">Q</text>
+                    
+                    <!-- Line through P, Q, and -R (all three points are collinear) -->
+                    <line x1="-2" y1="-1.62" x2="2.5" y2="-4.15" stroke="#ef4444" stroke-width="0.04" stroke-dasharray="0.1,0.07"/>
+                    
+                    <!-- -R intersection (third point where line hits upper curve) at x≈2, y≈3.87 -->
+                    <circle cx="2" cy="-3.87" r="0.1" fill="#ef4444" opacity="0.7"/>
+                    <text x="2.15" y="-4.1" fill="#ef4444" font-size="0.35">-R</text>
+                    
+                    <!-- Vertical reflection line from -R to R -->
+                    <line x1="2" y1="-3.87" x2="2" y2="3.87" stroke="#fbbf24" stroke-width="0.035" stroke-dasharray="0.08,0.06"/>
+                    
+                    <!-- Result point R (reflection of -R across x-axis, on lower curve) -->
+                    <circle cx="2" cy="3.87" r="0.12" fill="#fbbf24"/>
+                    <text x="2.2" y="4.2" fill="#fbbf24" font-size="0.4" font-weight="bold">R = P + Q</text>
+                    
+                    <!-- Legend -->
+                    <text x="-2.8" y="-4.3" fill="#555" font-size="0.28">1. Draw line through P and Q</text>
+                    <text x="-2.8" y="-3.95" fill="#555" font-size="0.28">2. Find third intersection (-R)</text>
+                    <text x="-2.8" y="-3.6" fill="#555" font-size="0.28">3. Reflect across x-axis → R</text>
+                </svg>
+                <div class="curve-caption">Draw a line through P and Q, find where it hits the curve again, then flip vertically</div>
+            </div>
+            
+            <h3>Point Addition Steps:</h3>
+            <ol>
+                <li><strong>Draw a line</strong> through points P and Q</li>
+                <li><strong>Find</strong> where this line intersects the curve a third time (-R)</li>
+                <li><strong>Reflect</strong> that point across the x-axis to get R</li>
+                <li>Result: <strong>P + Q = R</strong></li>
+            </ol>
+            
+            <h2>Point Multiplication (Scalar Multiplication)</h2>
+            
+            <p>Point multiplication is just <strong>repeated addition</strong>:</p>
+            
+            <div class="equation-box">
+                <div class="equation">k × P = P + P + P + ... (k times)</div>
+                <div class="equation-desc">Multiply point P by scalar k</div>
+            </div>
+            
+            <p>This is <strong>easy to compute forward</strong> (even for huge k, using clever shortcuts), but <strong>nearly impossible to reverse</strong>. Given the result R = k × P, you can't figure out k even if you know P and R. This is the <strong>Elliptic Curve Discrete Logarithm Problem (ECDLP)</strong>.</p>
+            
+            <h2>How ECC Creates Keys</h2>
+            
+            <div class="step-grid">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <div class="step-title">Pick a Curve</div>
+                    <div class="step-desc">Choose a standard curve (like secp256k1) with known generator point G</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <div class="step-title">Generate Private Key</div>
+                    <div class="step-desc">Pick a random large number k (your private key — keep it secret!)</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <div class="step-title">Compute Public Key</div>
+                    <div class="step-desc">Calculate K = k × G (your public key — share it freely)</div>
+                </div>
+            </div>
+            
+            <div class="equation-box">
+                <div class="equation">Public Key = Private Key × G</div>
+                <div class="equation-desc">Easy to compute, impossible to reverse</div>
+            </div>
+            
+            <h2>Why ECC? Key Size Comparison</h2>
+            
+            <p>ECC provides the same security as RSA with <strong>much smaller keys</strong>:</p>
+            
+            <div class="key-compare">
+                <div class="key-box">
+                    <h5>RSA</h5>
+                    <div class="key-size">3072</div>
+                    <div class="key-label">bits needed</div>
+                </div>
+                <div class="key-box">
+                    <h5>ECC</h5>
+                    <div class="key-size">256</div>
+                    <div class="key-label">bits needed</div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; color: #888; font-size: 0.9rem;">For equivalent ~128-bit security level</p>
+            
+            <h3>Benefits of smaller keys:</h3>
+            <ul>
+                <li><strong>Faster</strong> computations</li>
+                <li><strong>Less storage</strong> required</li>
+                <li><strong>Lower bandwidth</strong> for transmission</li>
+                <li><strong>Less power</strong> — great for mobile devices</li>
+            </ul>
+            
+            <h2>Why Brute Force Won't Work</h2>
+            <p>Brute force is a trial-and-error method, especially in computing, that involves systematically trying every possible combination to crack passwords, encryption keys, or find data, relying on sheer computational power rather than cleverness.</p>
+            <p>You might wonder: why not just guess the private key? Let's see why that's absolutely impossible.</p>
+            
+            <div class="equation-box" style="background: linear-gradient(135deg, #1a0a0a 0%, #0a0a0a 100%); border-color: #4a2020;">
+                <div class="equation" style="color: #ef4444;">2<sup>256</sup> possible keys</div>
+                <div class="equation-desc">That's approximately 1.16 × 10<sup>77</sup> combinations</div>
+            </div>
+            
+            <p>To put this number in perspective:</p>
+            
+            <div class="step-grid">
+                <div class="step-card" style="border-color: #3b3b00;">
+                    <div class="step-num" style="background: #3b3b00; color: #fbbf24;">⏱</div>
+                    <div class="step-title">Universe Ages</div>
+                    <div class="step-desc">If you could check <strong>1 trillion keys per second</strong>, it would take approximately <span style="color: #fbbf24; font-weight: 700;">10<sup>50</sup> times the age of the universe</span> to try all possibilities</div>
+                </div>
+                <div class="step-card" style="border-color: #002a2a;">
+                    <div class="step-num" style="background: #002a2a; color: #4ade80;">🎲</div>
+                    <div class="step-title">No Shortcuts</div>
+                    <div class="step-desc">Keys are <strong>not ordered</strong>. Checking key #5,000 tells you nothing about key #5,001. Each guess is completely independent, there's no "getting closer"</div>
+                </div>
+                <div class="step-card" style="border-color: #1a0030;">
+                    <div class="step-num" style="background: #1a0030; color: #a855f7;">🍀</div>
+                    <div class="step-title">Pure Luck</div>
+                    <div class="step-desc">Your chance of randomly hitting the right key is <strong>1 in 2<sup>256</sup></strong>. You're more likely to win the lottery every day for your entire life — a billion times over</div>
+                </div>
+            </div>
+            
+            <div style="background: #111; border: 1px solid #333; border-radius: 8px; padding: 1.5rem; margin: 2rem 0;">
+                <h4 style="color: #fff; margin-top: 0;">The Math Behind Impossibility</h4>
+                <ul style="margin-bottom: 0;">
+                    <li><strong>Atoms in the observable universe:</strong> ~10<sup>80</sup></li>
+                    <li><strong>Possible 256-bit keys:</strong> ~10<sup>77</sup></li>
+                    <li><strong>If every atom was a computer checking 1 trillion keys/sec:</strong></li>
+                    <li style="color: #f59e0b;">Still need <strong>~10<sup>27</sup> years</strong> (universe is only ~10<sup>10</sup> years old)</li>
+                </ul>
+            </div>
+            
+            <p>This is why we call it <strong>"computationally infeasible"</strong> — not just hard, but physically impossible with any technology we can imagine.</p>
+            
+            <h2>Real-World Uses</h2>
+            <ul>
+                <li><strong>Bitcoin & Ethereum</strong> — wallet addresses and transaction signatures</li>
+                <li><strong>TLS/HTTPS</strong> — securing your web connections</li>
+                <li><strong>Signal Protocol</strong> — end-to-end encrypted messaging</li>
+                <li><strong>Apple Secure Enclave</strong> — protecting your device</li>
+                <li><strong>SSH Keys</strong> — secure server access</li>
+            </ul>
+        </main>
+    </div>
+
+    <footer style="padding: 1rem; margin-top: 2rem;">
+        <p style="margin: 0; font-size: 0.85rem;">Happy Reading :) — I'd love feedback!</p>
+        <div style="margin-top: 0.4rem; display: flex; justify-content: center; gap: 0.5rem;">
+            <a href="https://www.linkedin.com/in/akshita-sharma1234" target="_blank" title="LinkedIn" style="color: #888; text-decoration: none;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://x.com/akshita_shh" target="_blank" title="X" style="color: #888; text-decoration: none;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://github.com/akshita-xyz" target="_blank" title="GitHub" style="color: #888; text-decoration: none;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

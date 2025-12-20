@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working of Cryptography - KRUX</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        /* Compact Flowchart Styles */
+        .flowchart {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem 1rem;
+            margin: 2rem 0;
+        }
+        
+        .flowchart-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.15rem;
+            flex-wrap: nowrap;
+        }
+        
+        .flow-box {
+            background: #1a3a1a;
+            border: 2px solid #2d5a2d;
+            padding: 0.5rem 0.6rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .flow-box:hover {
+            background: #2d5a2d;
+            border-color: #4a8a4a;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(74, 138, 74, 0.4);
+        }
+        
+        .flow-box.plaintext {
+            border-radius: 4px;
+        }
+        
+        .flow-box.process {
+            background: #1a3a2a;
+            border-color: #2d6a4a;
+            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 10px 50%);
+            padding: 0.5rem 1rem;
+        }
+        
+        .flow-box.process:hover {
+            background: #2d6a4a;
+            border-color: #4a9a6a;
+        }
+        
+        .flow-box.ciphertext {
+            background: #2a3a1a;
+            border-color: #4a6a2d;
+            border-radius: 4px;
+        }
+        
+        .flow-box.ciphertext:hover {
+            background: #4a6a2d;
+        }
+        
+        .flow-box .label {
+            font-size: 0.6rem;
+            color: #6a9a6a;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 0.15rem;
+        }
+        
+        .flow-box .value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #fff;
+        }
+        
+        .flow-box .sublabel {
+            font-size: 0.55rem;
+            color: #8a8a8a;
+            margin-top: 0.2rem;
+        }
+        
+        .flow-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 0.1rem;
+            flex-shrink: 0;
+        }
+        
+        .arrow-line {
+            width: 16px;
+            height: 2px;
+            background: linear-gradient(90deg, #4a8a4a, #6aba6a);
+            position: relative;
+        }
+        
+        .arrow-line::after {
+            content: '';
+            position: absolute;
+            right: -3px;
+            top: -2px;
+            border: 3px solid transparent;
+            border-left-color: #6aba6a;
+        }
+        
+        .key-label {
+            font-size: 0.45rem;
+            color: #8aba8a;
+            margin-bottom: 0.1rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        .key-icon {
+            font-size: 0.6rem;
+            margin-bottom: 0.05rem;
+        }
+        
+        /* Tooltip */
+        .flow-box .tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #222;
+            color: #fff;
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            margin-bottom: 0.4rem;
+            z-index: 10;
+        }
+        
+        .flow-box:hover .tooltip {
+            opacity: 1;
+        }
+        
+        /* Input demo section */
+        .demo-section {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .demo-section h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        
+        .demo-row {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .demo-input {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: #e8e8e8;
+            padding: 0.5rem 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            width: 150px;
+        }
+        
+        .demo-input:focus {
+            outline: none;
+            border-color: #4a8a4a;
+        }
+        
+        .demo-output {
+            font-family: 'JetBrains Mono', monospace;
+            color: #6aba6a;
+        }
+        
+        .demo-label {
+            color: #888;
+            font-size: 0.85rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .flowchart {
+                padding: 1rem 0.5rem;
+            }
+            
+            .flowchart-container {
+                transform: scale(0.85);
+                transform-origin: left center;
+            }
+            
+            .flow-box .value {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="../../index.html" class="logo">KRUX</a>
+            <ul class="nav-links">
+                <li><a href="../../index.html">home</a></li>
+                <li><a href="../../about.html">about</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="topic-bar">
+        <div class="topic-bar-inner">
+            <a href="index.html">Cryptography</a>
+            <a href="../n8n/index.html">n8n</a>
+            <a href="../web-dev/index.html">Web Dev</a>
+        </div>
+    </div>
+
+    <div class="topic-layout">
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-title">Cryptography</div>
+                <ul class="sidebar-links">
+                    <li><a href="index.html">Overview</a></li>
+                    <li><a href="working.html" class="active">Working of Cryptography</a></li>
+                    <li><a href="types.html">Types of Cryptography</a></li>
+                    <li><a href="elliptic-curves.html">Elliptic Curves</a></li>
+                    <li><a href="homomorphic.html">Homomorphic Encryption</a></li>
+                </ul>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">Other Topics</div>
+                <ul class="sidebar-links">
+                    <li><a href="../n8n/index.html">n8n</a></li>
+                    <li><a href="../web-dev/index.html">Web Dev</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="topic-content">
+            <div class="breadcrumb">
+                <a href="../../index.html">home</a> / <a href="index.html">cryptography</a> / working
+            </div>
+            
+            <h1>Working of Cryptography</h1>
+            
+            <p>Cryptography transforms readable data (<strong>plaintext</strong>) into an unreadable format (<strong>ciphertext</strong>) using mathematical algorithms and keys. The reverse process restores the original data.</p>
+            
+            <h2>The Encryption & Decryption Process</h2>
+            
+            <p>Hover over any element to learn more:</p>
+            
+            <div class="flowchart">
+                <div class="flowchart-container">
+                    <div class="flow-box plaintext">
+                        <span class="tooltip">Original readable message</span>
+                        <div class="label">Plaintext</div>
+                        <div class="value">"Hello"</div>
+                    </div>
+                    
+                    <div class="flow-arrow">
+                        <div class="key-icon">🔑</div>
+                        <div class="key-label">key</div>
+                        <div class="arrow-line"></div>
+                    </div>
+                    
+                    <div class="flow-box process">
+                        <span class="tooltip">Algorithm transforms data</span>
+                        <div class="label">Process</div>
+                        <div class="value">Encrypt</div>
+                    </div>
+                    
+                    <div class="flow-arrow">
+                        <div class="arrow-line"></div>
+                    </div>
+                    
+                    <div class="flow-box ciphertext">
+                        <span class="tooltip">Scrambled, unreadable data</span>
+                        <div class="label">Ciphertext</div>
+                        <div class="value">"jknnq"</div>
+                        <div class="sublabel">unreadable</div>
+                    </div>
+                    
+                    <div class="flow-arrow">
+                        <div class="key-icon">🔑</div>
+                        <div class="key-label">key</div>
+                        <div class="arrow-line"></div>
+                    </div>
+                    
+                    <div class="flow-box process">
+                        <span class="tooltip">Reverses encryption</span>
+                        <div class="label">Process</div>
+                        <div class="value">Decrypt</div>
+                    </div>
+                    
+                    <div class="flow-arrow">
+                        <div class="arrow-line"></div>
+                    </div>
+                    
+                    <div class="flow-box plaintext">
+                        <span class="tooltip">Original message restored</span>
+                        <div class="label">Plaintext</div>
+                        <div class="value">"Hello"</div>
+                    </div>
+                </div>
+                </div>
+                <p> "Hello" is a plaintext and convert into ciphertext "jknnq" with the help of cryptographic key and then decrypt into "Hello".</p>
+            
+            <h2>Try It Yourself</h2>
+            
+            <p>This simple demo uses a <strong>Caesar cipher</strong> (shift of 3) to show how encryption works:</p>
+            <p> Caesar cipher is a type of substitution cipher where each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet.</p>
+            
+            <div class="demo-section">
+                <h3>Caesar Cipher Demo</h3>
+                <div class="demo-row">
+                    <span class="demo-label">Enter text:</span>
+                    <input type="text" class="demo-input" id="demo-input" value="Hello" oninput="updateDemo()">
+                    <span class="demo-label">→ Encrypted:</span>
+                    <span class="demo-output" id="demo-output">Khoor</span>
+                </div>
+            </div>
+            
+            <h2>How It Works</h2>
+            
+            <p>The process involves several key components:</p>
+
+            <h3>1. Plaintext is created:</h3>
+            <p> The original readable message or data.</p>
+            
+            <h3>2. The Algorithm</h3>
+            <p>A mathematical procedure that transforms data. Modern algorithms like <strong>AES</strong> and <strong>RSA</strong> are chosen, in the above example, Caesar cipher is used.</p>
+            
+            <h3>3. The Key</h3>
+            <p>A piece of information (usually a large number) that controls the transformation. Without the correct key, decryption is practically impossible even if you know the algorithm. In the above example, the key is 3. (This key controls how the encryption or hashing is performed).</p>
+
+            <h3> Encryption converts plaintext → ciphertext</h3>
+            <p> The plaintext is converted into ciphertext with the help of the algorithm and the key. In the above example, "Hello" is converted into "jknnq".</p>
+
+            <h3> Decryption converts ciphertext → plaintext</h3>
+            <p> The ciphertext is converted into plaintext with the help of the algorithm and the key. In the above example, "jknnq" is converted into "Hello".</p>
+
+            <h3>Integrity checks may be used</h3>
+            <p> Integrity checks may be used to ensure that the data has not been tampered with. In the above example, the integrity check is used to ensure that the data has not been tampered with. (This is done by using a hash function to create a hash of the data and then comparing it to a hash of the data that was received.).</p>
+            
+            <h3>4. Symmetric vs Asymmetric</h3>
+            <ul>
+                <li><strong>Symmetric</strong>: Same key for encryption and decryption (like AES). Faster, but requires secure key exchange. Secure key exchange is the challenge in cryptography of securely sharing secret encryption keys between parties, especially in large networks, because sending key to unverified parties risks handing key to people who are not authorized to have it.</li>
+                <li><strong>Asymmetric</strong>: Different keys - a public key to encrypt, a private key to decrypt (like RSA). Slower, but solves the key distribution problem. The key distribution problem is the challenge in cryptography of securely sharing secret encryption keys between parties, especially in large networks, because sending the key over an insecure channel risks interception, breaking the whole system</li>
+            </ul>
+            
+            <h2>Real-World Example</h2>
+            
+            <p>When you visit a website with HTTPS:</p>
+            
+            <ol>
+                <li>Your browser and the server exchange public keys</li>
+                <li>They use asymmetric encryption to securely share a symmetric key</li>
+                <li>All further communication uses the faster symmetric encryption</li>
+                <li>Anyone intercepting the traffic sees only ciphertext</li>
+            </ol>
+            
+            <p>This is why the padlock icon in your browser matters—it means your data is encrypted.</p>
+        </main>
+    </div>
+
+    <footer style="padding: 1rem; margin-top: 2rem;">
+        <p style="margin: 0; font-size: 0.85rem;">Happy Reading :) — I'd love feedback!</p>
+        <div style="margin-top: 0.4rem; display: flex; justify-content: center; gap: 0.5rem;">
+            <a href="https://www.linkedin.com/in/akshita-sharma1234" target="_blank" title="LinkedIn" style="color: #888; text-decoration: none;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://x.com/akshita_shh" target="_blank" title="X" style="color: #888; text-decoration: none;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://github.com/akshita-xyz" target="_blank" title="GitHub" style="color: #888; text-decoration: none;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+    <script>
+        // Caesar cipher demo
+        function caesarCipher(text, shift) {
+            return text.split('').map(char => {
+                if (char.match(/[a-z]/i)) {
+                    const code = char.charCodeAt(0);
+                    const base = code >= 65 && code <= 90 ? 65 : 97;
+                    return String.fromCharCode(((code - base + shift) % 26) + base);
+                }
+                return char;
+            }).join('');
+        }
+        
+        function updateDemo() {
+            const input = document.getElementById('demo-input').value;
+            const output = document.getElementById('demo-output');
+            output.textContent = caesarCipher(input, 3);
+        }
+        
+        // Initialize
+        updateDemo();
+    </script>
+</body>
+</html>
