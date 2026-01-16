@@ -420,11 +420,13 @@ footer {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
 }
 
-.sidebar-links .sub-links.expanded {
-    display: block;
+.sidebar-links .has-children.expanded > .sub-links {
+    max-height: 2000px;
 }
 
 .sidebar-links .sub-links a {
@@ -439,20 +441,32 @@ footer {
     background: #1a1a1a;
 }
 
+.sidebar-links .has-children {
+    position: relative;
+}
+
 .sidebar-links .has-children > a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding-right: 30px;
 }
 
-.sidebar-links .has-children > a::after {
-    content: '+';
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    transition: transform 0.2s;
+.sidebar-links .has-children .toggle-arrow {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 5px;
+    font-size: 0.7rem;
+    color: #888;
+    transition: transform 0.3s ease;
+    user-select: none;
 }
 
-.sidebar-links .has-children.expanded > a::after {
-    content: '−';
+.sidebar-links .has-children:not(.expanded) .toggle-arrow {
+    transform: translateY(-50%) rotate(-90deg);
+}
+
+.sidebar-links .has-children.expanded .toggle-arrow {
+    transform: translateY(-50%) rotate(0deg);
 }
 
