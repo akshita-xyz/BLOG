@@ -64,9 +64,510 @@
                 <a href="../../index.html">home</a> / web-dev
             </div>
             
-            <h1>Web Dev</h1>
+            <h1>Web Development Overview</h1>
             
-            <p style="color: #888; font-style: italic; margin-top: 3rem;">Still writing this section... give me some time :)</p>
+            <p style="color: #ccc; margin-top: 1.5rem;">Welcome to the comprehensive guide on web development! This section covers the fundamentals of how the web works, from the basics of the internet to the technologies that power modern websites.</p>
+            
+            <!-- History of the Web Section -->
+            <h2 id="history" style="margin-top: 3rem; color: #64b5f6;">History of the Web</h2>
+            <p style="color: #ccc;">Understanding the history of the web helps us appreciate how far we've come and where we're heading.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Key Milestones</h4>
+                <div style="color: #888; line-height: 1.8;">
+                    <p><strong style="color: #64b5f6;">1989:</strong> Tim Berners-Lee proposes the World Wide Web while working at CERN</p>
+                    <p><strong style="color: #64b5f6;">1990:</strong> First web browser and web server created</p>
+                    <p><strong style="color: #64b5f6;">1991:</strong> World Wide Web becomes publicly available</p>
+                    <p><strong style="color: #64b5f6;">1993:</strong> Mosaic browser released, making the web accessible to the general public</p>
+                    <p><strong style="color: #64b5f6;">1994:</strong> Netscape Navigator released, beginning the browser wars</p>
+                    <p><strong style="color: #64b5f6;">1995:</strong> JavaScript created, enabling dynamic web pages</p>
+                    <p><strong style="color: #64b5f6;">1998:</strong> Google founded, revolutionizing web search</p>
+                    <p><strong style="color: #64b5f6;">2004:</strong> Web 2.0 era begins with social media and user-generated content</p>
+                    <p><strong style="color: #64b5f6;">2010s:</strong> Mobile-first web, responsive design, and progressive web apps</p>
+                    <p><strong style="color: #64b5f6;">Present:</strong> AI-powered web, WebAssembly, and edge computing</p>
+                </div>
+            </div>
+            
+            <!-- How Does the Internet Work -->
+            <h2 id="internet" style="margin-top: 3rem; color: #64b5f6;">How Does the Internet Work?</h2>
+            <p style="color: #ccc;">The internet is a global network of interconnected computers that communicate using standardized protocols.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #fff; margin-top: 0;">Key Components</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li><strong style="color: #4caf50;">Servers:</strong> Computers that store and serve content</li>
+                    <li><strong style="color: #4caf50;">Clients:</strong> Devices (computers, phones) that request content</li>
+                    <li><strong style="color: #4caf50;">Routers:</strong> Direct data packets across the network</li>
+                    <li><strong style="color: #4caf50;">ISPs:</strong> Internet Service Providers that connect you to the internet</li>
+                    <li><strong style="color: #4caf50;">Protocols:</strong> Rules for communication (TCP/IP, HTTP, etc.)</li>
+                </ul>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">How Data Travels</h4>
+                <ol style="color: #888; line-height: 1.8;">
+                    <li>Data is broken into small packets</li>
+                    <li>Each packet contains sender and destination addresses</li>
+                    <li>Packets travel through multiple routers to reach their destination</li>
+                    <li>Packets may take different routes to optimize delivery</li>
+                    <li>Packets are reassembled at the destination</li>
+                </ol>
+            </div>
+            
+            <!-- Client-Server Architecture -->
+            <h2 id="client-server" style="margin-top: 3rem; color: #64b5f6;">Client-Server Architecture</h2>
+            <p style="color: #ccc;">The client-server model is the foundation of web applications, defining how clients and servers interact.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Client (Frontend)</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li>User-facing interface (browser, mobile app)</li>
+                    <li>Sends requests to the server</li>
+                    <li>Displays data received from the server</li>
+                    <li>Handles user interactions</li>
+                    <li>Technologies: HTML, CSS, JavaScript, React, Vue, Angular</li>
+                </ul>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #ff6b6b; margin-top: 0;">Server (Backend)</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li>Processes requests from clients</li>
+                    <li>Manages business logic and databases</li>
+                    <li>Authenticates users and manages security</li>
+                    <li>Sends responses back to clients</li>
+                    <li>Technologies: Node.js, Python, Java, PHP, Ruby, databases</li>
+                </ul>
+            </div>
+            
+            <div style="background: #111; border-left: 3px solid #64b5f6; padding: 1rem; margin: 1rem 0;">
+                <p style="color: #ccc; margin: 0;"><strong style="color: #64b5f6;">Communication Flow:</strong></p>
+                <p style="color: #888; margin: 0.5rem 0 0 0;">Client Request → Server Processing → Database Query → Server Response → Client Display</p>
+            </div>
+            
+            <!-- Frontend and Backend -->
+            <h2 id="frontend-backend" style="margin-top: 3rem; color: #64b5f6;">Frontend and Backend</h2>
+            
+            <h3 style="color: #fff; margin-top: 1.5rem;">Frontend Development</h3>
+            <p style="color: #ccc;">Frontend (client-side) development focuses on everything users see and interact with in their browser.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Core Technologies</h4>
+                <div style="color: #888; line-height: 1.8;">
+                    <p><strong style="color: #ff9800;">HTML:</strong> Structure and content of web pages</p>
+                    <p><strong style="color: #ff9800;">CSS:</strong> Styling, layout, and visual presentation</p>
+                    <p><strong style="color: #ff9800;">JavaScript:</strong> Interactivity, dynamic behavior, and user experience</p>
+                </div>
+                
+                <h4 style="color: #4caf50; margin-top: 1rem;">Popular Frameworks & Libraries</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li>React - Component-based UI library by Facebook</li>
+                    <li>Vue.js - Progressive JavaScript framework</li>
+                    <li>Angular - Full-featured framework by Google</li>
+                    <li>Svelte - Compiler-based framework</li>
+                    <li>Bootstrap/Tailwind CSS - CSS frameworks</li>
+                </ul>
+            </div>
+            
+            <h3 style="color: #fff; margin-top: 1.5rem;">Backend Development</h3>
+            <p style="color: #ccc;">Backend (server-side) development handles data processing, business logic, and server management.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Key Responsibilities</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li>Database management and operations</li>
+                    <li>Server configuration and maintenance</li>
+                    <li>API development and integration</li>
+                    <li>Authentication and authorization</li>
+                    <li>Security and data protection</li>
+                    <li>Performance optimization</li>
+                </ul>
+                
+                <h4 style="color: #4caf50; margin-top: 1rem;">Popular Technologies</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li><strong style="color: #ff9800;">Node.js:</strong> JavaScript runtime for server-side</li>
+                    <li><strong style="color: #ff9800;">Python:</strong> Django, Flask frameworks</li>
+                    <li><strong style="color: #ff9800;">PHP:</strong> Laravel, Symfony frameworks</li>
+                    <li><strong style="color: #ff9800;">Ruby:</strong> Ruby on Rails framework</li>
+                    <li><strong style="color: #ff9800;">Java:</strong> Spring Boot framework</li>
+                    <li><strong style="color: #ff9800;">Databases:</strong> MySQL, PostgreSQL, MongoDB</li>
+                </ul>
+            </div>
+            
+            <!-- What Happens When You Visit a Website -->
+            <h2 id="visit-website" style="margin-top: 3rem; color: #64b5f6;">What Happens When You Visit a Website?</h2>
+            <p style="color: #ccc;">Understanding the journey from typing a URL to seeing a webpage is crucial for web developers.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Step-by-Step Process</h4>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #4caf50;">
+                    <p style="color: #4caf50; margin: 0; font-weight: bold;">1. URL Parsing</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Browser breaks down the URL into protocol, domain, and path</p>
+                    <code style="color: #64b5f6; background: #000; padding: 0.2rem 0.4rem; display: block; margin-top: 0.5rem;">https://www.example.com/page → https:// + www.example.com + /page</code>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #ff9800;">
+                    <p style="color: #ff9800; margin: 0; font-weight: bold;">2. DNS Lookup</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Browser contacts DNS server to convert domain name to IP address</p>
+                    <code style="color: #64b5f6; background: #000; padding: 0.2rem 0.4rem; display: block; margin-top: 0.5rem;">www.example.com → 192.0.2.1</code>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #64b5f6;">
+                    <p style="color: #64b5f6; margin: 0; font-weight: bold;">3. TCP Connection</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Browser establishes TCP connection with the server (3-way handshake)</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #9c27b0;">
+                    <p style="color: #9c27b0; margin: 0; font-weight: bold;">4. TLS/SSL Handshake (HTTPS)</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">If using HTTPS, browser and server establish secure encrypted connection</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #f44336;">
+                    <p style="color: #f44336; margin: 0; font-weight: bold;">5. HTTP Request</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Browser sends HTTP request to server with headers and method</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #00bcd4;">
+                    <p style="color: #00bcd4; margin: 0; font-weight: bold;">6. Server Processing</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Server processes the request, queries database if needed, prepares response</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #8bc34a;">
+                    <p style="color: #8bc34a; margin: 0; font-weight: bold;">7. HTTP Response</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Server sends HTML, CSS, JavaScript, images back to browser</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #ffc107;">
+                    <p style="color: #ffc107; margin: 0; font-weight: bold;">8. Rendering</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Browser parses HTML, applies CSS, executes JavaScript, displays page</p>
+                </div>
+            </div>
+            
+            <!-- HTTP Protocol -->
+            <h2 id="http" style="margin-top: 3rem; color: #64b5f6;">HTTP Protocol</h2>
+            <p style="color: #ccc;">HTTP (HyperText Transfer Protocol) is the foundation of data communication on the web.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #fff; margin-top: 0;">What is HTTP?</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li>Application-layer protocol for transmitting hypermedia documents</li>
+                    <li>Stateless protocol - each request is independent</li>
+                    <li>Request-response model between client and server</li>
+                    <li>Text-based protocol that's human-readable</li>
+                </ul>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">HTTP vs HTTPS</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                    <div style="background: #111; padding: 1rem; border: 1px solid #333;">
+                        <h5 style="color: #ff9800; margin-top: 0;">HTTP</h5>
+                        <ul style="color: #888; font-size: 0.9rem; line-height: 1.6;">
+                            <li>Unencrypted communication</li>
+                            <li>Port 80</li>
+                            <li>Vulnerable to attacks</li>
+                            <li>Not recommended for modern sites</li>
+                        </ul>
+                    </div>
+                    <div style="background: #111; padding: 1rem; border: 1px solid #333;">
+                        <h5 style="color: #4caf50; margin-top: 0;">HTTPS</h5>
+                        <ul style="color: #888; font-size: 0.9rem; line-height: 1.6;">
+                            <li>Encrypted with SSL/TLS</li>
+                            <li>Port 443</li>
+                            <li>Secure and private</li>
+                            <li>Required for modern web</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- HTTP Methods -->
+            <h2 id="http-methods" style="margin-top: 3rem; color: #64b5f6;">HTTP Methods</h2>
+            <p style="color: #ccc;">HTTP methods (also called verbs) indicate the desired action to be performed on a resource.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0; overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; color: #ccc; font-size: 0.9rem;">
+                    <thead>
+                        <tr style="background: #111; border-bottom: 2px solid #4caf50;">
+                            <th style="padding: 0.8rem; text-align: left; color: #fff; border: 1px solid #333; width: 15%;">Method</th>
+                            <th style="padding: 0.8rem; text-align: left; color: #fff; border: 1px solid #333; width: 35%;">Purpose</th>
+                            <th style="padding: 0.8rem; text-align: left; color: #fff; border: 1px solid #333;">Example Use Case</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #4caf50; background: #111; padding: 0.2rem 0.4rem;">GET</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Retrieve data from server</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Loading a webpage, fetching user profile</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #2196f3; background: #111; padding: 0.2rem 0.4rem;">POST</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Send data to server to create resource</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Submitting a form, creating new user account</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #ff9800; background: #111; padding: 0.2rem 0.4rem;">PUT</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Update existing resource completely</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Updating user profile information</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #9c27b0; background: #111; padding: 0.2rem 0.4rem;">PATCH</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Partially update existing resource</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Changing only the email address</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #f44336; background: #111; padding: 0.2rem 0.4rem;">DELETE</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Remove a resource from server</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Deleting a blog post or user account</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #00bcd4; background: #111; padding: 0.2rem 0.4rem;">HEAD</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Get headers without body</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Checking if resource exists or modified</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #8bc34a; background: #111; padding: 0.2rem 0.4rem;">OPTIONS</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Get allowed methods for resource</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">CORS preflight requests</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Domain Name -->
+            <h2 id="domain" style="margin-top: 3rem; color: #64b5f6;">Domain Names</h2>
+            <p style="color: #ccc;">A domain name is a human-readable address for websites, making the internet more accessible.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Domain Name Structure</h4>
+                <div style="background: #111; padding: 1rem; border: 1px solid #333; margin-top: 1rem;">
+                    <code style="color: #64b5f6; font-size: 1.1rem;">subdomain.example.com</code>
+                    <div style="margin-top: 1rem; color: #888; line-height: 1.8;">
+                        <p><strong style="color: #4caf50;">subdomain</strong> - Optional prefix (www, blog, shop)</p>
+                        <p><strong style="color: #ff9800;">example</strong> - Second-level domain (your brand/site name)</p>
+                        <p><strong style="color: #f44336;">com</strong> - Top-level domain (TLD)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #fff; margin-top: 0;">Common Top-Level Domains (TLDs)</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                    <div>
+                        <p style="color: #4caf50; font-weight: bold; margin-bottom: 0.5rem;">Generic TLDs</p>
+                        <ul style="color: #888; line-height: 1.8;">
+                            <li>.com - Commercial</li>
+                            <li>.org - Organization</li>
+                            <li>.net - Network</li>
+                            <li>.edu - Education</li>
+                            <li>.gov - Government</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p style="color: #ff9800; font-weight: bold; margin-bottom: 0.5rem;">Country Code TLDs</p>
+                        <ul style="color: #888; line-height: 1.8;">
+                            <li>.us - United States</li>
+                            <li>.uk - United Kingdom</li>
+                            <li>.in - India</li>
+                            <li>.de - Germany</li>
+                            <li>.jp - Japan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- What is Hosting -->
+            <h2 id="hosting" style="margin-top: 3rem; color: #64b5f6;">What is Web Hosting?</h2>
+            <p style="color: #ccc;">Web hosting is a service that stores your website files and makes them accessible on the internet.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #fff; margin-top: 0;">How Hosting Works</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li>Your website files are stored on a server (powerful computer)</li>
+                    <li>Server is connected to the internet 24/7</li>
+                    <li>When someone visits your domain, they access these files</li>
+                    <li>Hosting provider manages server maintenance and uptime</li>
+                </ul>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Types of Hosting</h4>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #4caf50;">
+                    <h5 style="color: #4caf50; margin: 0;">Shared Hosting</h5>
+                    <p style="color: #888; margin: 0.5rem 0;">Multiple websites on one server. Affordable but limited resources.</p>
+                    <p style="color: #666; font-size: 0.85rem; margin: 0;">Good for: Small websites, blogs, personal projects</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #2196f3;">
+                    <h5 style="color: #2196f3; margin: 0;">VPS (Virtual Private Server)</h5>
+                    <p style="color: #888; margin: 0.5rem 0;">Dedicated portion of server resources. More control and better performance.</p>
+                    <p style="color: #666; font-size: 0.85rem; margin: 0;">Good for: Growing businesses, medium-traffic sites</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #ff9800;">
+                    <h5 style="color: #ff9800; margin: 0;">Dedicated Hosting</h5>
+                    <p style="color: #888; margin: 0.5rem 0;">Entire server for your website. Maximum control and resources.</p>
+                    <p style="color: #666; font-size: 0.85rem; margin: 0;">Good for: Large enterprises, high-traffic sites</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #9c27b0;">
+                    <h5 style="color: #9c27b0; margin: 0;">Cloud Hosting</h5>
+                    <p style="color: #888; margin: 0.5rem 0;">Resources distributed across multiple servers. Scalable and reliable.</p>
+                    <p style="color: #666; font-size: 0.85rem; margin: 0;">Good for: Scalable applications, variable traffic</p>
+                </div>
+            </div>
+            
+            <!-- DNS and How It Works -->
+            <h2 id="dns" style="margin-top: 3rem; color: #64b5f6;">DNS and How It Works</h2>
+            <p style="color: #ccc;">DNS (Domain Name System) is like the phonebook of the internet, translating domain names into IP addresses.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Why DNS Exists</h4>
+                <p style="color: #888;">Computers communicate using IP addresses (like 192.0.2.1), but humans prefer memorable names (like google.com). DNS bridges this gap.</p>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">DNS Resolution Process</h4>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #64b5f6;">
+                    <p style="color: #64b5f6; margin: 0; font-weight: bold;">Step 1: Browser Cache</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Browser checks its cache for the IP address</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #4caf50;">
+                    <p style="color: #4caf50; margin: 0; font-weight: bold;">Step 2: OS Cache</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">If not found, checks operating system cache</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #ff9800;">
+                    <p style="color: #ff9800; margin: 0; font-weight: bold;">Step 3: Router Cache</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Queries router's cache</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #2196f3;">
+                    <p style="color: #2196f3; margin: 0; font-weight: bold;">Step 4: ISP DNS Server</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Contacts ISP's DNS resolver (recursive resolver)</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #9c27b0;">
+                    <p style="color: #9c27b0; margin: 0; font-weight: bold;">Step 5: Root Name Server</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">ISP queries root server for TLD (.com, .org) server address</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #f44336;">
+                    <p style="color: #f44336; margin: 0; font-weight: bold;">Step 6: TLD Name Server</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Queries TLD server for authoritative name server</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #8bc34a;">
+                    <p style="color: #8bc34a; margin: 0; font-weight: bold;">Step 7: Authoritative Name Server</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Returns the actual IP address for the domain</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #00bcd4;">
+                    <p style="color: #00bcd4; margin: 0; font-weight: bold;">Step 8: Response & Caching</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">IP address returned to browser and cached for future use</p>
+                </div>
+            </div>
+            
+            <div style="background: #111; border: 1px solid #333; padding: 1rem; margin: 1rem 0;">
+                <h5 style="color: #fff; margin-top: 0;">Common DNS Record Types</h5>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li><strong style="color: #4caf50;">A Record:</strong> Maps domain to IPv4 address</li>
+                    <li><strong style="color: #2196f3;">AAAA Record:</strong> Maps domain to IPv6 address</li>
+                    <li><strong style="color: #ff9800;">CNAME:</strong> Canonical name, alias for another domain</li>
+                    <li><strong style="color: #9c27b0;">MX Record:</strong> Mail exchange, directs email</li>
+                    <li><strong style="color: #f44336;">TXT Record:</strong> Text information, used for verification</li>
+                    <li><strong style="color: #00bcd4;">NS Record:</strong> Name server, specifies DNS servers</li>
+                </ul>
+            </div>
+            
+            <!-- Browsers and How They Work -->
+            <h2 id="browsers" style="margin-top: 3rem; color: #64b5f6;">Browsers and How They Work</h2>
+            <p style="color: #ccc;">Web browsers are applications that retrieve, present, and traverse information on the World Wide Web.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Main Components of a Browser</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li><strong style="color: #4caf50;">User Interface:</strong> Address bar, back/forward buttons, bookmarks</li>
+                    <li><strong style="color: #2196f3;">Browser Engine:</strong> Marshals actions between UI and rendering engine</li>
+                    <li><strong style="color: #ff9800;">Rendering Engine:</strong> Displays requested content (HTML, CSS)</li>
+                    <li><strong style="color: #9c27b0;">Networking:</strong> Handles HTTP requests and responses</li>
+                    <li><strong style="color: #f44336;">JavaScript Engine:</strong> Parses and executes JavaScript code</li>
+                    <li><strong style="color: #00bcd4;">Data Storage:</strong> Cookies, localStorage, IndexedDB</li>
+                </ul>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Browser Rendering Process</h4>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #4caf50;">
+                    <p style="color: #4caf50; margin: 0; font-weight: bold;">1. Parse HTML → DOM Tree</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Browser parses HTML and creates Document Object Model</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #2196f3;">
+                    <p style="color: #2196f3; margin: 0; font-weight: bold;">2. Parse CSS → CSSOM Tree</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Parses CSS and creates CSS Object Model</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #ff9800;">
+                    <p style="color: #ff9800; margin: 0; font-weight: bold;">3. Combine → Render Tree</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Combines DOM and CSSOM into render tree (only visible elements)</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #9c27b0;">
+                    <p style="color: #9c27b0; margin: 0; font-weight: bold;">4. Layout (Reflow)</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Calculates exact position and size of each element</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #f44336;">
+                    <p style="color: #f44336; margin: 0; font-weight: bold;">5. Paint</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Converts render tree to actual pixels on screen</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #00bcd4;">
+                    <p style="color: #00bcd4; margin: 0; font-weight: bold;">6. Composite</p>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Combines layers to display final page</p>
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #fff; margin-top: 0;">Popular Web Browsers</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                    <div style="background: #111; padding: 1rem; border: 1px solid #333;">
+                        <h5 style="color: #4caf50; margin: 0;">Chrome</h5>
+                        <p style="color: #888; font-size: 0.85rem; margin: 0.5rem 0 0 0;">Google's browser, V8 JavaScript engine, most popular worldwide</p>
+                    </div>
+                    <div style="background: #111; padding: 1rem; border: 1px solid #333;">
+                        <h5 style="color: #ff9800; margin: 0;">Firefox</h5>
+                        <p style="color: #888; font-size: 0.85rem; margin: 0.5rem 0 0 0;">Mozilla's open-source browser, strong privacy features</p>
+                    </div>
+                    <div style="background: #111; padding: 1rem; border: 1px solid #333;">
+                        <h5 style="color: #2196f3; margin: 0;">Safari</h5>
+                        <p style="color: #888; font-size: 0.85rem; margin: 0.5rem 0 0 0;">Apple's browser, optimized for macOS and iOS</p>
+                    </div>
+                    <div style="background: #111; padding: 1rem; border: 1px solid #333;">
+                        <h5 style="color: #00bcd4; margin: 0;">Edge</h5>
+                        <p style="color: #888; font-size: 0.85rem; margin: 0.5rem 0 0 0;">Microsoft's browser, now Chromium-based</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #111; border-left: 3px solid #4caf50; padding: 1rem; margin: 2rem 0;">
+                <h4 style="color: #4caf50; margin: 0;">Key Takeaways</h4>
+                <ul style="color: #888; line-height: 1.8; margin: 0.5rem 0;">
+                    <li>The web is built on interconnected technologies working together</li>
+                    <li>Understanding client-server architecture is fundamental to web development</li>
+                    <li>HTTP/HTTPS protocols enable communication between browsers and servers</li>
+                    <li>DNS translates human-readable domains into machine-readable IP addresses</li>
+                    <li>Browsers are complex applications that render and display web content</li>
+                    <li>Modern web development requires knowledge of both frontend and backend technologies</li>
+                </ul>
+            </div>
+            
         </main>
     </div>
 
