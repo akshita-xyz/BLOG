@@ -68,6 +68,10 @@
                             <li><a href="css.html#display">Display Property</a></li>
                             <li><a href="css.html#position">Position Property</a></li>
                             <li><a href="css.html#min-max">Min/Max Width</a></li>
+                            <li><a href="css.html#flexbox">Flexbox</a></li>
+                            <li><a href="css.html#pseudo">Pseudo Classes & Elements</a></li>
+                            <li><a href="css.html#overflow-gradients">Overflow & Gradients</a></li>
+                            <li><a href="css.html#responsive">Responsive Design</a></li>
                         </ul>
                     </li>
                     <li><a href="bootstrap.html">Bootstrap</a></li>
@@ -952,6 +956,568 @@
                 </div>
             </div>
             
+            <!-- FLEXBOX SECTION -->
+            <h2 id="flexbox" style="margin-top: 3rem; color: #64b5f6;">CSS Flexbox</h2>
+            <p style="color: #ccc;">Flexbox is a powerful layout module that makes it easy to design flexible and responsive layouts without using floats or positioning.</p>
+            
+            <!-- Flex Introduction -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">Flexbox Introduction</h3>
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">What is Flexbox?</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li>One-dimensional layout system (row OR column)</li>
+                    <li>Distributes space along a single axis</li>
+                    <li>Perfect for navigation bars, card layouts, centering content</li>
+                    <li>Makes responsive design much easier</li>
+                </ul>
+                
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem; margin-top: 1rem;">
+                    <span style="color: #ff9800;">.container</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">display</span>: <span style="color: #64b5f6;">flex</span>; <span style="color: #666;">/* Activates flexbox */</span><br>
+                    }
+                </div>
+            </div>
+            
+            <!-- Flex Direction -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">Flex Direction</h3>
+            <p style="color: #ccc;">Defines the main axis direction (horizontal or vertical).</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <h4 style="color: #4caf50; margin-top: 0;">flex-direction: row (default)</h4>
+                        <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 0.8rem; margin: 0.5rem 0;">
+                            display: flex;<br>
+                            flex-direction: row;
+                        </div>
+                        <div style="background: #111; padding: 1rem; display: flex; gap: 0.5rem;">
+                            <div style="background: #4caf50; padding: 1rem; color: white; text-align: center;">1</div>
+                            <div style="background: #2196f3; padding: 1rem; color: white; text-align: center;">2</div>
+                            <div style="background: #ff9800; padding: 1rem; color: white; text-align: center;">3</div>
+                        </div>
+                        <p style="color: #666; font-size: 0.85rem; margin: 0.5rem 0 0 0;">→ Items in a row (left to right)</p>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #4caf50; margin-top: 0;">flex-direction: column</h4>
+                        <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 0.8rem; margin: 0.5rem 0;">
+                            display: flex;<br>
+                            flex-direction: column;
+                        </div>
+                        <div style="background: #111; padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                            <div style="background: #4caf50; padding: 1rem; color: white; text-align: center;">1</div>
+                            <div style="background: #2196f3; padding: 1rem; color: white; text-align: center;">2</div>
+                            <div style="background: #ff9800; padding: 1rem; color: white; text-align: center;">3</div>
+                        </div>
+                        <p style="color: #666; font-size: 0.85rem; margin: 0.5rem 0 0 0;">↓ Items in a column (top to bottom)</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1rem; padding: 0.8rem; background: #111;">
+                    <p style="color: #888; margin: 0;"><strong style="color: #64b5f6;">Other values:</strong></p>
+                    <ul style="color: #888; margin: 0.5rem 0;">
+                        <li><code style="color: #4caf50;">row-reverse</code> - Right to left</li>
+                        <li><code style="color: #4caf50;">column-reverse</code> - Bottom to top</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Flex Wrap -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">Flex Wrap</h3>
+            <p style="color: #ccc;">Controls whether flex items wrap to multiple lines.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <h4 style="color: #ff9800; margin-top: 0;">flex-wrap: nowrap (default)</h4>
+                        <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 0.8rem;">
+                            flex-wrap: nowrap;
+                        </div>
+                        <div style="background: #111; padding: 1rem; display: flex; gap: 0.5rem; overflow: hidden;">
+                            <div style="background: #4caf50; padding: 1rem; color: white; min-width: 100px;">1</div>
+                            <div style="background: #2196f3; padding: 1rem; color: white; min-width: 100px;">2</div>
+                            <div style="background: #ff9800; padding: 1rem; color: white; min-width: 100px;">3</div>
+                            <div style="background: #9c27b0; padding: 1rem; color: white; min-width: 100px;">4</div>
+                        </div>
+                        <p style="color: #666; font-size: 0.85rem; margin: 0.5rem 0 0 0;">All items on one line (may overflow)</p>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #ff9800; margin-top: 0;">flex-wrap: wrap</h4>
+                        <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 0.8rem;">
+                            flex-wrap: wrap;
+                        </div>
+                        <div style="background: #111; padding: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; max-width: 250px;">
+                            <div style="background: #4caf50; padding: 1rem; color: white; min-width: 100px;">1</div>
+                            <div style="background: #2196f3; padding: 1rem; color: white; min-width: 100px;">2</div>
+                            <div style="background: #ff9800; padding: 1rem; color: white; min-width: 100px;">3</div>
+                            <div style="background: #9c27b0; padding: 1rem; color: white; min-width: 100px;">4</div>
+                        </div>
+                        <p style="color: #666; font-size: 0.85rem; margin: 0.5rem 0 0 0;">Items wrap to multiple lines</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Flex Grow and Flex Shrink -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">Flex Grow & Flex Shrink</h3>
+            <p style="color: #ccc;">Control how flex items grow and shrink relative to each other.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">flex-grow</h4>
+                <p style="color: #888;">Determines how much an item will grow relative to other items.</p>
+                
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; margin: 1rem 0;">
+                    <span style="color: #ff9800;">.item</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">flex-grow</span>: <span style="color: #64b5f6;">1</span>; <span style="color: #666;">/* Takes up equal space */</span><br>
+                    }
+                </div>
+                
+                <div style="background: #111; padding: 1rem;">
+                    <div style="display: flex; gap: 0.5rem;">
+                        <div style="background: #4caf50; padding: 1rem; color: white; flex-grow: 1; text-align: center;">
+                            flex-grow: 1
+                        </div>
+                        <div style="background: #2196f3; padding: 1rem; color: white; flex-grow: 2; text-align: center;">
+                            flex-grow: 2<br><span style="font-size: 0.85rem;">(takes 2x space)</span>
+                        </div>
+                        <div style="background: #ff9800; padding: 1rem; color: white; flex-grow: 1; text-align: center;">
+                            flex-grow: 1
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #f44336; margin-top: 0;">flex-shrink</h4>
+                <p style="color: #888;">Determines how much an item will shrink when space is limited.</p>
+                
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; margin: 1rem 0;">
+                    <span style="color: #ff9800;">.item</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">flex-shrink</span>: <span style="color: #64b5f6;">1</span>; <span style="color: #666;">/* Default - can shrink */</span><br>
+                    }<br><br>
+                    <span style="color: #ff9800;">.no-shrink</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">flex-shrink</span>: <span style="color: #64b5f6;">0</span>; <span style="color: #666;">/* Won't shrink */</span><br>
+                    }
+                </div>
+            </div>
+            
+            <!-- Justify Content -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">Justify Content (Main Axis)</h3>
+            <p style="color: #ccc;">Aligns items along the main axis (horizontal in row, vertical in column).</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <h4 style="color: #64b5f6; margin: 0 0 0.5rem 0; font-size: 0.9rem;">flex-start (default)</h4>
+                        <div style="background: #111; padding: 0.8rem; display: flex; justify-content: flex-start; gap: 0.5rem;">
+                            <div style="background: #4caf50; padding: 0.8rem; color: white;">1</div>
+                            <div style="background: #2196f3; padding: 0.8rem; color: white;">2</div>
+                            <div style="background: #ff9800; padding: 0.8rem; color: white;">3</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #64b5f6; margin: 0 0 0.5rem 0; font-size: 0.9rem;">flex-end</h4>
+                        <div style="background: #111; padding: 0.8rem; display: flex; justify-content: flex-end; gap: 0.5rem;">
+                            <div style="background: #4caf50; padding: 0.8rem; color: white;">1</div>
+                            <div style="background: #2196f3; padding: 0.8rem; color: white;">2</div>
+                            <div style="background: #ff9800; padding: 0.8rem; color: white;">3</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #64b5f6; margin: 0 0 0.5rem 0; font-size: 0.9rem;">center</h4>
+                        <div style="background: #111; padding: 0.8rem; display: flex; justify-content: center; gap: 0.5rem;">
+                            <div style="background: #4caf50; padding: 0.8rem; color: white;">1</div>
+                            <div style="background: #2196f3; padding: 0.8rem; color: white;">2</div>
+                            <div style="background: #ff9800; padding: 0.8rem; color: white;">3</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #64b5f6; margin: 0 0 0.5rem 0; font-size: 0.9rem;">space-between</h4>
+                        <div style="background: #111; padding: 0.8rem; display: flex; justify-content: space-between;">
+                            <div style="background: #4caf50; padding: 0.8rem; color: white;">1</div>
+                            <div style="background: #2196f3; padding: 0.8rem; color: white;">2</div>
+                            <div style="background: #ff9800; padding: 0.8rem; color: white;">3</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #64b5f6; margin: 0 0 0.5rem 0; font-size: 0.9rem;">space-around</h4>
+                        <div style="background: #111; padding: 0.8rem; display: flex; justify-content: space-around;">
+                            <div style="background: #4caf50; padding: 0.8rem; color: white;">1</div>
+                            <div style="background: #2196f3; padding: 0.8rem; color: white;">2</div>
+                            <div style="background: #ff9800; padding: 0.8rem; color: white;">3</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #64b5f6; margin: 0 0 0.5rem 0; font-size: 0.9rem;">space-evenly</h4>
+                        <div style="background: #111; padding: 0.8rem; display: flex; justify-content: space-evenly;">
+                            <div style="background: #4caf50; padding: 0.8rem; color: white;">1</div>
+                            <div style="background: #2196f3; padding: 0.8rem; color: white;">2</div>
+                            <div style="background: #ff9800; padding: 0.8rem; color: white;">3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Align Items -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">Align Items (Cross Axis)</h3>
+            <p style="color: #ccc;">Aligns items along the cross axis (perpendicular to main axis).</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <h4 style="color: #ff9800; margin: 0 0 0.5rem 0; font-size: 0.9rem;">flex-start</h4>
+                        <div style="background: #111; padding: 0.8rem; display: flex; align-items: flex-start; height: 100px;">
+                            <div style="background: #4caf50; padding: 0.8rem; color: white;">1</div>
+                            <div style="background: #2196f3; padding: 1.2rem; color: white;">2</div>
+                            <div style="background: #ff9800; padding: 0.6rem; color: white;">3</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #ff9800; margin: 0 0 0.5rem 0; font-size: 0.9rem;">center</h4>
+                        <div style="background: #111; padding: 0.8rem; display: flex; align-items: center; height: 100px;">
+                            <div style="background: #4caf50; padding: 0.8rem; color: white;">1</div>
+                            <div style="background: #2196f3; padding: 1.2rem; color: white;">2</div>
+                            <div style="background: #ff9800; padding: 0.6rem; color: white;">3</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: #ff9800; margin: 0 0 0.5rem 0; font-size: 0.9rem;">flex-end</h4>
+                        <div style="background: #111; padding: 0.8rem; display: flex; align-items: flex-end; height: 100px;">
+                            <div style="background: #4caf50; padding: 0.8rem; color: white;">1</div>
+                            <div style="background: #2196f3; padding: 1.2rem; color: white;">2</div>
+                            <div style="background: #ff9800; padding: 0.6rem; color: white;">3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Perfect Centering -->
+            <div style="background: #111; border-left: 3px solid #4caf50; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin: 0;">💡 Perfect Centering with Flexbox</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; margin: 0.8rem 0;">
+                    <span style="color: #ff9800;">.container</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">display</span>: <span style="color: #64b5f6;">flex</span>;<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">justify-content</span>: <span style="color: #64b5f6;">center</span>; <span style="color: #666;">/* Horizontal */</span><br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">align-items</span>: <span style="color: #64b5f6;">center</span>; <span style="color: #666;">/* Vertical */</span><br>
+                    }
+                </div>
+                <div style="background: #0a0a0a; padding: 2rem; display: flex; justify-content: center; align-items: center; height: 120px;">
+                    <div style="background: #4caf50; padding: 1.5rem; color: white; border-radius: 8px;">
+                        Perfectly Centered! ✨
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PSEUDO CLASSES & ELEMENTS -->
+            <h2 id="pseudo" style="margin-top: 3rem; color: #64b5f6;">Pseudo Classes & Pseudo Elements</h2>
+            <p style="color: #ccc;">Pseudo-classes and pseudo-elements let you style elements based on their state or position without adding extra HTML.</p>
+            
+            <!-- Link Pseudo Classes -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">Link Related Pseudo Classes</h3>
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Link States:</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #ff9800;">a:link</span> { color: blue; } <span style="color: #666;">/* Unvisited link */</span><br>
+                    <span style="color: #ff9800;">a:visited</span> { color: purple; } <span style="color: #666;">/* Visited link */</span><br>
+                    <span style="color: #ff9800;">a:hover</span> { color: red; } <span style="color: #666;">/* Mouse over */</span><br>
+                    <span style="color: #ff9800;">a:active</span> { color: orange; } <span style="color: #666;">/* Being clicked */</span>
+                </div>
+                
+                <p style="color: #ff9800; margin: 1rem 0; font-weight: bold;">⚠️ Order Matters! (LVHA)</p>
+                <p style="color: #888; margin: 0;">Remember: <strong style="color: #64b5f6;">L</strong>ink → <strong style="color: #64b5f6;">V</strong>isited → <strong style="color: #64b5f6;">H</strong>over → <strong style="color: #64b5f6;">A</strong>ctive</p>
+            </div>
+            
+            <!-- Common Pseudo Classes -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">Common Pseudo Classes</h3>
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #ff9800;">button:hover</span> { background: blue; } <span style="color: #666;">/* On mouse over */</span><br><br>
+                    <span style="color: #ff9800;">input:focus</span> { border: 2px solid green; } <span style="color: #666;">/* When focused */</span><br><br>
+                    <span style="color: #ff9800;">li:first-child</span> { font-weight: bold; } <span style="color: #666;">/* First item */</span><br><br>
+                    <span style="color: #ff9800;">li:last-child</span> { color: red; } <span style="color: #666;">/* Last item */</span><br><br>
+                    <span style="color: #ff9800;">li:nth-child(2)</span> { color: blue; } <span style="color: #666;">/* 2nd item */</span><br><br>
+                    <span style="color: #ff9800;">li:nth-child(odd)</span> { background: #f0f0f0; } <span style="color: #666;">/* Odd items */</span><br><br>
+                    <span style="color: #ff9800;">div:not(.special)</span> { opacity: 0.5; } <span style="color: #666;">/* Not matching */</span>
+                </div>
+            </div>
+            
+            <!-- Pseudo Elements -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">Pseudo Elements (::before & ::after)</h3>
+            <p style="color: #ccc;">Pseudo-elements create virtual elements that don't exist in the HTML.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">::before</h4>
+                <p style="color: #888;">Inserts content BEFORE an element's content.</p>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #ff9800;">.quote::before</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">content</span>: <span style="color: #64b5f6;">"❝ "</span>; <span style="color: #666;">/* Required */</span><br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">color</span>: <span style="color: #64b5f6;">#4caf50</span>;<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">font-size</span>: <span style="color: #64b5f6;">2rem</span>;<br>
+                    }
+                </div>
+                <div style="background: #111; padding: 1rem; margin-top: 0.8rem;">
+                    <p style="color: #ccc; margin: 0;"><span style="color: #4caf50; font-size: 2rem;">❝ </span>This is a quote with ::before</p>
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">::after</h4>
+                <p style="color: #888;">Inserts content AFTER an element's content.</p>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #ff9800;">.external-link::after</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">content</span>: <span style="color: #64b5f6;">" ↗"</span>;<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">color</span>: <span style="color: #64b5f6;">#2196f3</span>;<br>
+                    }
+                </div>
+                <div style="background: #111; padding: 1rem; margin-top: 0.8rem;">
+                    <a href="#" style="color: #64b5f6;">External Link<span style="color: #2196f3;"> ↗</span></a>
+                </div>
+            </div>
+            
+            <div style="background: #111; border-left: 3px solid #64b5f6; padding: 1rem; margin: 1rem 0;">
+                <p style="color: #64b5f6; margin: 0; font-weight: bold;">💡 Common Uses:</p>
+                <ul style="color: #888; margin: 0.5rem 0;">
+                    <li>Decorative elements</li>
+                    <li>Icons without extra HTML</li>
+                    <li>Clearfix for floats</li>
+                    <li>Tooltips and overlays</li>
+                </ul>
+            </div>
+            
+            <!-- OVERFLOW & GRADIENTS -->
+            <h2 id="overflow-gradients" style="margin-top: 3rem; color: #64b5f6;">Overflow & Gradients</h2>
+            
+            <h3 style="color: #fff; margin-top: 1.5rem;">Overflow-Wrap</h3>
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <p style="color: #888;">Controls how long words are broken when they don't fit.</p>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #4caf50;">overflow-wrap</span>: <span style="color: #64b5f6;">break-word</span>; <span style="color: #666;">/* Break long words */</span><br>
+                    <span style="color: #4caf50;">word-break</span>: <span style="color: #64b5f6;">break-all</span>; <span style="color: #666;">/* Break anywhere */</span><br>
+                    <span style="color: #4caf50;">white-space</span>: <span style="color: #64b5f6;">nowrap</span>; <span style="color: #666;">/* No wrapping */</span><br>
+                    <span style="color: #4caf50;">text-overflow</span>: <span style="color: #64b5f6;">ellipsis</span>; <span style="color: #666;">/* Show ... */</span>
+                </div>
+            </div>
+            
+            <h3 style="color: #fff; margin-top: 1.5rem;">Gradients</h3>
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Linear Gradients</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 0.8rem; margin-bottom: 0.5rem;">
+                            background: linear-gradient(<br>
+                            &nbsp;&nbsp;to right,<br>
+                            &nbsp;&nbsp;#4caf50, #2196f3<br>
+                            );
+                        </div>
+                        <div style="height: 60px; background: linear-gradient(to right, #4caf50, #2196f3);"></div>
+                    </div>
+                    
+                    <div>
+                        <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 0.8rem; margin-bottom: 0.5rem;">
+                            background: linear-gradient(<br>
+                            &nbsp;&nbsp;45deg,<br>
+                            &nbsp;&nbsp;#ff9800, #f44336<br>
+                            );
+                        </div>
+                        <div style="height: 60px; background: linear-gradient(45deg, #ff9800, #f44336);"></div>
+                    </div>
+                </div>
+                
+                <h4 style="color: #4caf50; margin-top: 1rem;">Radial Gradients</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 0.8rem; margin-bottom: 0.5rem;">
+                            background: radial-gradient(<br>
+                            &nbsp;&nbsp;circle,<br>
+                            &nbsp;&nbsp;#4caf50, #0a0a0a<br>
+                            );
+                        </div>
+                        <div style="height: 60px; background: radial-gradient(circle, #4caf50, #0a0a0a);"></div>
+                    </div>
+                    
+                    <div>
+                        <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 0.8rem; margin-bottom: 0.5rem;">
+                            background: radial-gradient(<br>
+                            &nbsp;&nbsp;ellipse,<br>
+                            &nbsp;&nbsp;#2196f3, #9c27b0<br>
+                            );
+                        </div>
+                        <div style="height: 60px; background: radial-gradient(ellipse, #2196f3, #9c27b0);"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RESPONSIVE DESIGN -->
+            <h2 id="responsive" style="margin-top: 3rem; color: #64b5f6;">Responsive Web Design</h2>
+            <p style="color: #ccc;">Responsive design ensures your website looks good on all devices - from phones to desktops.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Why Responsive Design?</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li>📱 55%+ of web traffic is mobile</li>
+                    <li>✅ Better user experience across all devices</li>
+                    <li>🚀 Improved SEO rankings</li>
+                    <li>💰 Cost-effective (one site for all devices)</li>
+                    <li>📈 Higher conversion rates</li>
+                </ul>
+            </div>
+            
+            <!-- Ways to Make Responsive -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">Different Ways to Make Responsive</h3>
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #4caf50;">
+                    <h4 style="color: #4caf50; margin: 0;">1. Flexible Grid Layouts</h4>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Use percentage-based widths instead of fixed pixels</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #2196f3;">
+                    <h4 style="color: #2196f3; margin: 0;">2. Flexible Images</h4>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;"><code style="color: #4caf50;">max-width: 100%; height: auto;</code></p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #ff9800;">
+                    <h4 style="color: #ff9800; margin: 0;">3. Media Queries</h4>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Apply different styles for different screen sizes</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #9c27b0;">
+                    <h4 style="color: #9c27b0; margin: 0;">4. Flexbox & Grid</h4>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Modern layout systems that adapt automatically</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #f44336;">
+                    <h4 style="color: #f44336; margin: 0;">5. Viewport Units</h4>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">vw, vh, vmin, vmax scale with viewport size</p>
+                </div>
+            </div>
+            
+            <!-- Viewport Meta Tag -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">Viewport Meta Tag</h3>
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <p style="color: #888;">Essential for responsive design! Add this to your HTML <code style="color: #4caf50;">&lt;head&gt;</code>:</p>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem; margin: 1rem 0;">
+                    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+                </div>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li><strong style="color: #4caf50;">width=device-width:</strong> Match screen width</li>
+                    <li><strong style="color: #4caf50;">initial-scale=1.0:</strong> Initial zoom level</li>
+                </ul>
+            </div>
+            
+            <!-- Media Queries -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">Media Queries</h3>
+            <p style="color: #ccc;">Apply different styles based on device characteristics (screen size, orientation, etc.).</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Basic Syntax:</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #666;">/* Mobile first - base styles */</span><br>
+                    <span style="color: #ff9800;">.container</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">width</span>: <span style="color: #64b5f6;">100%</span>;<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">padding</span>: <span style="color: #64b5f6;">1rem</span>;<br>
+                    }<br><br>
+                    <span style="color: #666;">/* Tablets and up */</span><br>
+                    <span style="color: #f44336;">@media</span> (min-width: <span style="color: #64b5f6;">768px</span>) {<br>
+                    &nbsp;&nbsp;<span style="color: #ff9800;">.container</span> {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4caf50;">width</span>: <span style="color: #64b5f6;">750px</span>;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4caf50;">margin</span>: <span style="color: #64b5f6;">0 auto</span>;<br>
+                    &nbsp;&nbsp;}<br>
+                    }<br><br>
+                    <span style="color: #666;">/* Desktops and up */</span><br>
+                    <span style="color: #f44336;">@media</span> (min-width: <span style="color: #64b5f6;">1024px</span>) {<br>
+                    &nbsp;&nbsp;<span style="color: #ff9800;">.container</span> {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4caf50;">width</span>: <span style="color: #64b5f6;">1200px</span>;<br>
+                    &nbsp;&nbsp;}<br>
+                    }
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #64b5f6; margin-top: 0;">Common Breakpoints:</h4>
+                <table style="width: 100%; border-collapse: collapse; color: #ccc; font-size: 0.9rem;">
+                    <thead>
+                        <tr style="background: #111; border-bottom: 2px solid #4caf50;">
+                            <th style="padding: 0.8rem; text-align: left; color: #fff; border: 1px solid #333;">Device</th>
+                            <th style="padding: 0.8rem; text-align: left; color: #fff; border: 1px solid #333;">Min Width</th>
+                            <th style="padding: 0.8rem; text-align: left; color: #fff; border: 1px solid #333;">Icon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Mobile</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">0px - 767px</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">📱</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Tablet</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">768px+</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">📱</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Desktop</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">1024px+</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">💻</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Large Desktop</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">1440px+</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">🖥️</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Desktop First vs Mobile First -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">Desktop First vs Mobile First</h3>
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div style="background: #111; padding: 1rem; border: 1px solid #333;">
+                        <h4 style="color: #ff9800; margin-top: 0;">🖥️ Desktop First</h4>
+                        <p style="color: #888;">Start with desktop styles, then use <code style="color: #4caf50;">max-width</code> to adapt down.</p>
+                        <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #000; padding: 0.8rem; margin: 0.8rem 0;">
+                            <span style="color: #666;">/* Desktop styles */</span><br>
+                            .container { width: 1200px; }<br><br>
+                            <span style="color: #666;">/* Tablet */</span><br>
+                            @media (max-width: 1024px) {<br>
+                            &nbsp;&nbsp;.container { width: 100%; }<br>
+                            }
+                        </div>
+                        <p style="color: #666; font-size: 0.85rem; margin: 0;">❌ Less common today</p>
+                    </div>
+                    
+                    <div style="background: #111; padding: 1rem; border: 1px solid #333;">
+                        <h4 style="color: #4caf50; margin-top: 0;">📱 Mobile First ✅</h4>
+                        <p style="color: #888;">Start with mobile styles, then use <code style="color: #4caf50;">min-width</code> to enhance up.</p>
+                        <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #000; padding: 0.8rem; margin: 0.8rem 0;">
+                            <span style="color: #666;">/* Mobile styles */</span><br>
+                            .container { width: 100%; }<br><br>
+                            <span style="color: #666;">/* Desktop */</span><br>
+                            @media (min-width: 1024px) {<br>
+                            &nbsp;&nbsp;.container { width: 1200px; }<br>
+                            }
+                        </div>
+                        <p style="color: #4caf50; font-size: 0.85rem; margin: 0;">✅ Recommended approach</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1rem; padding: 1rem; background: #111; border-left: 3px solid #4caf50;">
+                    <p style="color: #4caf50; margin: 0; font-weight: bold;">💡 Why Mobile First?</p>
+                    <ul style="color: #888; margin: 0.5rem 0;">
+                        <li>Mobile traffic is growing (55%+ of web traffic)</li>
+                        <li>Easier to enhance than to strip down</li>
+                        <li>Better performance (smaller initial CSS)</li>
+                        <li>Forces focus on essential content</li>
+                    </ul>
+                </div>
+            </div>
+            
             <!-- Key Takeaways -->
             <div style="background: #111; border-left: 3px solid #4caf50; padding: 1rem; margin: 2rem 0;">
                 <h4 style="color: #4caf50; margin: 0;">Key Takeaways</h4>
@@ -962,8 +1528,12 @@
                     <li>Master selectors and specificity for precise styling</li>
                     <li>Use relative units (rem, %, vw, vh) for responsive design</li>
                     <li>Chrome DevTools is your best friend for debugging CSS</li>
-                    <li>Practice with display and position properties for layouts</li>
-                    <li>min-width/max-width are essential for responsive design</li>
+                    <li>Flexbox is perfect for one-dimensional layouts</li>
+                    <li>Pseudo-classes (:hover, :focus) enhance user interaction</li>
+                    <li>::before and ::after are powerful for decorative elements</li>
+                    <li>Media queries enable responsive design for all devices</li>
+                    <li>Mobile-first approach is recommended for modern websites</li>
+                    <li>Always include viewport meta tag for responsive sites</li>
                 </ul>
             </div>
             
