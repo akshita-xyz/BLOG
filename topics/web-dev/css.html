@@ -7,15 +7,33 @@
     <link rel="stylesheet" href="../../css/style.css">
     <style>
         /* Collapsible sidebar styles */
-        .sidebar .has-children > a::after {
-            content: '▼';
-            float: right;
-            font-size: 0.7rem;
-            transition: transform 0.3s ease;
+        .sidebar .has-children {
+            position: relative;
         }
         
-        .sidebar .has-children:not(.expanded) > a::after {
-            transform: rotate(-90deg);
+        .sidebar .has-children > a {
+            padding-right: 30px;
+        }
+        
+        .sidebar .has-children .toggle-arrow {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            padding: 5px;
+            font-size: 0.7rem;
+            color: #888;
+            transition: transform 0.3s ease;
+            user-select: none;
+        }
+        
+        .sidebar .has-children:not(.expanded) .toggle-arrow {
+            transform: translateY(-50%) rotate(-90deg);
+        }
+        
+        .sidebar .has-children.expanded .toggle-arrow {
+            transform: translateY(-50%) rotate(0deg);
         }
         
         .sidebar .sub-links {
@@ -56,6 +74,7 @@
                     <li><a href="index.html">Overview</a></li>
                     <li class="has-children">
                         <a href="html.html">HTML</a>
+                        <span class="toggle-arrow">▼</span>
                         <ul class="sub-links">
                             <li><a href="html.html#basics">Basics</a></li>
                             <li><a href="html.html#tags">Tags & Elements</a></li>
@@ -69,9 +88,10 @@
                             <li><a href="html.html#favicon-meta">Favicon & Meta Tags</a></li>
                         </ul>
                     </li>
-                    <li class="has-children expanded">
+                    <li class="has-children">
                         <a href="css.html" class="active">CSS</a>
-                        <ul class="sub-links expanded">
+                        <span class="toggle-arrow">▼</span>
+                        <ul class="sub-links">
                             <li><a href="css.html#introduction">Introduction</a></li>
                             <li><a href="css.html#adding-styles">Adding Styles</a></li>
                             <li><a href="css.html#syntax">CSS Syntax</a></li>
@@ -99,6 +119,7 @@
                     </li>
                     <li class="has-children">
                         <a href="css.html#animations" class="active">Animations</a>
+                        <span class="toggle-arrow">▼</span>
                         <ul class="sub-links">
                             <li><a href="css.html#transitions-transforms">Transitions & Transforms</a></li>
                             <li><a href="css.html#keyframes-animation">Creating Animations</a></li>
@@ -2208,16 +2229,13 @@ animation: slideIn 2s ease-in-out 0.5s infinite alternate forwards;</pre>
     <script>
         // Toggle submenu for collapsible sidebar sections
         document.addEventListener('DOMContentLoaded', function() {
-            const sidebarItems = document.querySelectorAll('.sidebar .has-children > a');
+            const toggleArrows = document.querySelectorAll('.sidebar .toggle-arrow');
             
-            sidebarItems.forEach(item => {
-                item.addEventListener('click', function(e) {
+            toggleArrows.forEach(arrow => {
+                arrow.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     const parent = this.parentElement;
-                    const subLinks = parent.querySelector('.sub-links');
-                    
-                    if (subLinks) {
-                        parent.classList.toggle('expanded');
-                    }
+                    parent.classList.toggle('expanded');
                 });
             });
         });
