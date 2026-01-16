@@ -52,5 +52,18 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => button.textContent = 'copy', 2000);
         });
     });
+
+    // Toggle sidebar sub-sections
+    document.querySelectorAll('.sidebar-links .has-children > a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const parent = link.parentElement;
+            const subLinks = parent.querySelector('.sub-links');
+            if (subLinks) {
+                e.preventDefault();
+                parent.classList.toggle('expanded');
+                subLinks.classList.toggle('expanded');
+            }
+        });
+    });
 });
 

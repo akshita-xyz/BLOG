@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS - KRUX</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        /* Collapsible sidebar styles */
+        .sidebar .has-children > a::after {
+            content: '▼';
+            float: right;
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar .has-children:not(.expanded) > a::after {
+            transform: rotate(-90deg);
+        }
+        
+        .sidebar .sub-links {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .sidebar .has-children.expanded .sub-links {
+            max-height: fit-content;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -72,6 +95,17 @@
                             <li><a href="css.html#pseudo">Pseudo Classes & Elements</a></li>
                             <li><a href="css.html#overflow-gradients">Overflow & Gradients</a></li>
                             <li><a href="css.html#responsive">Responsive Design</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-children">
+                        <a href="css.html#animations" class="active">Animations</a>
+                        <ul class="sub-links">
+                            <li><a href="css.html#transitions-transforms">Transitions & Transforms</a></li>
+                            <li><a href="css.html#keyframes-animation">Creating Animations</a></li>
+                            <li><a href="css.html#animation-properties">Animation Properties</a></li>
+                            <li><a href="css.html#multiple-animations">Multiple Animations</a></li>
+                            <li><a href="css.html#animate-css">Animate.css Library</a></li>
+                            <li><a href="css.html#3d-cube">3D Cube Animation</a></li>
                         </ul>
                     </li>
                     <li><a href="bootstrap.html">Bootstrap</a></li>
@@ -1518,6 +1552,615 @@
                 </div>
             </div>
             
+            <!-- ========================================
+                 ANIMATIONS IN CSS
+            ========================================= -->
+            
+            <h2 id="animations" style="margin-top: 4rem; color: #64b5f6; border-bottom: 2px solid #64b5f6; padding-bottom: 0.5rem;">🎬 Animations in CSS</h2>
+            
+            <p style="color: #ccc; margin-top: 1rem;">CSS animations allow you to create smooth, engaging motion effects without JavaScript. They can transform static pages into dynamic, interactive experiences.</p>
+            
+            <!-- Transitions and Transforms -->
+            <h3 id="transitions-transforms" style="color: #4fc3f7; margin-top: 2.5rem;">Transitions and Transforms</h3>
+            
+            <h4 style="color: #81c784; margin-top: 1.5rem;">CSS Transitions</h4>
+            <p style="color: #ccc;">Transitions allow you to change property values smoothly over a specified duration.</p>
+            
+            <div style="background: #1a1a1a; padding: 1rem; border-left: 3px solid #64b5f6; margin: 1rem 0;">
+                <p style="color: #ccc; margin: 0;"><strong style="color: #64b5f6;">Syntax:</strong></p>
+                <pre style="color: #81c784; margin: 0.5rem 0; font-family: 'Courier New', monospace;">transition: property duration timing-function delay;</pre>
+            </div>
+            
+            <div style="background: #0a0a0a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-size: 0.9rem;">Example:</p>
+                <pre style="color: #81c784; margin: 0; line-height: 1.6;">
+.button {
+    background-color: #64b5f6;
+    padding: 10px 20px;
+    transition: all 0.3s ease-in-out;
+    /* Property: all, Duration: 0.3s, Timing: ease-in-out */
+}
+
+.button:hover {
+    background-color: #1976d2;
+    transform: scale(1.1);
+}</pre>
+            </div>
+            
+            <div style="margin: 1.5rem 0; padding: 1rem; background: #0d1117;">
+                <p style="color: #888; margin: 0 0 1rem 0;">Live Demo:</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <div style="background: #64b5f6; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: all 0.3s ease-in-out;">
+                        Hover Me!
+                    </div>
+                </div>
+            </div>
+            
+            <h4 style="color: #81c784; margin-top: 2rem;">Transition Properties</h4>
+            <div style="background: #0a0a0a; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; color: #ccc;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid #333;">
+                            <th style="padding: 0.8rem; text-align: left; color: #64b5f6;">Property</th>
+                            <th style="padding: 0.8rem; text-align: left; color: #64b5f6;">Description</th>
+                            <th style="padding: 0.8rem; text-align: left; color: #64b5f6;">Example Values</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #222;">
+                            <td style="padding: 0.8rem; color: #81c784;">transition-property</td>
+                            <td style="padding: 0.8rem;">Which property to animate</td>
+                            <td style="padding: 0.8rem; font-family: monospace;">all, background, transform</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #222;">
+                            <td style="padding: 0.8rem; color: #81c784;">transition-duration</td>
+                            <td style="padding: 0.8rem;">How long the animation takes</td>
+                            <td style="padding: 0.8rem; font-family: monospace;">0.3s, 500ms, 2s</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #222;">
+                            <td style="padding: 0.8rem; color: #81c784;">transition-timing-function</td>
+                            <td style="padding: 0.8rem;">Speed curve of the transition</td>
+                            <td style="padding: 0.8rem; font-family: monospace;">ease, linear, ease-in-out</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.8rem; color: #81c784;">transition-delay</td>
+                            <td style="padding: 0.8rem;">Delay before starting</td>
+                            <td style="padding: 0.8rem; font-family: monospace;">0s, 0.5s, 1s</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <h4 style="color: #81c784; margin-top: 2rem;">CSS Transforms</h4>
+            <p style="color: #ccc;">Transforms allow you to rotate, scale, skew, or translate an element.</p>
+            
+            <div style="background: #0a0a0a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <pre style="color: #81c784; margin: 0; line-height: 1.6;">
+/* Translate (Move) */
+transform: translate(50px, 100px);  /* Move right 50px, down 100px */
+transform: translateX(50px);        /* Move only horizontally */
+transform: translateY(50px);        /* Move only vertically */
+
+/* Scale (Resize) */
+transform: scale(1.5);              /* Increase size by 150% */
+transform: scale(0.5);              /* Decrease size by 50% */
+transform: scaleX(2);               /* Scale only width */
+
+/* Rotate */
+transform: rotate(45deg);           /* Rotate 45 degrees clockwise */
+transform: rotate(-90deg);          /* Rotate 90 degrees counterclockwise */
+
+/* Skew (Slant) */
+transform: skewX(20deg);            /* Slant horizontally */
+transform: skewY(20deg);            /* Slant vertically */
+
+/* Combine Multiple Transforms */
+transform: translate(50px, 0) rotate(45deg) scale(1.2);</pre>
+            </div>
+            
+            <div style="margin: 1.5rem 0; padding: 1.5rem; background: #0d1117; border-radius: 8px;">
+                <p style="color: #888; margin: 0 0 1.5rem 0; font-weight: bold;">Transform Examples (Hover to see effect):</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem;">
+                    <div style="text-align: center;">
+                        <div style="background: #e91e63; width: 80px; height: 80px; margin: 20px auto; display: flex; align-items: center; justify-content: center; transition: transform 0.3s;">
+                            Scale
+                        </div>
+                        <p style="color: #888; font-size: 0.85rem; margin: 0;">scale(1.3)</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="background: #9c27b0; width: 80px; height: 80px; margin: 20px auto; display: flex; align-items: center; justify-content: center; transition: transform 0.3s;">
+                            Rotate
+                        </div>
+                        <p style="color: #888; font-size: 0.85rem; margin: 0;">rotate(180deg)</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="background: #3f51b5; width: 80px; height: 80px; margin: 20px auto; display: flex; align-items: center; justify-content: center; transition: transform 0.3s;">
+                            Translate
+                        </div>
+                        <p style="color: #888; font-size: 0.85rem; margin: 0;">translateY(-20px)</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="background: #00bcd4; width: 80px; height: 80px; margin: 20px auto; display: flex; align-items: center; justify-content: center; transition: transform 0.3s;">
+                            Skew
+                        </div>
+                        <p style="color: #888; font-size: 0.85rem; margin: 0;">skewX(20deg)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Creating a Simple Animation -->
+            <h3 id="keyframes-animation" style="color: #4fc3f7; margin-top: 2.5rem;">Creating a Simple Animation with @keyframes</h3>
+            
+            <p style="color: #ccc;">The <code style="background: #222; padding: 2px 6px; border-radius: 3px; color: #81c784;">@keyframes</code> rule specifies the animation code. You define what styles the element will have at certain times.</p>
+            
+            <div style="background: #1a1a1a; padding: 1rem; border-left: 3px solid #64b5f6; margin: 1rem 0;">
+                <p style="color: #ccc; margin: 0;"><strong style="color: #64b5f6;">Basic Structure:</strong></p>
+                <pre style="color: #81c784; margin: 0.5rem 0; font-family: 'Courier New', monospace;">@keyframes animation-name {
+    from { /* Starting styles */ }
+    to { /* Ending styles */ }
+}</pre>
+            </div>
+            
+            <div style="background: #0a0a0a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-size: 0.9rem;">Example 1: Simple Fade In</p>
+                <pre style="color: #81c784; margin: 0; line-height: 1.6;">
+/* Define the animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Apply the animation */
+.fade-in-element {
+    animation: fadeIn 2s ease-in;
+}</pre>
+            </div>
+            
+            <div style="background: #0a0a0a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-size: 0.9rem;">Example 2: Slide In from Left</p>
+                <pre style="color: #81c784; margin: 0; line-height: 1.6;">
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in-element {
+    animation: slideIn 1s ease-out;
+}</pre>
+            </div>
+            
+            <div style="background: #0a0a0a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-size: 0.9rem;">Example 3: Multiple Keyframes</p>
+                <pre style="color: #81c784; margin: 0; line-height: 1.6;">
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-50px);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(-25px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.bouncing-ball {
+    animation: bounce 2s ease-in-out infinite;
+}</pre>
+            </div>
+            
+            <!-- Animation Property -->
+            <h3 id="animation-properties" style="color: #4fc3f7; margin-top: 2.5rem;">Animation Properties</h3>
+            
+            <p style="color: #ccc;">CSS animations have several properties to control their behavior:</p>
+            
+            <div style="background: #0a0a0a; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                <table style="width: 100%; border-collapse: collapse; color: #ccc;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid #333;">
+                            <th style="padding: 0.8rem; text-align: left; color: #64b5f6;">Property</th>
+                            <th style="padding: 0.8rem; text-align: left; color: #64b5f6;">Description</th>
+                            <th style="padding: 0.8rem; text-align: left; color: #64b5f6;">Example Values</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #222;">
+                            <td style="padding: 0.8rem; color: #81c784;">animation-name</td>
+                            <td style="padding: 0.8rem;">Name of @keyframes</td>
+                            <td style="padding: 0.8rem; font-family: monospace;">fadeIn, slideUp</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #222;">
+                            <td style="padding: 0.8rem; color: #81c784;">animation-duration</td>
+                            <td style="padding: 0.8rem;">How long animation takes</td>
+                            <td style="padding: 0.8rem; font-family: monospace;">2s, 500ms</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #222;">
+                            <td style="padding: 0.8rem; color: #81c784;">animation-timing-function</td>
+                            <td style="padding: 0.8rem;">Speed curve</td>
+                            <td style="padding: 0.8rem; font-family: monospace;">ease, linear, ease-in-out</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #222;">
+                            <td style="padding: 0.8rem; color: #81c784;">animation-delay</td>
+                            <td style="padding: 0.8rem;">Delay before starting</td>
+                            <td style="padding: 0.8rem; font-family: monospace;">0s, 1s, 500ms</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #222;">
+                            <td style="padding: 0.8rem; color: #81c784;">animation-iteration-count</td>
+                            <td style="padding: 0.8rem;">How many times to play</td>
+                            <td style="padding: 0.8rem; font-family: monospace;">1, 3, infinite</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #222;">
+                            <td style="padding: 0.8rem; color: #81c784;">animation-direction</td>
+                            <td style="padding: 0.8rem;">Direction of animation</td>
+                            <td style="padding: 0.8rem; font-family: monospace;">normal, reverse, alternate</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #222;">
+                            <td style="padding: 0.8rem; color: #81c784;">animation-fill-mode</td>
+                            <td style="padding: 0.8rem;">Style before/after animation</td>
+                            <td style="padding: 0.8rem; font-family: monospace;">none, forwards, backwards, both</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.8rem; color: #81c784;">animation-play-state</td>
+                            <td style="padding: 0.8rem;">Pause or play animation</td>
+                            <td style="padding: 0.8rem; font-family: monospace;">running, paused</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="background: #1a1a1a; padding: 1rem; border-left: 3px solid #4caf50; margin: 1.5rem 0;">
+                <p style="color: #ccc; margin: 0;"><strong style="color: #4caf50;">💡 Shorthand Syntax:</strong></p>
+                <pre style="color: #81c784; margin: 0.5rem 0; font-family: 'Courier New', monospace; line-height: 1.6;">animation: name duration timing-function delay iteration-count direction fill-mode;
+
+/* Example */
+animation: slideIn 2s ease-in-out 0.5s infinite alternate forwards;</pre>
+            </div>
+            
+            <div style="background: #0a0a0a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-size: 0.9rem;">Detailed Example:</p>
+                <pre style="color: #81c784; margin: 0; line-height: 1.6;">
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.pulsing-button {
+    animation-name: pulse;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none;
+}
+
+/* Or use shorthand */
+.pulsing-button {
+    animation: pulse 1.5s ease-in-out 0s infinite normal none;
+}</pre>
+            </div>
+            
+            <!-- Multiple Animations -->
+            <h3 id="multiple-animations" style="color: #4fc3f7; margin-top: 2.5rem;">Multiple Animations</h3>
+            
+            <p style="color: #ccc;">You can apply multiple animations to a single element by separating them with commas.</p>
+            
+            <div style="background: #0a0a0a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-size: 0.9rem;">Example: Combining Fade In + Slide Up</p>
+                <pre style="color: #81c784; margin: 0; line-height: 1.6;">
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); }
+    to { transform: translateY(0); }
+}
+
+.animated-box {
+    /* Apply both animations at once */
+    animation: fadeIn 1s ease-out, slideUp 1s ease-out;
+}</pre>
+            </div>
+            
+            <div style="background: #0a0a0a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-size: 0.9rem;">Example: Different Durations and Delays</p>
+                <pre style="color: #81c784; margin: 0; line-height: 1.6;">
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes colorChange {
+    0% { background-color: #e91e63; }
+    50% { background-color: #9c27b0; }
+    100% { background-color: #3f51b5; }
+}
+
+.multi-animated {
+    animation: 
+        rotate 3s linear infinite,
+        colorChange 6s ease-in-out infinite;
+}</pre>
+            </div>
+            
+            <div style="margin: 1.5rem 0; padding: 1.5rem; background: #0d1117; border-radius: 8px;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-weight: bold;">Live Example:</p>
+                <div style="display: flex; gap: 2rem; justify-content: center; align-items: center; min-height: 150px;">
+                    <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">
+                        Multi-Anim
+                    </div>
+                </div>
+                <p style="color: #888; font-size: 0.85rem; text-align: center; margin: 1rem 0 0 0;">This box has multiple animations running simultaneously</p>
+            </div>
+            
+            <!-- Animate.css Library -->
+            <h3 id="animate-css" style="color: #4fc3f7; margin-top: 2.5rem;">Animate.css - Ready-to-Use Animation Library</h3>
+            
+            <p style="color: #ccc;"><a href="https://animate.style/" target="_blank" style="color: #64b5f6; text-decoration: none;">Animate.css</a> is a popular library that provides a collection of pre-built CSS animations. Just add a class name to your element!</p>
+            
+            <div style="background: #1a1a1a; padding: 1rem; border-left: 3px solid #64b5f6; margin: 1rem 0;">
+                <p style="color: #ccc; margin: 0;"><strong style="color: #64b5f6;">How to Use:</strong></p>
+            </div>
+            
+            <div style="background: #0a0a0a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-size: 0.9rem;">Step 1: Include the CDN link in your HTML</p>
+                <pre style="color: #81c784; margin: 0; line-height: 1.6;">
+&lt;head&gt;
+    &lt;link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/&gt;
+&lt;/head&gt;</pre>
+            </div>
+            
+            <div style="background: #0a0a0a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-size: 0.9rem;">Step 2: Add classes to your elements</p>
+                <pre style="color: #81c784; margin: 0; line-height: 1.6;">
+&lt;h1 class="animate__animated animate__bounce"&gt;Bouncing Text&lt;/h1&gt;
+
+&lt;div class="animate__animated animate__fadeIn"&gt;Fade In&lt;/div&gt;
+
+&lt;button class="animate__animated animate__pulse animate__infinite"&gt;
+    Pulsing Button
+&lt;/button&gt;</pre>
+            </div>
+            
+            <div style="background: #0a0a0a; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 0.8rem 0; font-weight: bold;">Popular Animate.css Animations:</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem; color: #ccc;">
+                    <div style="padding: 0.5rem; background: #111;">• <code style="color: #81c784;">bounce</code></div>
+                    <div style="padding: 0.5rem; background: #111;">• <code style="color: #81c784;">fadeIn</code> / <code style="color: #81c784;">fadeOut</code></div>
+                    <div style="padding: 0.5rem; background: #111;">• <code style="color: #81c784;">slideInLeft</code> / <code style="color: #81c784;">slideInRight</code></div>
+                    <div style="padding: 0.5rem; background: #111;">• <code style="color: #81c784;">zoomIn</code> / <code style="color: #81c784;">zoomOut</code></div>
+                    <div style="padding: 0.5rem; background: #111;">• <code style="color: #81c784;">rotateIn</code></div>
+                    <div style="padding: 0.5rem; background: #111;">• <code style="color: #81c784;">pulse</code></div>
+                    <div style="padding: 0.5rem; background: #111;">• <code style="color: #81c784;">shake</code></div>
+                    <div style="padding: 0.5rem; background: #111;">• <code style="color: #81c784;">flip</code></div>
+                    <div style="padding: 0.5rem; background: #111;">• <code style="color: #81c784;">heartBeat</code></div>
+                    <div style="padding: 0.5rem; background: #111;">• <code style="color: #81c784;">rubberBand</code></div>
+                </div>
+            </div>
+            
+            <div style="background: #1a1a1a; padding: 1rem; border-left: 3px solid #4caf50; margin: 1.5rem 0;">
+                <p style="color: #ccc; margin: 0;"><strong style="color: #4caf50;">💡 Utility Classes:</strong></p>
+                <ul style="color: #888; margin: 0.5rem 0; padding-left: 1.5rem;">
+                    <li><code style="color: #81c784;">animate__delay-1s</code> - Adds 1 second delay</li>
+                    <li><code style="color: #81c784;">animate__slow</code> - Makes animation slower (2s)</li>
+                    <li><code style="color: #81c784;">animate__fast</code> - Makes animation faster (800ms)</li>
+                    <li><code style="color: #81c784;">animate__infinite</code> - Repeats animation forever</li>
+                    <li><code style="color: #81c784;">animate__repeat-2</code> - Repeats animation 2 times</li>
+                </ul>
+            </div>
+            
+            <!-- 3D Cube Animation -->
+            <h3 id="3d-cube" style="color: #4fc3f7; margin-top: 2.5rem;">Starting with 3D Cube Animation</h3>
+            
+            <p style="color: #ccc;">3D transformations in CSS allow you to create depth and perspective. Let's build a rotating 3D cube step by step.</p>
+            
+            <h4 style="color: #81c784; margin-top: 1.5rem;">Understanding 3D Transforms</h4>
+            
+            <div style="background: #0a0a0a; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 0.8rem 0;">Key 3D Properties:</p>
+                <ul style="color: #ccc; margin: 0; padding-left: 1.5rem; line-height: 1.8;">
+                    <li><code style="background: #222; padding: 2px 6px; border-radius: 3px; color: #81c784;">perspective</code> - Defines how far the element is from the viewer</li>
+                    <li><code style="background: #222; padding: 2px 6px; border-radius: 3px; color: #81c784;">transform-style: preserve-3d</code> - Enables 3D space for children</li>
+                    <li><code style="background: #222; padding: 2px 6px; border-radius: 3px; color: #81c784;">rotateX(), rotateY(), rotateZ()</code> - Rotate in 3D space</li>
+                    <li><code style="background: #222; padding: 2px 6px; border-radius: 3px; color: #81c784;">translateZ()</code> - Move towards/away from viewer</li>
+                </ul>
+            </div>
+            
+            <div style="background: #0a0a0a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-size: 0.9rem;">Step 1: Create the HTML Structure</p>
+                <pre style="color: #81c784; margin: 0; line-height: 1.6;">
+&lt;div class="cube-container"&gt;
+    &lt;div class="cube"&gt;
+        &lt;div class="face front"&gt;Front&lt;/div&gt;
+        &lt;div class="face back"&gt;Back&lt;/div&gt;
+        &lt;div class="face right"&gt;Right&lt;/div&gt;
+        &lt;div class="face left"&gt;Left&lt;/div&gt;
+        &lt;div class="face top"&gt;Top&lt;/div&gt;
+        &lt;div class="face bottom"&gt;Bottom&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+            </div>
+            
+            <div style="background: #0a0a0a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-size: 0.9rem;">Step 2: Setup Container and Perspective</p>
+                <pre style="color: #81c784; margin: 0; line-height: 1.6;">
+.cube-container {
+    width: 200px;
+    height: 200px;
+    perspective: 1000px;  /* Creates 3D space */
+    margin: 50px auto;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;  /* Enable 3D for children */
+    animation: rotateCube 10s infinite linear;
+}
+
+@keyframes rotateCube {
+    from {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+    to {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}</pre>
+            </div>
+            
+            <h4 style="color: #81c784; margin-top: 2rem;">Building the First Face of the Cube</h4>
+            
+            <div style="background: #0a0a0a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-size: 0.9rem;">Style the Face Elements:</p>
+                <pre style="color: #81c784; margin: 0; line-height: 1.6;">
+.face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 2px solid #64b5f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+/* Front Face - No rotation needed */
+.front {
+    background: rgba(100, 181, 246, 0.7);
+    transform: translateZ(100px);  /* Move forward by half the cube size */
+}</pre>
+            </div>
+            
+            <div style="background: #1a1a1a; padding: 1rem; border-left: 3px solid #ff9800; margin: 1rem 0;">
+                <p style="color: #ccc; margin: 0;"><strong style="color: #ff9800;">⚠️ Important:</strong> <code style="background: #222; padding: 2px 6px; border-radius: 3px; color: #81c784;">translateZ(100px)</code> pushes the face forward. Use half of your cube's width/height.</p>
+            </div>
+            
+            <!-- Building Second Face of Cube -->
+            <h4 id="cube-second-face" style="color: #81c784; margin-top: 2rem;">Building the Second Face of the Cube</h4>
+            
+            <p style="color: #ccc;">Now let's add the back face. It needs to be rotated 180° and pushed back.</p>
+            
+            <div style="background: #0a0a0a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-size: 0.9rem;">Back Face CSS:</p>
+                <pre style="color: #81c784; margin: 0; line-height: 1.6;">
+.back {
+    background: rgba(255, 152, 0, 0.7);
+    transform: rotateY(180deg) translateZ(100px);
+    /* 
+       1. Rotate 180° around Y-axis (flip horizontally)
+       2. Then move forward (which is now backward due to rotation)
+    */
+}</pre>
+            </div>
+            
+            <h4 style="color: #81c784; margin-top: 2rem;">Complete All Six Faces</h4>
+            
+            <div style="background: #0a0a0a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-size: 0.9rem;">All Faces Together:</p>
+                <pre style="color: #81c784; margin: 0; line-height: 1.6;">
+/* Front Face */
+.front {
+    background: rgba(100, 181, 246, 0.7);
+    transform: translateZ(100px);
+}
+
+/* Back Face */
+.back {
+    background: rgba(255, 152, 0, 0.7);
+    transform: rotateY(180deg) translateZ(100px);
+}
+
+/* Right Face */
+.right {
+    background: rgba(156, 39, 176, 0.7);
+    transform: rotateY(90deg) translateZ(100px);
+}
+
+/* Left Face */
+.left {
+    background: rgba(233, 30, 99, 0.7);
+    transform: rotateY(-90deg) translateZ(100px);
+}
+
+/* Top Face */
+.top {
+    background: rgba(76, 175, 80, 0.7);
+    transform: rotateX(90deg) translateZ(100px);
+}
+
+/* Bottom Face */
+.bottom {
+    background: rgba(244, 67, 54, 0.7);
+    transform: rotateX(-90deg) translateZ(100px);
+}</pre>
+            </div>
+            
+            <div style="margin: 1.5rem 0; padding: 1.5rem; background: #0d1117; border-radius: 8px;">
+                <p style="color: #888; margin: 0 0 1rem 0; font-weight: bold;">Visual Representation:</p>
+                <div style="display: flex; justify-content: center; align-items: center; min-height: 250px; perspective: 1000px;">
+                    <div style="width: 150px; height: 150px; position: relative; transform-style: preserve-3d; animation: rotateCube 10s infinite linear;">
+                        <div style="position: absolute; width: 150px; height: 150px; background: rgba(100, 181, 246, 0.7); border: 2px solid #64b5f6; display: flex; align-items: center; justify-content: center; transform: translateZ(75px);">Front</div>
+                        <div style="position: absolute; width: 150px; height: 150px; background: rgba(255, 152, 0, 0.7); border: 2px solid #ff9800; display: flex; align-items: center; justify-content: center; transform: rotateY(180deg) translateZ(75px);">Back</div>
+                        <div style="position: absolute; width: 150px; height: 150px; background: rgba(156, 39, 176, 0.7); border: 2px solid #9c27b0; display: flex; align-items: center; justify-content: center; transform: rotateY(90deg) translateZ(75px);">Right</div>
+                        <div style="position: absolute; width: 150px; height: 150px; background: rgba(233, 30, 99, 0.7); border: 2px solid #e91e63; display: flex; align-items: center; justify-content: center; transform: rotateY(-90deg) translateZ(75px);">Left</div>
+                        <div style="position: absolute; width: 150px; height: 150px; background: rgba(76, 175, 80, 0.7); border: 2px solid #4caf50; display: flex; align-items: center; justify-content: center; transform: rotateX(90deg) translateZ(75px);">Top</div>
+                        <div style="position: absolute; width: 150px; height: 150px; background: rgba(244, 67, 54, 0.7); border: 2px solid #f44336; display: flex; align-items: center; justify-content: center; transform: rotateX(-90deg) translateZ(75px);">Bottom</div>
+                    </div>
+                </div>
+                <p style="color: #888; font-size: 0.85rem; text-align: center; margin: 1rem 0 0 0;">A fully animated 3D cube ✨</p>
+            </div>
+            
+            <div style="background: #1a1a1a; padding: 1rem; border-left: 3px solid #4caf50; margin: 1.5rem 0;">
+                <p style="color: #ccc; margin: 0;"><strong style="color: #4caf50;">💡 Pro Tips for 3D Animations:</strong></p>
+                <ul style="color: #888; margin: 0.5rem 0; padding-left: 1.5rem; line-height: 1.8;">
+                    <li>Use <code style="color: #81c784;">perspective</code> on the parent container, not the rotating element</li>
+                    <li>Always set <code style="color: #81c784;">transform-style: preserve-3d</code> on the parent of 3D children</li>
+                    <li>Apply <code style="color: #81c784;">translateZ()</code> AFTER rotation for correct positioning</li>
+                    <li>Use <code style="color: #81c784;">backface-visibility: hidden</code> to hide back faces when not needed</li>
+                    <li>Higher perspective values (1500px-2000px) = less dramatic, more subtle 3D effect</li>
+                    <li>Lower perspective values (500px-800px) = more dramatic, exaggerated 3D effect</li>
+                </ul>
+            </div>
+            
+            <style>
+                @keyframes rotateCube {
+                    from {
+                        transform: rotateX(0deg) rotateY(0deg);
+                    }
+                    to {
+                        transform: rotateX(360deg) rotateY(360deg);
+                    }
+                }
+            </style>
+            
             <!-- Key Takeaways -->
             <div style="background: #111; border-left: 3px solid #4caf50; padding: 1rem; margin: 2rem 0;">
                 <h4 style="color: #4caf50; margin: 0;">Key Takeaways</h4>
@@ -1534,6 +2177,12 @@
                     <li>Media queries enable responsive design for all devices</li>
                     <li>Mobile-first approach is recommended for modern websites</li>
                     <li>Always include viewport meta tag for responsive sites</li>
+                    <li>Transitions provide smooth property changes on hover/focus</li>
+                    <li>Transforms enable 2D and 3D visual effects (scale, rotate, translate)</li>
+                    <li>@keyframes define custom animations with multiple stages</li>
+                    <li>Combine multiple animations for complex effects</li>
+                    <li>Use Animate.css for quick, professional animations</li>
+                    <li>3D transforms require perspective and preserve-3d for depth</li>
                 </ul>
             </div>
             
@@ -1556,6 +2205,35 @@
     </footer>
 
     <script src="../../js/main.js"></script>
+    <script>
+        // Toggle submenu for collapsible sidebar sections
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarItems = document.querySelectorAll('.sidebar .has-children > a');
+            
+            sidebarItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    const parent = this.parentElement;
+                    const subLinks = parent.querySelector('.sub-links');
+                    
+                    if (subLinks) {
+                        e.preventDefault();
+                        parent.classList.toggle('expanded');
+                        
+                        if (parent.classList.contains('expanded')) {
+                            subLinks.style.maxHeight = subLinks.scrollHeight + 'px';
+                        } else {
+                            subLinks.style.maxHeight = '0';
+                        }
+                    }
+                });
+            });
+            
+            // Set initial state for expanded items
+            document.querySelectorAll('.sidebar .has-children.expanded .sub-links').forEach(subLinks => {
+                subLinks.style.maxHeight = subLinks.scrollHeight + 'px';
+            });
+        });
+    </script>
 </body>
 </html>
 

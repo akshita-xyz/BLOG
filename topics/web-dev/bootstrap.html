@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap - KRUX</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        /* Collapsible sidebar styles */
+        .sidebar .has-children > a::after {
+            content: '▼';
+            float: right;
+            font-size: 0.7rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar .has-children:not(.expanded) > a::after {
+            transform: rotate(-90deg);
+        }
+        
+        .sidebar .sub-links {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .sidebar .has-children.expanded .sub-links {
+            max-height: fit-content;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -51,13 +74,38 @@
                         <ul class="sub-links">
                             <li><a href="css.html#introduction">Introduction</a></li>
                             <li><a href="css.html#adding-styles">Adding Styles</a></li>
+                            <li><a href="css.html#syntax">CSS Syntax</a></li>
                             <li><a href="css.html#selectors">Selector Types</a></li>
+                            <li><a href="css.html#grouping-nesting">Grouping & Nesting</a></li>
+                            <li><a href="css.html#specificity">Specificity</a></li>
+                            <li><a href="css.html#cascade">Preference of Rules</a></li>
+                            <li><a href="css.html#devtools">Chrome DevTools</a></li>
+                            <li><a href="css.html#colors">Adding Color</a></li>
+                            <li><a href="css.html#units">CSS Units</a></li>
+                            <li><a href="css.html#borders">Borders</a></li>
+                            <li><a href="css.html#text-styling">Text Styling</a></li>
+                            <li><a href="css.html#background">Background</a></li>
                             <li><a href="css.html#box-model">Box Model</a></li>
+                            <li><a href="css.html#margin">Margins</a></li>
+                            <li><a href="css.html#padding">Padding</a></li>
                             <li><a href="css.html#display">Display Property</a></li>
                             <li><a href="css.html#position">Position Property</a></li>
+                            <li><a href="css.html#min-max">Min/Max Width</a></li>
                             <li><a href="css.html#flexbox">Flexbox</a></li>
-                            <li><a href="css.html#pseudo">Pseudo Classes</a></li>
+                            <li><a href="css.html#pseudo">Pseudo Classes & Elements</a></li>
+                            <li><a href="css.html#overflow-gradients">Overflow & Gradients</a></li>
                             <li><a href="css.html#responsive">Responsive Design</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-children">
+                        <a href="css.html#animations">Animations</a>
+                        <ul class="sub-links">
+                            <li><a href="css.html#transitions-transforms">Transitions & Transforms</a></li>
+                            <li><a href="css.html#keyframes-animation">Creating Animations</a></li>
+                            <li><a href="css.html#animation-properties">Animation Properties</a></li>
+                            <li><a href="css.html#multiple-animations">Multiple Animations</a></li>
+                            <li><a href="css.html#animate-css">Animate.css Library</a></li>
+                            <li><a href="css.html#3d-cube">3D Cube Animation</a></li>
                         </ul>
                     </li>
                     <li><a href="bootstrap.html" class="active">Bootstrap</a></li>
@@ -98,6 +146,35 @@
         </div>
     </footer>
 
+    <script>
+        // Toggle submenu for collapsible sidebar sections
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarItems = document.querySelectorAll('.sidebar .has-children > a');
+            
+            sidebarItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    const parent = this.parentElement;
+                    const subLinks = parent.querySelector('.sub-links');
+                    
+                    if (subLinks) {
+                        e.preventDefault();
+                        parent.classList.toggle('expanded');
+                        
+                        if (parent.classList.contains('expanded')) {
+                            subLinks.style.maxHeight = subLinks.scrollHeight + 'px';
+                        } else {
+                            subLinks.style.maxHeight = '0';
+                        }
+                    }
+                });
+            });
+            
+            // Set initial state for expanded items
+            document.querySelectorAll('.sidebar .has-children.expanded .sub-links').forEach(subLinks => {
+                subLinks.style.maxHeight = subLinks.scrollHeight + 'px';
+            });
+        });
+    </script>
     <script src="../../js/main.js"></script>
 </body>
 </html>
