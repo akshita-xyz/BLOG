@@ -46,7 +46,30 @@
                             <li><a href="html.html#favicon-meta">Favicon & Meta Tags</a></li>
                         </ul>
                     </li>
-                    <li><a href="css.html" class="active">CSS</a></li>
+                    <li class="has-children expanded">
+                        <a href="css.html" class="active">CSS</a>
+                        <ul class="sub-links expanded">
+                            <li><a href="css.html#introduction">Introduction</a></li>
+                            <li><a href="css.html#adding-styles">Adding Styles</a></li>
+                            <li><a href="css.html#syntax">CSS Syntax</a></li>
+                            <li><a href="css.html#selectors">Selector Types</a></li>
+                            <li><a href="css.html#grouping-nesting">Grouping & Nesting</a></li>
+                            <li><a href="css.html#specificity">Specificity</a></li>
+                            <li><a href="css.html#cascade">Preference of Rules</a></li>
+                            <li><a href="css.html#devtools">Chrome DevTools</a></li>
+                            <li><a href="css.html#colors">Adding Color</a></li>
+                            <li><a href="css.html#units">CSS Units</a></li>
+                            <li><a href="css.html#borders">Borders</a></li>
+                            <li><a href="css.html#text-styling">Text Styling</a></li>
+                            <li><a href="css.html#background">Background</a></li>
+                            <li><a href="css.html#box-model">Box Model</a></li>
+                            <li><a href="css.html#margin">Margins</a></li>
+                            <li><a href="css.html#padding">Padding</a></li>
+                            <li><a href="css.html#display">Display Property</a></li>
+                            <li><a href="css.html#position">Position Property</a></li>
+                            <li><a href="css.html#min-max">Min/Max Width</a></li>
+                        </ul>
+                    </li>
                     <li><a href="bootstrap.html">Bootstrap</a></li>
                 </ul>
             </div>
@@ -64,9 +87,886 @@
                 <a href="../../index.html">home</a> / <a href="index.html">web-dev</a> / css
             </div>
             
-            <h1>CSS</h1>
+            <h1>CSS - Cascading Style Sheets</h1>
             
-            <p style="color: #888; font-style: italic; margin-top: 3rem;">Still writing this section... give me some time :)</p>
+            <p style="color: #ccc; margin-top: 1.5rem;">CSS is the language used to style and layout web pages. It controls colors, fonts, spacing, positioning, and overall visual presentation of HTML elements.</p>
+            
+            <!-- CSS Introduction -->
+            <h2 id="introduction" style="margin-top: 3rem; color: #64b5f6;">CSS Introduction</h2>
+            <p style="color: #ccc;">CSS (Cascading Style Sheets) is a stylesheet language that describes how HTML elements should be displayed on screen, paper, or other media.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">What is CSS?</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li><strong style="color: #4caf50;">CSS = Cascading Style Sheets</strong></li>
+                    <li>Controls the visual presentation of HTML documents</li>
+                    <li>Separates content (HTML) from presentation (CSS)</li>
+                    <li>Makes websites responsive and visually appealing</li>
+                    <li>Can control multiple web pages at once</li>
+                </ul>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #ff9800; margin-top: 0;">Why Use CSS?</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li><strong style="color: #64b5f6;">Separation of Concerns:</strong> Keep HTML for structure, CSS for styling</li>
+                    <li><strong style="color: #64b5f6;">Reusability:</strong> One CSS file can style multiple pages</li>
+                    <li><strong style="color: #64b5f6;">Maintainability:</strong> Easy to update styles across entire website</li>
+                    <li><strong style="color: #64b5f6;">Faster Loading:</strong> CSS files are cached by browsers</li>
+                    <li><strong style="color: #64b5f6;">Better UX:</strong> Create visually appealing, professional websites</li>
+                </ul>
+            </div>
+            
+            <!-- Adding Styles Using CSS -->
+            <h2 id="adding-styles" style="margin-top: 3rem; color: #64b5f6;">Adding Styles Using CSS</h2>
+            <p style="color: #ccc;">There are three ways to add CSS to HTML documents:</p>
+            
+            <!-- Inline CSS -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">1. Inline CSS</h3>
+            <p style="color: #ccc;">CSS applied directly to HTML elements using the <code style="color: #4caf50; background: #111; padding: 0.2rem 0.4rem;">style</code> attribute.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    &lt;p <span style="color: #ff9800;">style</span>=<span style="color: #4caf50;">"color: blue; font-size: 18px;"</span>&gt;This is a paragraph&lt;/p&gt;
+                </div>
+                <div style="margin-top: 1rem;">
+                    <p style="color: #4caf50; margin: 0.5rem 0;"><strong>Pros:</strong></p>
+                    <ul style="color: #888; margin: 0;">
+                        <li>Quick for testing</li>
+                        <li>Highest priority (overrides other styles)</li>
+                    </ul>
+                    <p style="color: #f44336; margin: 0.5rem 0;"><strong>Cons:</strong></p>
+                    <ul style="color: #888; margin: 0;">
+                        <li>Hard to maintain</li>
+                        <li>Not reusable</li>
+                        <li>❌ Not recommended for production</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Internal CSS -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">2. Internal CSS (Embedded)</h3>
+            <p style="color: #ccc;">CSS written in the <code style="color: #4caf50; background: #111; padding: 0.2rem 0.4rem;">&lt;style&gt;</code> tag within the <code style="color: #4caf50; background: #111; padding: 0.2rem 0.4rem;">&lt;head&gt;</code> section.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    &lt;head&gt;<br>
+                    &nbsp;&nbsp;&lt;style&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #ff9800;">p</span> {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4caf50;">color</span>: <span style="color: #64b5f6;">blue</span>;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4caf50;">font-size</span>: <span style="color: #64b5f6;">18px</span>;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                    &nbsp;&nbsp;&lt;/style&gt;<br>
+                    &lt;/head&gt;
+                </div>
+                <div style="margin-top: 1rem;">
+                    <p style="color: #4caf50; margin: 0.5rem 0;"><strong>Pros:</strong></p>
+                    <ul style="color: #888; margin: 0;">
+                        <li>Good for single-page styling</li>
+                        <li>No extra HTTP request</li>
+                    </ul>
+                    <p style="color: #f44336; margin: 0.5rem 0;"><strong>Cons:</strong></p>
+                    <ul style="color: #888; margin: 0;">
+                        <li>Not reusable across pages</li>
+                        <li>Makes HTML file larger</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- External CSS -->
+            <h3 style="color: #fff; margin-top: 1.5rem;">3. External CSS ✅ (Best Practice)</h3>
+            <p style="color: #ccc;">CSS written in a separate <code style="color: #4caf50; background: #111; padding: 0.2rem 0.4rem;">.css</code> file and linked to HTML.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <p style="color: #64b5f6; margin-top: 0;"><strong>In HTML file:</strong></p>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    &lt;head&gt;<br>
+                    &nbsp;&nbsp;&lt;link <span style="color: #ff9800;">rel</span>=<span style="color: #4caf50;">"stylesheet"</span> <span style="color: #ff9800;">href</span>=<span style="color: #4caf50;">"style.css"</span>&gt;<br>
+                    &lt;/head&gt;
+                </div>
+                
+                <p style="color: #64b5f6; margin-top: 1rem;"><strong>In style.css file:</strong></p>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #ff9800;">p</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">color</span>: <span style="color: #64b5f6;">blue</span>;<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">font-size</span>: <span style="color: #64b5f6;">18px</span>;<br>
+                    }
+                </div>
+                
+                <div style="margin-top: 1rem;">
+                    <p style="color: #4caf50; margin: 0.5rem 0;"><strong>Pros:</strong></p>
+                    <ul style="color: #888; margin: 0;">
+                        <li>✅ Best for multiple pages</li>
+                        <li>✅ Easy to maintain</li>
+                        <li>✅ Reusable</li>
+                        <li>✅ Browser caching</li>
+                        <li>✅ Clean HTML</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- CSS Syntax -->
+            <h2 id="syntax" style="margin-top: 3rem; color: #64b5f6;">CSS Syntax</h2>
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="background: #111; padding: 1.5rem; border: 1px solid #333; margin: 1rem 0;">
+                    <div style="font-family: monospace; font-size: 1.1rem;">
+                        <span style="color: #ff9800;">selector</span> {<br>
+                        &nbsp;&nbsp;<span style="color: #4caf50;">property</span>: <span style="color: #64b5f6;">value</span>;<br>
+                        &nbsp;&nbsp;<span style="color: #4caf50;">property</span>: <span style="color: #64b5f6;">value</span>;<br>
+                        }
+                    </div>
+                </div>
+                
+                <ul style="color: #888; line-height: 1.8;">
+                    <li><strong style="color: #ff9800;">Selector:</strong> Points to the HTML element you want to style</li>
+                    <li><strong style="color: #4caf50;">Property:</strong> The aspect you want to change (color, font-size, etc.)</li>
+                    <li><strong style="color: #64b5f6;">Value:</strong> The setting for the property</li>
+                    <li><strong style="color: #888;">Semicolon (;):</strong> Separates declarations</li>
+                    <li><strong style="color: #888;">Curly Braces {}:</strong> Contains all declarations</li>
+                </ul>
+            </div>
+            
+            <!-- Selector Types -->
+            <h2 id="selectors" style="margin-top: 3rem; color: #64b5f6;">CSS Selector Types</h2>
+            <p style="color: #ccc;">Selectors are patterns used to select and style HTML elements.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">1. Element Selector</h4>
+                <p style="color: #888;">Selects all elements of a given type.</p>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #ff9800;">p</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">color</span>: <span style="color: #64b5f6;">red</span>;<br>
+                    }<br><br>
+                    <span style="color: #666;">/* Selects all &lt;p&gt; elements */</span>
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">2. Class Selector</h4>
+                <p style="color: #888;">Selects elements with a specific class attribute. Uses a period (.).</p>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #ff9800;">.highlight</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">background-color</span>: <span style="color: #64b5f6;">yellow</span>;<br>
+                    }<br><br>
+                    <span style="color: #666;">/* Selects all elements with class="highlight" */</span>
+                </div>
+                <p style="color: #888; margin-top: 0.5rem;">HTML: <code style="color: #4caf50; background: #000; padding: 0.2rem 0.4rem;">&lt;p class="highlight"&gt;Text&lt;/p&gt;</code></p>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">3. ID Selector</h4>
+                <p style="color: #888;">Selects a single element with a specific id attribute. Uses a hash (#).</p>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #ff9800;">#header</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">font-size</span>: <span style="color: #64b5f6;">24px</span>;<br>
+                    }<br><br>
+                    <span style="color: #666;">/* Selects element with id="header" */</span>
+                </div>
+                <p style="color: #888; margin-top: 0.5rem;">HTML: <code style="color: #4caf50; background: #000; padding: 0.2rem 0.4rem;">&lt;div id="header"&gt;Header&lt;/div&gt;</code></p>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">4. Universal Selector</h4>
+                <p style="color: #888;">Selects all elements. Uses an asterisk (*).</p>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #ff9800;">*</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">margin</span>: <span style="color: #64b5f6;">0</span>;<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">padding</span>: <span style="color: #64b5f6;">0</span>;<br>
+                    }<br><br>
+                    <span style="color: #666;">/* Selects all elements */</span>
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">5. Attribute Selector</h4>
+                <p style="color: #888;">Selects elements based on attributes.</p>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #ff9800;">input[type="text"]</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">border</span>: <span style="color: #64b5f6;">1px solid blue</span>;<br>
+                    }<br><br>
+                    <span style="color: #666;">/* Selects all text input fields */</span>
+                </div>
+            </div>
+            
+            <!-- Grouping and Nesting -->
+            <h2 id="grouping-nesting" style="margin-top: 3rem; color: #64b5f6;">Grouping and Nesting of CSS Selectors</h2>
+            
+            <h3 style="color: #fff; margin-top: 1.5rem;">Grouping Selectors</h3>
+            <p style="color: #ccc;">Apply the same style to multiple selectors by separating them with commas.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #ff9800;">h1, h2, h3</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">color</span>: <span style="color: #64b5f6;">navy</span>;<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">font-family</span>: <span style="color: #64b5f6;">Arial</span>;<br>
+                    }<br><br>
+                    <span style="color: #666;">/* Applies to all h1, h2, and h3 elements */</span>
+                </div>
+            </div>
+            
+            <h3 style="color: #fff; margin-top: 1.5rem;">Nesting Selectors (Descendant Selector)</h3>
+            <p style="color: #ccc;">Select elements inside other elements.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #ff9800;">div p</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">color</span>: <span style="color: #64b5f6;">blue</span>;<br>
+                    }<br><br>
+                    <span style="color: #666;">/* Selects all &lt;p&gt; inside &lt;div&gt; */</span>
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #64b5f6; margin-top: 0;">Other Combinators:</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li><strong style="color: #4caf50;">Child Selector (&gt;):</strong> <code>div > p</code> - Direct children only</li>
+                    <li><strong style="color: #4caf50;">Adjacent Sibling (+):</strong> <code>h1 + p</code> - Immediately after</li>
+                    <li><strong style="color: #4caf50;">General Sibling (~):</strong> <code>h1 ~ p</code> - All siblings after</li>
+                </ul>
+            </div>
+            
+            <!-- Specificity -->
+            <h2 id="specificity" style="margin-top: 3rem; color: #64b5f6;">Specificity of Selectors</h2>
+            <p style="color: #ccc;">When multiple CSS rules target the same element, specificity determines which style is applied.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Specificity Hierarchy (Highest to Lowest):</h4>
+                <div style="margin: 1rem 0;">
+                    <div style="padding: 0.8rem; background: #111; border-left: 3px solid #f44336; margin-bottom: 0.5rem;">
+                        <strong style="color: #f44336;">1. Inline Styles</strong>
+                        <p style="color: #888; margin: 0.3rem 0 0 0;">style="color: red;" - Specificity: 1000</p>
+                    </div>
+                    <div style="padding: 0.8rem; background: #111; border-left: 3px solid #ff9800; margin-bottom: 0.5rem;">
+                        <strong style="color: #ff9800;">2. IDs</strong>
+                        <p style="color: #888; margin: 0.3rem 0 0 0;">#header - Specificity: 100</p>
+                    </div>
+                    <div style="padding: 0.8rem; background: #111; border-left: 3px solid #4caf50; margin-bottom: 0.5rem;">
+                        <strong style="color: #4caf50;">3. Classes, Attributes, Pseudo-classes</strong>
+                        <p style="color: #888; margin: 0.3rem 0 0 0;">.button, [type="text"], :hover - Specificity: 10</p>
+                    </div>
+                    <div style="padding: 0.8rem; background: #111; border-left: 3px solid #64b5f6;">
+                        <strong style="color: #64b5f6;">4. Elements, Pseudo-elements</strong>
+                        <p style="color: #888; margin: 0.3rem 0 0 0;">p, ::before - Specificity: 1</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #ff9800; margin-top: 0;">Calculating Specificity Example:</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #ff9800;">p</span> { color: red; } <span style="color: #666;">/* Specificity: 1 */</span><br><br>
+                    <span style="color: #ff9800;">.intro</span> { color: blue; } <span style="color: #666;">/* Specificity: 10 */</span><br><br>
+                    <span style="color: #ff9800;">#main p</span> { color: green; } <span style="color: #666;">/* Specificity: 101 */</span><br><br>
+                    <span style="color: #666;">/* #main p wins! (101 > 10 > 1) */</span>
+                </div>
+            </div>
+            
+            <!-- Preference of Rules (Cascade) -->
+            <h2 id="cascade" style="margin-top: 3rem; color: #64b5f6;">Preference of Rules (The Cascade)</h2>
+            <p style="color: #ccc;">CSS stands for "Cascading" Style Sheets. When multiple rules apply to an element, these factors determine which style wins:</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Order of Importance:</h4>
+                <ol style="color: #888; line-height: 1.8;">
+                    <li><strong style="color: #f44336;">!important</strong> - Overrides everything (use sparingly!)</li>
+                    <li><strong style="color: #ff9800;">Inline styles</strong> - style attribute in HTML</li>
+                    <li><strong style="color: #4caf50;">Specificity</strong> - More specific selectors win</li>
+                    <li><strong style="color: #64b5f6;">Source order</strong> - Later rules override earlier ones</li>
+                </ol>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #ff9800;">p</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">color</span>: <span style="color: #64b5f6;">blue</span>;<br>
+                    }<br><br>
+                    <span style="color: #ff9800;">p</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">color</span>: <span style="color: #64b5f6;">red</span>;<br>
+                    }<br><br>
+                    <span style="color: #666;">/* Paragraph will be red (last rule wins) */</span>
+                </div>
+            </div>
+            
+            <!-- Chrome Dev Tools -->
+            <h2 id="devtools" style="margin-top: 3rem; color: #64b5f6;">Chrome Dev Tools</h2>
+            <p style="color: #ccc;">Chrome DevTools is a set of web developer tools built into Google Chrome that helps you inspect, debug, and modify your CSS in real-time.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">How to Open DevTools:</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li><strong style="color: #64b5f6;">Right-click</strong> on any element → "Inspect"</li>
+                    <li><strong style="color: #64b5f6;">Keyboard shortcuts:</strong>
+                        <ul>
+                            <li>Windows/Linux: <code style="color: #4caf50; background: #000; padding: 0.2rem 0.4rem;">F12</code> or <code style="color: #4caf50; background: #000; padding: 0.2rem 0.4rem;">Ctrl + Shift + I</code></li>
+                            <li>Mac: <code style="color: #4caf50; background: #000; padding: 0.2rem 0.4rem;">Cmd + Option + I</code></li>
+                        </ul>
+                    </li>
+                    <li><strong style="color: #64b5f6;">Menu:</strong> Three dots → More tools → Developer tools</li>
+                </ul>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #ff9800; margin-top: 0;">Key Features:</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li><strong style="color: #4caf50;">Elements Panel:</strong> View and edit HTML/CSS live</li>
+                    <li><strong style="color: #4caf50;">Styles Pane:</strong> See all CSS rules applied to an element</li>
+                    <li><strong style="color: #4caf50;">Computed Tab:</strong> See final computed styles</li>
+                    <li><strong style="color: #4caf50;">Box Model Viewer:</strong> Visualize margins, padding, borders</li>
+                    <li><strong style="color: #4caf50;">Color Picker:</strong> Modify colors interactively</li>
+                    <li><strong style="color: #4caf50;">Live Editing:</strong> Changes update instantly (temporary)</li>
+                </ul>
+            </div>
+            
+            <!-- Adding Color -->
+            <h2 id="colors" style="margin-top: 3rem; color: #64b5f6;">Adding Color</h2>
+            <p style="color: #ccc;">Colors in CSS can be specified in several ways:</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Color Formats:</h4>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111;">
+                    <p style="color: #64b5f6; font-weight: bold; margin: 0 0 0.5rem 0;">1. Color Names</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888;">
+                        color: <span style="color: #f44336;">red</span>;<br>
+                        background-color: <span style="color: #4caf50;">blue</span>;<br>
+                        <span style="color: #666;">/* 140 named colors like red, blue, green, etc. */</span>
+                    </div>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111;">
+                    <p style="color: #64b5f6; font-weight: bold; margin: 0 0 0.5rem 0;">2. Hexadecimal (Hex)</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888;">
+                        color: <span style="color: #ff9800;">#FF0000</span>; <span style="color: #666;">/* Red */</span><br>
+                        color: <span style="color: #ff9800;">#00FF00</span>; <span style="color: #666;">/* Green */</span><br>
+                        color: <span style="color: #ff9800;">#0000FF</span>; <span style="color: #666;">/* Blue */</span><br>
+                        color: <span style="color: #ff9800;">#FFF</span>; <span style="color: #666;">/* Short for #FFFFFF (white) */</span>
+                    </div>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111;">
+                    <p style="color: #64b5f6; font-weight: bold; margin: 0 0 0.5rem 0;">3. RGB (Red, Green, Blue)</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888;">
+                        color: <span style="color: #4caf50;">rgb(255, 0, 0)</span>; <span style="color: #666;">/* Red */</span><br>
+                        color: <span style="color: #4caf50;">rgb(0, 255, 0)</span>; <span style="color: #666;">/* Green */</span><br>
+                        <span style="color: #666;">/* Values: 0-255 for each channel */</span>
+                    </div>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111;">
+                    <p style="color: #64b5f6; font-weight: bold; margin: 0 0 0.5rem 0;">4. RGBA (RGB with Alpha/Opacity)</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888;">
+                        color: <span style="color: #4caf50;">rgba(255, 0, 0, 0.5)</span>; <span style="color: #666;">/* 50% transparent red */</span><br>
+                        <span style="color: #666;">/* Alpha: 0 (transparent) to 1 (opaque) */</span>
+                    </div>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111;">
+                    <p style="color: #64b5f6; font-weight: bold; margin: 0 0 0.5rem 0;">5. HSL (Hue, Saturation, Lightness)</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888;">
+                        color: <span style="color: #4caf50;">hsl(0, 100%, 50%)</span>; <span style="color: #666;">/* Red */</span><br>
+                        color: <span style="color: #4caf50;">hsla(120, 100%, 50%, 0.3)</span>; <span style="color: #666;">/* 30% transparent green */</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CSS Units -->
+            <h2 id="units" style="margin-top: 3rem; color: #64b5f6;">CSS Units</h2>
+            <p style="color: #ccc;">CSS units specify the measurement of properties like width, height, font-size, etc.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Absolute Units (Fixed Size)</h4>
+                <table style="width: 100%; border-collapse: collapse; color: #ccc; font-size: 0.9rem;">
+                    <thead>
+                        <tr style="background: #111; border-bottom: 2px solid #4caf50;">
+                            <th style="padding: 0.8rem; text-align: left; color: #fff; border: 1px solid #333;">Unit</th>
+                            <th style="padding: 0.8rem; text-align: left; color: #fff; border: 1px solid #333;">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #ff9800;">px</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Pixels - Most common, 1px = 1/96th of an inch</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #ff9800;">pt</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Points - 1pt = 1/72nd of an inch</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #ff9800;">cm, mm, in</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Centimeters, millimeters, inches</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Relative Units (Responsive)</h4>
+                <table style="width: 100%; border-collapse: collapse; color: #ccc; font-size: 0.9rem;">
+                    <thead>
+                        <tr style="background: #111; border-bottom: 2px solid #4caf50;">
+                            <th style="padding: 0.8rem; text-align: left; color: #fff; border: 1px solid #333;">Unit</th>
+                            <th style="padding: 0.8rem; text-align: left; color: #fff; border: 1px solid #333;">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #4caf50;">%</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Percentage - Relative to parent element</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #4caf50;">em</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Relative to font-size of the element (2em = 2 times)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #4caf50;">rem</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Relative to root (html) font-size (more predictable)</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #4caf50;">vw</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Viewport width - 1vw = 1% of viewport width</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #4caf50;">vh</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Viewport height - 1vh = 1% of viewport height</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Borders -->
+            <h2 id="borders" style="margin-top: 3rem; color: #64b5f6;">How to Add Border to an Element</h2>
+            <p style="color: #ccc;">Borders add an outline around elements. They have three properties: width, style, and color.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Border Properties:</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #666;">/* Individual properties */</span><br>
+                    <span style="color: #4caf50;">border-width</span>: <span style="color: #64b5f6;">2px</span>;<br>
+                    <span style="color: #4caf50;">border-style</span>: <span style="color: #64b5f6;">solid</span>;<br>
+                    <span style="color: #4caf50;">border-color</span>: <span style="color: #64b5f6;">red</span>;<br><br>
+                    <span style="color: #666;">/* Shorthand (recommended) */</span><br>
+                    <span style="color: #4caf50;">border</span>: <span style="color: #64b5f6;">2px solid red</span>;
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #ff9800; margin-top: 0;">Border Styles:</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div style="padding: 0.8rem; background: #111; border: 2px solid #4caf50;">
+                        <code style="color: #4caf50;">solid</code> - Solid line
+                    </div>
+                    <div style="padding: 0.8rem; background: #111; border: 2px dashed #4caf50;">
+                        <code style="color: #4caf50;">dashed</code> - Dashed line
+                    </div>
+                    <div style="padding: 0.8rem; background: #111; border: 2px dotted #4caf50;">
+                        <code style="color: #4caf50;">dotted</code> - Dotted line
+                    </div>
+                    <div style="padding: 0.8rem; background: #111; border: 2px double #4caf50;">
+                        <code style="color: #4caf50;">double</code> - Double line
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #64b5f6; margin-top: 0;">Individual Sides:</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #4caf50;">border-top</span>: <span style="color: #64b5f6;">1px solid black</span>;<br>
+                    <span style="color: #4caf50;">border-right</span>: <span style="color: #64b5f6;">2px dashed blue</span>;<br>
+                    <span style="color: #4caf50;">border-bottom</span>: <span style="color: #64b5f6;">3px dotted red</span>;<br>
+                    <span style="color: #4caf50;">border-left</span>: <span style="color: #64b5f6;">4px solid green</span>;<br><br>
+                    <span style="color: #666;">/* Rounded corners */</span><br>
+                    <span style="color: #4caf50;">border-radius</span>: <span style="color: #64b5f6;">10px</span>;
+                </div>
+            </div>
+            
+            <!-- Text Styling -->
+            <h2 id="text-styling" style="margin-top: 3rem; color: #64b5f6;">Text Styling</h2>
+            <p style="color: #ccc;">CSS provides many properties to style and format text.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Font Properties:</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #4caf50;">font-family</span>: <span style="color: #64b5f6;">Arial, sans-serif</span>;<br>
+                    <span style="color: #4caf50;">font-size</span>: <span style="color: #64b5f6;">16px</span>;<br>
+                    <span style="color: #4caf50;">font-weight</span>: <span style="color: #64b5f6;">bold</span>; <span style="color: #666;">/* or 100-900 */</span><br>
+                    <span style="color: #4caf50;">font-style</span>: <span style="color: #64b5f6;">italic</span>;<br>
+                    <span style="color: #4caf50;">font-variant</span>: <span style="color: #64b5f6;">small-caps</span>;
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Text Properties:</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #4caf50;">color</span>: <span style="color: #64b5f6;">#333</span>;<br>
+                    <span style="color: #4caf50;">text-align</span>: <span style="color: #64b5f6;">center</span>; <span style="color: #666;">/* left, right, center, justify */</span><br>
+                    <span style="color: #4caf50;">text-decoration</span>: <span style="color: #64b5f6;">underline</span>; <span style="color: #666;">/* none, underline, line-through */</span><br>
+                    <span style="color: #4caf50;">text-transform</span>: <span style="color: #64b5f6;">uppercase</span>; <span style="color: #666;">/* lowercase, capitalize */</span><br>
+                    <span style="color: #4caf50;">line-height</span>: <span style="color: #64b5f6;">1.5</span>; <span style="color: #666;">/* Space between lines */</span><br>
+                    <span style="color: #4caf50;">letter-spacing</span>: <span style="color: #64b5f6;">2px</span>; <span style="color: #666;">/* Space between characters */</span><br>
+                    <span style="color: #4caf50;">word-spacing</span>: <span style="color: #64b5f6;">5px</span>; <span style="color: #666;">/* Space between words */</span><br>
+                    <span style="color: #4caf50;">text-shadow</span>: <span style="color: #64b5f6;">2px 2px 4px rgba(0,0,0,0.5)</span>;
+                </div>
+            </div>
+            
+            <!-- Background -->
+            <h2 id="background" style="margin-top: 3rem; color: #64b5f6;">Adding Background to an Element</h2>
+            <p style="color: #ccc;">Background properties control the background area of elements.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Background Properties:</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #666;">/* Solid color */</span><br>
+                    <span style="color: #4caf50;">background-color</span>: <span style="color: #64b5f6;">#f0f0f0</span>;<br><br>
+                    <span style="color: #666;">/* Background image */</span><br>
+                    <span style="color: #4caf50;">background-image</span>: <span style="color: #64b5f6;">url('image.jpg')</span>;<br>
+                    <span style="color: #4caf50;">background-repeat</span>: <span style="color: #64b5f6;">no-repeat</span>; <span style="color: #666;">/* repeat, repeat-x, repeat-y */</span><br>
+                    <span style="color: #4caf50;">background-position</span>: <span style="color: #64b5f6;">center</span>; <span style="color: #666;">/* top, bottom, left, right, center */</span><br>
+                    <span style="color: #4caf50;">background-size</span>: <span style="color: #64b5f6;">cover</span>; <span style="color: #666;">/* contain, cover, 100px, 50% */</span><br>
+                    <span style="color: #4caf50;">background-attachment</span>: <span style="color: #64b5f6;">fixed</span>; <span style="color: #666;">/* scroll, fixed */</span><br><br>
+                    <span style="color: #666;">/* Shorthand */</span><br>
+                    <span style="color: #4caf50;">background</span>: <span style="color: #64b5f6;">#f0f0f0 url('img.jpg') no-repeat center/cover</span>;
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #ff9800; margin-top: 0;">Gradient Backgrounds:</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #666;">/* Linear gradient */</span><br>
+                    <span style="color: #4caf50;">background</span>: <span style="color: #64b5f6;">linear-gradient(to right, red, yellow)</span>;<br><br>
+                    <span style="color: #666;">/* Radial gradient */</span><br>
+                    <span style="color: #4caf50;">background</span>: <span style="color: #64b5f6;">radial-gradient(circle, red, yellow)</span>;
+                </div>
+            </div>
+            
+            <!-- Box Model -->
+            <h2 id="box-model" style="margin-top: 3rem; color: #64b5f6;">The CSS Box Model</h2>
+            <p style="color: #ccc;">The Box Model is fundamental to CSS layout. Every HTML element is treated as a rectangular box.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Box Model Components (from inside out):</h4>
+                
+                <div style="background: #111; padding: 2rem; margin: 1rem 0; text-align: center;">
+                    <div style="background: #64b5f6; padding: 1rem; display: inline-block;">
+                        <div style="background: #4caf50; padding: 1rem;">
+                            <div style="background: #ff9800; padding: 1rem;">
+                                <div style="background: #f44336; padding: 1.5rem; color: white;">
+                                    CONTENT
+                                </div>
+                                <div style="color: #fff; margin-top: 0.5rem; font-size: 0.9rem;">Padding</div>
+                            </div>
+                            <div style="color: #fff; margin-top: 0.5rem; font-size: 0.9rem;">Border</div>
+                        </div>
+                        <div style="color: #fff; margin-top: 0.5rem; font-size: 0.9rem;">Margin</div>
+                    </div>
+                </div>
+                
+                <ul style="color: #888; line-height: 1.8;">
+                    <li><strong style="color: #f44336;">Content:</strong> The actual content (text, images)</li>
+                    <li><strong style="color: #ff9800;">Padding:</strong> Space between content and border</li>
+                    <li><strong style="color: #4caf50;">Border:</strong> Line around padding</li>
+                    <li><strong style="color: #64b5f6;">Margin:</strong> Space outside the border</li>
+                </ul>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #ff9800; margin-top: 0;">Box-Sizing Property:</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #666;">/* Default - padding and border add to width */</span><br>
+                    <span style="color: #4caf50;">box-sizing</span>: <span style="color: #64b5f6;">content-box</span>;<br><br>
+                    <span style="color: #666;">/* Better - padding and border included in width */</span><br>
+                    <span style="color: #4caf50;">box-sizing</span>: <span style="color: #64b5f6;">border-box</span>; <span style="color: #666;">/* ✅ Recommended */</span>
+                </div>
+            </div>
+            
+            <!-- Margin -->
+            <h2 id="margin" style="margin-top: 3rem; color: #64b5f6;">Margins</h2>
+            <p style="color: #ccc;">Margins create space OUTSIDE an element's border, between elements.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Margin Properties:</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #666;">/* Individual sides */</span><br>
+                    <span style="color: #4caf50;">margin-top</span>: <span style="color: #64b5f6;">10px</span>;<br>
+                    <span style="color: #4caf50;">margin-right</span>: <span style="color: #64b5f6;">20px</span>;<br>
+                    <span style="color: #4caf50;">margin-bottom</span>: <span style="color: #64b5f6;">10px</span>;<br>
+                    <span style="color: #4caf50;">margin-left</span>: <span style="color: #64b5f6;">20px</span>;<br><br>
+                    <span style="color: #666;">/* Shorthand - 4 values (top, right, bottom, left) */</span><br>
+                    <span style="color: #4caf50;">margin</span>: <span style="color: #64b5f6;">10px 20px 10px 20px</span>;<br><br>
+                    <span style="color: #666;">/* Shorthand - 2 values (vertical, horizontal) */</span><br>
+                    <span style="color: #4caf50;">margin</span>: <span style="color: #64b5f6;">10px 20px</span>;<br><br>
+                    <span style="color: #666;">/* Shorthand - 1 value (all sides) */</span><br>
+                    <span style="color: #4caf50;">margin</span>: <span style="color: #64b5f6;">10px</span>;<br><br>
+                    <span style="color: #666;">/* Center element horizontally */</span><br>
+                    <span style="color: #4caf50;">margin</span>: <span style="color: #64b5f6;">0 auto</span>;<br><br>
+                    <span style="color: #666;">/* Negative margin (pull element) */</span><br>
+                    <span style="color: #4caf50;">margin-top</span>: <span style="color: #64b5f6;">-10px</span>;
+                </div>
+            </div>
+            
+            <div style="background: #111; border-left: 3px solid #ff9800; padding: 1rem; margin: 1rem 0;">
+                <p style="color: #ff9800; margin: 0; font-weight: bold;">⚠️ Margin Collapse</p>
+                <p style="color: #888; margin: 0.5rem 0 0 0;">When two vertical margins meet, they collapse into a single margin (the larger one). This doesn't happen with padding!</p>
+            </div>
+            
+            <!-- Padding -->
+            <h2 id="padding" style="margin-top: 3rem; color: #64b5f6;">Padding</h2>
+            <p style="color: #ccc;">Padding creates space INSIDE an element's border, between content and border.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Padding Properties:</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #666;">/* Individual sides */</span><br>
+                    <span style="color: #4caf50;">padding-top</span>: <span style="color: #64b5f6;">10px</span>;<br>
+                    <span style="color: #4caf50;">padding-right</span>: <span style="color: #64b5f6;">20px</span>;<br>
+                    <span style="color: #4caf50;">padding-bottom</span>: <span style="color: #64b5f6;">10px</span>;<br>
+                    <span style="color: #4caf50;">padding-left</span>: <span style="color: #64b5f6;">20px</span>;<br><br>
+                    <span style="color: #666;">/* Shorthand - 4 values (top, right, bottom, left) */</span><br>
+                    <span style="color: #4caf50;">padding</span>: <span style="color: #64b5f6;">10px 20px 10px 20px</span>;<br><br>
+                    <span style="color: #666;">/* Shorthand - 2 values (vertical, horizontal) */</span><br>
+                    <span style="color: #4caf50;">padding</span>: <span style="color: #64b5f6;">10px 20px</span>;<br><br>
+                    <span style="color: #666;">/* Shorthand - 1 value (all sides) */</span><br>
+                    <span style="color: #4caf50;">padding</span>: <span style="color: #64b5f6;">10px</span>;
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #64b5f6; margin-top: 0;">Margin vs Padding:</h4>
+                <table style="width: 100%; border-collapse: collapse; color: #ccc; font-size: 0.9rem;">
+                    <thead>
+                        <tr style="background: #111; border-bottom: 2px solid #4caf50;">
+                            <th style="padding: 0.8rem; text-align: left; color: #fff; border: 1px solid #333;">Aspect</th>
+                            <th style="padding: 0.8rem; text-align: left; color: #fff; border: 1px solid #333;">Margin</th>
+                            <th style="padding: 0.8rem; text-align: left; color: #fff; border: 1px solid #333;">Padding</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Location</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Outside border</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Inside border</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Background</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">No background color</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Has background color</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Collapse</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Can collapse</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Never collapses</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Negative values</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">✅ Allowed</td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">❌ Not allowed</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Display Property -->
+            <h2 id="display" style="margin-top: 3rem; color: #64b5f6;">Display Property</h2>
+            <p style="color: #ccc;">The display property controls how an element is displayed and how it interacts with other elements.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Display Values:</h4>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #4caf50;">
+                    <p style="color: #4caf50; font-weight: bold; margin: 0;">block</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888; margin: 0.5rem 0;">
+                        display: block;
+                    </div>
+                    <ul style="color: #888; margin: 0.5rem 0;">
+                        <li>Takes full width available</li>
+                        <li>Starts on a new line</li>
+                        <li>Can set width and height</li>
+                        <li>Examples: <code style="color: #4caf50;">&lt;div&gt;, &lt;p&gt;, &lt;h1&gt;</code></li>
+                    </ul>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #2196f3;">
+                    <p style="color: #2196f3; font-weight: bold; margin: 0;">inline</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888; margin: 0.5rem 0;">
+                        display: inline;
+                    </div>
+                    <ul style="color: #888; margin: 0.5rem 0;">
+                        <li>Only takes space needed</li>
+                        <li>Stays on same line</li>
+                        <li>Cannot set width/height</li>
+                        <li>Examples: <code style="color: #4caf50;">&lt;span&gt;, &lt;a&gt;, &lt;strong&gt;</code></li>
+                    </ul>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #ff9800;">
+                    <p style="color: #ff9800; font-weight: bold; margin: 0;">inline-block</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888; margin: 0.5rem 0;">
+                        display: inline-block;
+                    </div>
+                    <ul style="color: #888; margin: 0.5rem 0;">
+                        <li>Stays on same line (like inline)</li>
+                        <li>Can set width/height (like block)</li>
+                        <li>Best of both worlds!</li>
+                    </ul>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #9c27b0;">
+                    <p style="color: #9c27b0; font-weight: bold; margin: 0;">none</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888; margin: 0.5rem 0;">
+                        display: none;
+                    </div>
+                    <ul style="color: #888; margin: 0.5rem 0;">
+                        <li>Element is completely hidden</li>
+                        <li>Takes no space</li>
+                        <li>Different from <code style="color: #4caf50;">visibility: hidden</code> (which takes space)</li>
+                    </ul>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #f44336;">
+                    <p style="color: #f44336; font-weight: bold; margin: 0;">flex</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888; margin: 0.5rem 0;">
+                        display: flex;
+                    </div>
+                    <ul style="color: #888; margin: 0.5rem 0;">
+                        <li>Creates flexible layout container</li>
+                        <li>Modern layout system</li>
+                        <li>Aligns and distributes space easily</li>
+                    </ul>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #00bcd4;">
+                    <p style="color: #00bcd4; font-weight: bold; margin: 0;">grid</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888; margin: 0.5rem 0;">
+                        display: grid;
+                    </div>
+                    <ul style="color: #888; margin: 0.5rem 0;">
+                        <li>Creates grid layout container</li>
+                        <li>2D layout system (rows and columns)</li>
+                        <li>Powerful for complex layouts</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Position Property -->
+            <h2 id="position" style="margin-top: 3rem; color: #64b5f6;">Position Property</h2>
+            <p style="color: #ccc;">The position property specifies how an element is positioned in the document.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Position Values:</h4>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #4caf50;">
+                    <p style="color: #4caf50; font-weight: bold; margin: 0;">static (default)</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888; margin: 0.5rem 0;">
+                        position: static;
+                    </div>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Normal document flow. top, right, bottom, left properties have no effect.</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #2196f3;">
+                    <p style="color: #2196f3; font-weight: bold; margin: 0;">relative</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888; margin: 0.5rem 0;">
+                        position: relative;<br>
+                        top: 10px;<br>
+                        left: 20px;
+                    </div>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Positioned relative to its normal position. Original space is preserved.</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #ff9800;">
+                    <p style="color: #ff9800; font-weight: bold; margin: 0;">absolute</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888; margin: 0.5rem 0;">
+                        position: absolute;<br>
+                        top: 0;<br>
+                        right: 0;
+                    </div>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Positioned relative to nearest positioned ancestor. Removed from normal flow.</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #9c27b0;">
+                    <p style="color: #9c27b0; font-weight: bold; margin: 0;">fixed</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888; margin: 0.5rem 0;">
+                        position: fixed;<br>
+                        top: 0;<br>
+                        left: 0;
+                    </div>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Positioned relative to viewport. Stays in place when scrolling. Great for navbars!</p>
+                </div>
+                
+                <div style="margin: 1rem 0; padding: 1rem; background: #111; border-left: 3px solid #f44336;">
+                    <p style="color: #f44336; font-weight: bold; margin: 0;">sticky</p>
+                    <div style="font-family: monospace; font-size: 0.9rem; color: #888; margin: 0.5rem 0;">
+                        position: sticky;<br>
+                        top: 0;
+                    </div>
+                    <p style="color: #888; margin: 0.5rem 0 0 0;">Hybrid of relative and fixed. Sticks when you scroll past it.</p>
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #64b5f6; margin-top: 0;">Z-Index (Layering):</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #4caf50;">z-index</span>: <span style="color: #64b5f6;">10</span>; <span style="color: #666;">/* Higher values appear on top */</span><br>
+                    <span style="color: #666;">/* Only works with positioned elements (not static) */</span>
+                </div>
+            </div>
+            
+            <!-- Min Max Width -->
+            <h2 id="min-max" style="margin-top: 3rem; color: #64b5f6;">Min/Max Width and Height</h2>
+            <p style="color: #ccc;">Control the minimum and maximum dimensions of elements for responsive design.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Width Properties:</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #4caf50;">width</span>: <span style="color: #64b5f6;">300px</span>; <span style="color: #666;">/* Fixed width */</span><br>
+                    <span style="color: #4caf50;">width</span>: <span style="color: #64b5f6;">50%</span>; <span style="color: #666;">/* Relative to parent */</span><br>
+                    <span style="color: #4caf50;">max-width</span>: <span style="color: #64b5f6;">800px</span>; <span style="color: #666;">/* Won't grow beyond this */</span><br>
+                    <span style="color: #4caf50;">min-width</span>: <span style="color: #64b5f6;">200px</span>; <span style="color: #666;">/* Won't shrink below this */</span>
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #4caf50; margin-top: 0;">Height Properties:</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #4caf50;">height</span>: <span style="color: #64b5f6;">200px</span>; <span style="color: #666;">/* Fixed height */</span><br>
+                    <span style="color: #4caf50;">height</span>: <span style="color: #64b5f6;">100vh</span>; <span style="color: #666;">/* Full viewport height */</span><br>
+                    <span style="color: #4caf50;">max-height</span>: <span style="color: #64b5f6;">500px</span>; <span style="color: #666;">/* Won't grow beyond this */</span><br>
+                    <span style="color: #4caf50;">min-height</span>: <span style="color: #64b5f6;">100px</span>; <span style="color: #666;">/* Won't shrink below this */</span>
+                </div>
+            </div>
+            
+            <div style="background: #111; border-left: 3px solid #4caf50; padding: 1rem; margin: 1rem 0;">
+                <p style="color: #4caf50; margin: 0; font-weight: bold;">💡 Pro Tip:</p>
+                <p style="color: #888; margin: 0.5rem 0 0 0;">Use <code style="color: #4caf50;">max-width</code> instead of <code style="color: #4caf50;">width</code> for responsive layouts. The element will shrink on smaller screens!</p>
+            </div>
+            
+            <!-- Responsive Example -->
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #64b5f6; margin-top: 0;">Responsive Container Example:</h4>
+                <div style="font-family: monospace; font-size: 0.9rem; color: #888; background: #111; padding: 1rem;">
+                    <span style="color: #ff9800;">.container</span> {<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">width</span>: <span style="color: #64b5f6;">100%</span>;<br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">max-width</span>: <span style="color: #64b5f6;">1200px</span>; <span style="color: #666;">/* Don't exceed 1200px */</span><br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">min-width</span>: <span style="color: #64b5f6;">320px</span>; <span style="color: #666;">/* Minimum mobile width */</span><br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">margin</span>: <span style="color: #64b5f6;">0 auto</span>; <span style="color: #666;">/* Center it */</span><br>
+                    &nbsp;&nbsp;<span style="color: #4caf50;">padding</span>: <span style="color: #64b5f6;">0 20px</span>;<br>
+                    }
+                </div>
+            </div>
+            
+            <!-- Key Takeaways -->
+            <div style="background: #111; border-left: 3px solid #4caf50; padding: 1rem; margin: 2rem 0;">
+                <h4 style="color: #4caf50; margin: 0;">Key Takeaways</h4>
+                <ul style="color: #888; line-height: 1.8; margin: 0.5rem 0;">
+                    <li>CSS separates content from presentation</li>
+                    <li>Use external CSS for best maintainability</li>
+                    <li>Understand the Box Model (content, padding, border, margin)</li>
+                    <li>Master selectors and specificity for precise styling</li>
+                    <li>Use relative units (rem, %, vw, vh) for responsive design</li>
+                    <li>Chrome DevTools is your best friend for debugging CSS</li>
+                    <li>Practice with display and position properties for layouts</li>
+                    <li>min-width/max-width are essential for responsive design</li>
+                </ul>
+            </div>
+            
         </main>
     </div>
 
