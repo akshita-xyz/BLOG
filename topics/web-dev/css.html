@@ -21,11 +21,11 @@
         .sidebar .sub-links {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
+            transition: max-height 0.3s ease-out;
         }
         
-        .sidebar .has-children.expanded .sub-links {
-            max-height: fit-content;
+        .sidebar .has-children.expanded > .sub-links {
+            max-height: 2000px;
         }
     </style>
 </head>
@@ -54,9 +54,9 @@
                 <div class="sidebar-title">Web Dev</div>
                 <ul class="sidebar-links">
                     <li><a href="index.html">Overview</a></li>
-                    <li class="has-children expanded">
+                    <li class="has-children">
                         <a href="html.html">HTML</a>
-                        <ul class="sub-links expanded">
+                        <ul class="sub-links">
                             <li><a href="html.html#basics">Basics</a></li>
                             <li><a href="html.html#tags">Tags & Elements</a></li>
                             <li><a href="html.html#lists">Lists</a></li>
@@ -2218,19 +2218,8 @@ animation: slideIn 2s ease-in-out 0.5s infinite alternate forwards;</pre>
                     if (subLinks) {
                         e.preventDefault();
                         parent.classList.toggle('expanded');
-                        
-                        if (parent.classList.contains('expanded')) {
-                            subLinks.style.maxHeight = subLinks.scrollHeight + 'px';
-                        } else {
-                            subLinks.style.maxHeight = '0';
-                        }
                     }
                 });
-            });
-            
-            // Set initial state for expanded items
-            document.querySelectorAll('.sidebar .has-children.expanded .sub-links').forEach(subLinks => {
-                subLinks.style.maxHeight = subLinks.scrollHeight + 'px';
             });
         });
     </script>
