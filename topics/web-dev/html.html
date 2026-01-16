@@ -730,6 +730,7 @@
                             <li><a href="html.html#table-tags">Table Tags</a></li>
                             <li><a href="html.html#forms">Forms</a></li>
                             <li><a href="html.html#form-validation">Form Validation</a></li>
+                            <li><a href="html.html#favicon-meta">Favicon & Meta Tags</a></li>
                         </ul>
                     </li>
                     <li><a href="css.html">CSS</a></li>
@@ -3253,6 +3254,284 @@
                     <li><strong style="color: #64b5f6;">Visual Indicators:</strong> Use colors, icons, or borders to highlight valid/invalid fields</li>
                     <li><strong style="color: #64b5f6;">Validate Early:</strong> Check input format as soon as users leave a field</li>
                     <li><strong style="color: #64b5f6;">Never Trust Client Data:</strong> Always validate on the server, even if client validation passed</li>
+                </ul>
+            </div>
+            
+            <!-- Favicon and Meta Tags Section -->
+            <h2 id="favicon-meta" style="margin-top: 3rem; color: #64b5f6;">Favicon & Meta Tags</h2>
+            <p style="color: #ccc;">Favicon and meta tags are essential elements in the <code style="color: #4caf50; background: #111; padding: 0.2rem 0.4rem;">&lt;head&gt;</code> section of an HTML document. They enhance user experience, improve SEO, and provide important information about your webpage to browsers and search engines.</p>
+            
+            <!-- Favicon Section -->
+            <h3 style="margin-top: 2rem; color: #fff;">Favicon</h3>
+            <p style="color: #ccc;">A favicon (short for "favorite icon") is a small icon that appears in the browser tab, bookmarks bar, and address bar. It helps users quickly identify your website among multiple open tabs.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h4 style="color: #fff; margin-top: 0;">What is a Favicon?</h4>
+                <ul style="color: #888; line-height: 1.8;">
+                    <li>Small icon representing your website (typically 16x16 or 32x32 pixels)</li>
+                    <li>Appears in browser tabs, bookmarks, and history</li>
+                    <li>Common formats: .ico, .png, .svg, .gif</li>
+                    <li>Improves brand recognition and user experience</li>
+                </ul>
+            </div>
+            
+            <!-- Favicon Implementation -->
+            <h4 style="color: #fff; margin-top: 1.5rem;">Adding a Favicon</h4>
+            <p style="color: #ccc;">Place the favicon link in the <code style="color: #4caf50; background: #111; padding: 0.2rem 0.4rem;">&lt;head&gt;</code> section of your HTML document:</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h5 style="color: #4caf50; margin-top: 0;">Basic Favicon (ICO format)</h5>
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333;">
+                    &lt;head&gt;<br>
+                    &nbsp;&nbsp;&lt;link rel="icon" type="image/x-icon" href="/favicon.ico"&gt;<br>
+                    &lt;/head&gt;
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h5 style="color: #4caf50; margin-top: 0;">PNG Favicon (Recommended)</h5>
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333;">
+                    &lt;head&gt;<br>
+                    &nbsp;&nbsp;&lt;link rel="icon" type="image/png" href="/favicon.png"&gt;<br>
+                    &lt;/head&gt;
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h5 style="color: #4caf50; margin-top: 0;">SVG Favicon (Modern)</h5>
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333;">
+                    &lt;head&gt;<br>
+                    &nbsp;&nbsp;&lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;<br>
+                    &lt;/head&gt;
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h5 style="color: #4caf50; margin-top: 0;">Multiple Sizes (Best Practice)</h5>
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333;">
+                    &lt;head&gt;<br>
+                    &nbsp;&nbsp;&lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;<br>
+                    &nbsp;&nbsp;&lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;<br>
+                    &nbsp;&nbsp;&lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;<br>
+                    &lt;/head&gt;
+                </div>
+                <p style="color: #888; font-size: 0.85rem; margin-top: 0.8rem; margin-bottom: 0;">The <code style="color: #ff9800;">apple-touch-icon</code> is used when users add your site to their iOS home screen.</p>
+            </div>
+            
+            <!-- Meta Tags Section -->
+            <h3 style="margin-top: 2rem; color: #fff;">Meta Tags</h3>
+            <p style="color: #ccc;">Meta tags provide metadata about the HTML document. They are placed in the <code style="color: #4caf50; background: #111; padding: 0.2rem 0.4rem;">&lt;head&gt;</code> section and are not displayed on the page but are read by browsers, search engines, and social media platforms.</p>
+            
+            <!-- Essential Meta Tags -->
+            <h4 style="color: #fff; margin-top: 1.5rem;">1. Essential Meta Tags</h4>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h5 style="color: #4caf50; margin-top: 0;">Character Encoding</h5>
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333;">
+                    &lt;meta charset="UTF-8"&gt;
+                </div>
+                <p style="color: #888; font-size: 0.85rem; margin-top: 0.8rem; margin-bottom: 0;">Specifies the character encoding for the document. UTF-8 supports all languages and special characters.</p>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h5 style="color: #4caf50; margin-top: 0;">Viewport (Responsive Design)</h5>
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333;">
+                    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+                </div>
+                <p style="color: #888; font-size: 0.85rem; margin-top: 0.8rem; margin-bottom: 0;">Essential for responsive design. Controls how the page is displayed on mobile devices.</p>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h5 style="color: #4caf50; margin-top: 0;">Page Description</h5>
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333;">
+                    &lt;meta name="description" content="Learn HTML basics, forms, validation and more. Complete guide to web development."&gt;
+                </div>
+                <p style="color: #888; font-size: 0.85rem; margin-top: 0.8rem; margin-bottom: 0;">Provides a brief description (150-160 characters) that appears in search engine results. Crucial for SEO.</p>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h5 style="color: #4caf50; margin-top: 0;">Keywords</h5>
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333;">
+                    &lt;meta name="keywords" content="HTML, web development, forms, validation, tutorial"&gt;
+                </div>
+                <p style="color: #888; font-size: 0.85rem; margin-top: 0.8rem; margin-bottom: 0;">Lists relevant keywords for search engines. Note: Most modern search engines give this low priority.</p>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h5 style="color: #4caf50; margin-top: 0;">Author</h5>
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333;">
+                    &lt;meta name="author" content="Your Name"&gt;
+                </div>
+                <p style="color: #888; font-size: 0.85rem; margin-top: 0.8rem; margin-bottom: 0;">Specifies the author of the document.</p>
+            </div>
+            
+            <!-- SEO Meta Tags -->
+            <h4 style="color: #fff; margin-top: 1.5rem;">2. SEO Meta Tags</h4>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h5 style="color: #4caf50; margin-top: 0;">Robots</h5>
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333;">
+                    &lt;meta name="robots" content="index, follow"&gt;
+                </div>
+                <p style="color: #888; font-size: 0.85rem; margin-top: 0.8rem; margin-bottom: 0;">
+                    Controls how search engines crawl and index your page:<br>
+                    • <code style="color: #ff9800;">index</code> - Allow indexing<br>
+                    • <code style="color: #ff9800;">noindex</code> - Prevent indexing<br>
+                    • <code style="color: #ff9800;">follow</code> - Follow links<br>
+                    • <code style="color: #ff9800;">nofollow</code> - Don't follow links
+                </p>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h5 style="color: #4caf50; margin-top: 0;">Canonical URL</h5>
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333;">
+                    &lt;link rel="canonical" href="https://www.example.com/page"&gt;
+                </div>
+                <p style="color: #888; font-size: 0.85rem; margin-top: 0.8rem; margin-bottom: 0;">Specifies the preferred URL for duplicate content, helping prevent SEO issues.</p>
+            </div>
+            
+            <!-- Open Graph Meta Tags -->
+            <h4 style="color: #fff; margin-top: 1.5rem;">3. Open Graph Meta Tags (Social Media)</h4>
+            <p style="color: #ccc;">Open Graph tags control how your page appears when shared on social media platforms like Facebook, LinkedIn, and Twitter.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333;">
+                    &lt;meta property="og:title" content="Page Title"&gt;<br>
+                    &lt;meta property="og:description" content="Page description here"&gt;<br>
+                    &lt;meta property="og:image" content="https://example.com/image.jpg"&gt;<br>
+                    &lt;meta property="og:url" content="https://example.com/page"&gt;<br>
+                    &lt;meta property="og:type" content="website"&gt;<br>
+                    &lt;meta property="og:site_name" content="Your Site Name"&gt;
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0; overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; color: #ccc; font-size: 0.9rem;">
+                    <thead>
+                        <tr style="background: #111; border-bottom: 2px solid #4caf50;">
+                            <th style="padding: 0.8rem; text-align: left; color: #fff; border: 1px solid #333; width: 30%;">Property</th>
+                            <th style="padding: 0.8rem; text-align: left; color: #fff; border: 1px solid #333;">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #ff9800; background: #111; padding: 0.2rem 0.4rem;">og:title</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Title that appears when shared</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #ff9800; background: #111; padding: 0.2rem 0.4rem;">og:description</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Brief description of the page</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #ff9800; background: #111; padding: 0.2rem 0.4rem;">og:image</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Image displayed in social media preview</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #ff9800; background: #111; padding: 0.2rem 0.4rem;">og:url</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Canonical URL of the page</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #333;">
+                            <td style="padding: 0.8rem; border: 1px solid #333;"><code style="color: #ff9800; background: #111; padding: 0.2rem 0.4rem;">og:type</code></td>
+                            <td style="padding: 0.8rem; border: 1px solid #333;">Type of content (website, article, etc.)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Twitter Card Meta Tags -->
+            <h4 style="color: #fff; margin-top: 1.5rem;">4. Twitter Card Meta Tags</h4>
+            <p style="color: #ccc;">Twitter uses its own meta tags to control how links appear on the platform.</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333;">
+                    &lt;meta name="twitter:card" content="summary_large_image"&gt;<br>
+                    &lt;meta name="twitter:site" content="@yourusername"&gt;<br>
+                    &lt;meta name="twitter:title" content="Page Title"&gt;<br>
+                    &lt;meta name="twitter:description" content="Page description"&gt;<br>
+                    &lt;meta name="twitter:image" content="https://example.com/image.jpg"&gt;
+                </div>
+            </div>
+            
+            <!-- Other Useful Meta Tags -->
+            <h4 style="color: #fff; margin-top: 1.5rem;">5. Other Useful Meta Tags</h4>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h5 style="color: #4caf50; margin-top: 0;">Refresh/Redirect</h5>
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333;">
+                    &lt;meta http-equiv="refresh" content="30"&gt;<br>
+                    &lt;!-- Refresh page every 30 seconds --&gt;<br><br>
+                    &lt;meta http-equiv="refresh" content="5; url=https://example.com"&gt;<br>
+                    &lt;!-- Redirect after 5 seconds --&gt;
+                </div>
+            </div>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <h5 style="color: #4caf50; margin-top: 0;">Theme Color (Mobile Browsers)</h5>
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333;">
+                    &lt;meta name="theme-color" content="#4285f4"&gt;
+                </div>
+                <p style="color: #888; font-size: 0.85rem; margin-top: 0.8rem; margin-bottom: 0;">Sets the color of the browser's address bar on mobile devices.</p>
+            </div>
+            
+            <!-- Complete Example -->
+            <h3 style="margin-top: 2rem; color: #fff;">Complete Example</h3>
+            <p style="color: #ccc;">Here's a complete example with favicon and meta tags in the <code style="color: #4caf50; background: #111; padding: 0.2rem 0.4rem;">&lt;head&gt;</code> section:</p>
+            
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <div style="font-family: monospace; font-size: 0.85rem; color: #888; background: #111; padding: 1rem; border: 1px solid #333; overflow-x: auto;">
+                    &lt;!DOCTYPE html&gt;<br>
+                    &lt;html lang="en"&gt;<br>
+                    &lt;head&gt;<br>
+                    &nbsp;&nbsp;&lt;!-- Essential Meta Tags --&gt;<br>
+                    &nbsp;&nbsp;&lt;meta charset="UTF-8"&gt;<br>
+                    &nbsp;&nbsp;&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br>
+                    &nbsp;&nbsp;&lt;meta name="description" content="Learn web development with our comprehensive tutorials"&gt;<br>
+                    &nbsp;&nbsp;&lt;meta name="keywords" content="HTML, CSS, JavaScript, web development"&gt;<br>
+                    &nbsp;&nbsp;&lt;meta name="author" content="Your Name"&gt;<br>
+                    <br>
+                    &nbsp;&nbsp;&lt;!-- Favicon --&gt;<br>
+                    &nbsp;&nbsp;&lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;<br>
+                    &nbsp;&nbsp;&lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;<br>
+                    &nbsp;&nbsp;&lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;<br>
+                    <br>
+                    &nbsp;&nbsp;&lt;!-- SEO --&gt;<br>
+                    &nbsp;&nbsp;&lt;meta name="robots" content="index, follow"&gt;<br>
+                    &nbsp;&nbsp;&lt;link rel="canonical" href="https://www.example.com/"&gt;<br>
+                    <br>
+                    &nbsp;&nbsp;&lt;!-- Open Graph (Social Media) --&gt;<br>
+                    &nbsp;&nbsp;&lt;meta property="og:title" content="Web Development Tutorial"&gt;<br>
+                    &nbsp;&nbsp;&lt;meta property="og:description" content="Learn web development with our tutorials"&gt;<br>
+                    &nbsp;&nbsp;&lt;meta property="og:image" content="https://example.com/image.jpg"&gt;<br>
+                    &nbsp;&nbsp;&lt;meta property="og:url" content="https://example.com/"&gt;<br>
+                    &nbsp;&nbsp;&lt;meta property="og:type" content="website"&gt;<br>
+                    <br>
+                    &nbsp;&nbsp;&lt;!-- Twitter Card --&gt;<br>
+                    &nbsp;&nbsp;&lt;meta name="twitter:card" content="summary_large_image"&gt;<br>
+                    &nbsp;&nbsp;&lt;meta name="twitter:title" content="Web Development Tutorial"&gt;<br>
+                    &nbsp;&nbsp;&lt;meta name="twitter:description" content="Learn web development"&gt;<br>
+                    <br>
+                    &nbsp;&nbsp;&lt;!-- Theme Color --&gt;<br>
+                    &nbsp;&nbsp;&lt;meta name="theme-color" content="#4285f4"&gt;<br>
+                    <br>
+                    &nbsp;&nbsp;&lt;title&gt;Web Development Tutorial&lt;/title&gt;<br>
+                    &lt;/head&gt;<br>
+                    &lt;body&gt;<br>
+                    &nbsp;&nbsp;&lt;!-- Your content here --&gt;<br>
+                    &lt;/body&gt;<br>
+                    &lt;/html&gt;
+                </div>
+            </div>
+            
+            <!-- Best Practices -->
+            <h3 style="margin-top: 2rem; color: #fff;">Best Practices</h3>
+            <div style="background: #0a0a0a; border: 1px solid #222; padding: 1rem; margin: 1rem 0;">
+                <ul style="color: #888; line-height: 1.8;">
+                    <li><strong style="color: #64b5f6;">Favicon:</strong> Use PNG or SVG format for better quality; provide multiple sizes for different devices</li>
+                    <li><strong style="color: #64b5f6;">Description:</strong> Keep meta descriptions between 150-160 characters for optimal display in search results</li>
+                    <li><strong style="color: #64b5f6;">Images:</strong> Use high-quality images (1200x630px recommended) for Open Graph tags</li>
+                    <li><strong style="color: #64b5f6;">Viewport:</strong> Always include viewport meta tag for responsive design</li>
+                    <li><strong style="color: #64b5f6;">Testing:</strong> Test social media previews using Facebook's Sharing Debugger and Twitter's Card Validator</li>
+                    <li><strong style="color: #64b5f6;">Unique Content:</strong> Use unique titles and descriptions for each page</li>
                 </ul>
             </div>
             
