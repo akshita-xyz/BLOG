@@ -179,6 +179,21 @@
                     parent.classList.toggle('expanded');
                 });
             });
+            
+            // Scroll to top when clicking active page link
+            const activeLinks = document.querySelectorAll('.sidebar a.active');
+            activeLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Check if we're on the same page (not a child link)
+                    const currentPage = window.location.pathname.split('/').pop();
+                    const linkPage = this.getAttribute('href').split('#')[0].split('/').pop();
+                    
+                    if (currentPage === linkPage) {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            });
         });
     </script>
     <script src="../../js/main.js"></script>
